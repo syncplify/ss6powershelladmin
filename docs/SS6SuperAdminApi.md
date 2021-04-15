@@ -61,10 +61,11 @@ Adds a new admin for the specified virtual site
 ```powershell
 Import-Module -Name SS6AdminModule
 
-$Configuration = Get-SS6AdminModuleConfiguration
-# Configure HTTP basic authorization: BearerAuth
-$Configuration["Username"] = "YOUR_USERNAME";
-$Configuration["Password"] = "YOUR_PASSWORD";
+# Login to get access token (no need to log in more than once)
+Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
+$res = Invoke-SS6AdminLogin
+# Put access token in script configuration to call APIs
+Set-SS6Configuration -AccessToken $res.token
 
 $Id = "Id_example" # String | ID of the virtual site (default to null)
 $Admin = (New-Admin -Id "Id_example"  -Password (New-PasswordType -Version (New-PassVerType)  -Salt "Salt_example"  -Payload "Payload_example"  -MustChange $false)  -Email "Email_example"  -Permissions (New-AdminPerm -View @((New-AdminConfigObjects))  -Edit @((New-AdminConfigObjects)))  -Picture (New-PictureType -Kind (New-PictureKind)  -IdIfBuiltIn 123  -Base64ifCustom "Base64ifCustom_example")  -Status (New-AccountStatus)  -AutoDisable $false  -AutoDisableDate Get-Date  -AllowList @("AllowList_example")) # Admin | 
@@ -112,10 +113,11 @@ Takes an existing CSR and adds the CRT to it to create an actual certificate, an
 ```powershell
 Import-Module -Name SS6AdminModule
 
-$Configuration = Get-SS6AdminModuleConfiguration
-# Configure HTTP basic authorization: BearerAuth
-$Configuration["Username"] = "YOUR_USERNAME";
-$Configuration["Password"] = "YOUR_PASSWORD";
+# Login to get access token (no need to log in more than once)
+Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
+$res = Invoke-SS6AdminLogin
+# Put access token in script configuration to call APIs
+Set-SS6Configuration -AccessToken $res.token
 
 $Id = "Id_example" # String | ID of the certificate signing request (default to null)
 $InlineObject2 = (New-inline_object_2 -Cert "Cert_example") # InlineObject2 | 
@@ -162,10 +164,11 @@ Adds a new node certificate, a restart is required to load it
 ```powershell
 Import-Module -Name SS6AdminModule
 
-$Configuration = Get-SS6AdminModuleConfiguration
-# Configure HTTP basic authorization: BearerAuth
-$Configuration["Username"] = "YOUR_USERNAME";
-$Configuration["Password"] = "YOUR_PASSWORD";
+# Login to get access token (no need to log in more than once)
+Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
+$res = Invoke-SS6AdminLogin
+# Put access token in script configuration to call APIs
+Set-SS6Configuration -AccessToken $res.token
 
 $NodeCertificate = (New-NodeCertificate -Id "Id_example"  -Certificate (New-TLSCertificate -Id "Id_example"  -Cert "Cert_example"  -Key "Key_example"  -CaBundle "CaBundle_example"  -KeyPass (New-Secret -Status (New-SecretStatus)  -Payload "Payload_example")  -Hash "Hash_example"  -CommonName "CommonName_example"  -ValidFrom Get-Date  -ValidUntil Get-Date)) # NodeCertificate | 
 
@@ -210,10 +213,11 @@ Adds a new SuperAdmin
 ```powershell
 Import-Module -Name SS6AdminModule
 
-$Configuration = Get-SS6AdminModuleConfiguration
-# Configure HTTP basic authorization: BearerAuth
-$Configuration["Username"] = "YOUR_USERNAME";
-$Configuration["Password"] = "YOUR_PASSWORD";
+# Login to get access token (no need to log in more than once)
+Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
+$res = Invoke-SS6AdminLogin
+# Put access token in script configuration to call APIs
+Set-SS6Configuration -AccessToken $res.token
 
 $SuperAdmin = (New-SuperAdmin -Id "Id_example"  -Password (New-PasswordType -Version (New-PassVerType)  -Salt "Salt_example"  -Payload "Payload_example"  -MustChange $false)  -Email "Email_example"  -Picture (New-PictureType -Kind (New-PictureKind)  -IdIfBuiltIn 123  -Base64ifCustom "Base64ifCustom_example")  -AllowList @("AllowList_example")  -AuthenticatorSecret (New-Secret -Status (New-SecretStatus)  -Payload "Payload_example")  -AuthenticatorType (New-Authenticator)) # SuperAdmin | 
 
@@ -258,10 +262,11 @@ Adds a new virtual site
 ```powershell
 Import-Module -Name SS6AdminModule
 
-$Configuration = Get-SS6AdminModuleConfiguration
-# Configure HTTP basic authorization: BearerAuth
-$Configuration["Username"] = "YOUR_USERNAME";
-$Configuration["Password"] = "YOUR_PASSWORD";
+# Login to get access token (no need to log in more than once)
+Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
+$res = Invoke-SS6AdminLogin
+# Put access token in script configuration to call APIs
+Set-SS6Configuration -AccessToken $res.token
 
 $VirtualSite = (New-VirtualSite -Id "Id_example"  -Name "Name_example"  -AutoStart $false  -AutoRestart $false  -NodeBindings @((New-NodeBinding -NodeId "NodeId_example"  -Bindings @((New-Binding -Service (New-ServiceType)  -IpVersion (New-IPVersion)  -Ip "Ip_example"  -Port 123  -HostName "HostName_example"  -BehindHaProxy $false  -DataPort 123  -PortRangeMin 123  -PortRangeMax 123))))  -AdminUiLogo "TODO"  -AdminUiLogoType "AdminUiLogoType_example"  -AdminUiDisclaimer "AdminUiDisclaimer_example") # VirtualSite | 
 
@@ -306,10 +311,11 @@ Creates a brand new CSR and its associated private key
 ```powershell
 Import-Module -Name SS6AdminModule
 
-$Configuration = Get-SS6AdminModuleConfiguration
-# Configure HTTP basic authorization: BearerAuth
-$Configuration["Username"] = "YOUR_USERNAME";
-$Configuration["Password"] = "YOUR_PASSWORD";
+# Login to get access token (no need to log in more than once)
+Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
+$res = Invoke-SS6AdminLogin
+# Put access token in script configuration to call APIs
+Set-SS6Configuration -AccessToken $res.token
 
 $CSR = (New-CSR -CommonName "CommonName_example"  -Country "Country_example"  -Organization "Organization_example"  -OrganizationalUnit "OrganizationalUnit_example"  -Locality "Locality_example"  -Province "Province_example"  -Bits 123  -Algo "Algo_example"  -Hosts @("Hosts_example")  -Id "Id_example"  -EmailAddress "EmailAddress_example"  -UriList @("UriList_example")  -SigningReq "SigningReq_example") # CSR | 
 
@@ -355,10 +361,11 @@ Deletes the admin identified by adminID for this virtual site
 ```powershell
 Import-Module -Name SS6AdminModule
 
-$Configuration = Get-SS6AdminModuleConfiguration
-# Configure HTTP basic authorization: BearerAuth
-$Configuration["Username"] = "YOUR_USERNAME";
-$Configuration["Password"] = "YOUR_PASSWORD";
+# Login to get access token (no need to log in more than once)
+Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
+$res = Invoke-SS6AdminLogin
+# Put access token in script configuration to call APIs
+Set-SS6Configuration -AccessToken $res.token
 
 $Id = "Id_example" # String | ID of the virtual site (default to null)
 $AdminID = "AdminID_example" # String | ID of the admin (default to null)
@@ -405,10 +412,11 @@ Deletes the node CSR identified by id
 ```powershell
 Import-Module -Name SS6AdminModule
 
-$Configuration = Get-SS6AdminModuleConfiguration
-# Configure HTTP basic authorization: BearerAuth
-$Configuration["Username"] = "YOUR_USERNAME";
-$Configuration["Password"] = "YOUR_PASSWORD";
+# Login to get access token (no need to log in more than once)
+Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
+$res = Invoke-SS6AdminLogin
+# Put access token in script configuration to call APIs
+Set-SS6Configuration -AccessToken $res.token
 
 $Id = "Id_example" # String | ID of the certificate signing request (default to null)
 
@@ -453,10 +461,11 @@ Deletes the node identified by id, a restart is required to apply the change
 ```powershell
 Import-Module -Name SS6AdminModule
 
-$Configuration = Get-SS6AdminModuleConfiguration
-# Configure HTTP basic authorization: BearerAuth
-$Configuration["Username"] = "YOUR_USERNAME";
-$Configuration["Password"] = "YOUR_PASSWORD";
+# Login to get access token (no need to log in more than once)
+Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
+$res = Invoke-SS6AdminLogin
+# Put access token in script configuration to call APIs
+Set-SS6Configuration -AccessToken $res.token
 
 $Id = "Id_example" # String | ID of the node certificate (default to null)
 
@@ -501,10 +510,11 @@ Deletes the SuperAdmin user identified by id
 ```powershell
 Import-Module -Name SS6AdminModule
 
-$Configuration = Get-SS6AdminModuleConfiguration
-# Configure HTTP basic authorization: BearerAuth
-$Configuration["Username"] = "YOUR_USERNAME";
-$Configuration["Password"] = "YOUR_PASSWORD";
+# Login to get access token (no need to log in more than once)
+Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
+$res = Invoke-SS6AdminLogin
+# Put access token in script configuration to call APIs
+Set-SS6Configuration -AccessToken $res.token
 
 $Id = "Id_example" # String | ID of the SuperAdmin (default to null)
 
@@ -549,10 +559,11 @@ Deletes the virtual site identified by id
 ```powershell
 Import-Module -Name SS6AdminModule
 
-$Configuration = Get-SS6AdminModuleConfiguration
-# Configure HTTP basic authorization: BearerAuth
-$Configuration["Username"] = "YOUR_USERNAME";
-$Configuration["Password"] = "YOUR_PASSWORD";
+# Login to get access token (no need to log in more than once)
+Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
+$res = Invoke-SS6AdminLogin
+# Put access token in script configuration to call APIs
+Set-SS6Configuration -AccessToken $res.token
 
 $Id = "Id_example" # String | ID of the virtual site (default to null)
 
@@ -597,10 +608,11 @@ creates a brand new CERTIFICATE and its associated private key
 ```powershell
 Import-Module -Name SS6AdminModule
 
-$Configuration = Get-SS6AdminModuleConfiguration
-# Configure HTTP basic authorization: BearerAuth
-$Configuration["Username"] = "YOUR_USERNAME";
-$Configuration["Password"] = "YOUR_PASSWORD";
+# Login to get access token (no need to log in more than once)
+Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
+$res = Invoke-SS6AdminLogin
+# Put access token in script configuration to call APIs
+Set-SS6Configuration -AccessToken $res.token
 
 $CertificateRequest = (New-CertificateRequest -CommonName "CommonName_example"  -Country "Country_example"  -Organization "Organization_example"  -OrganizationalUnit "OrganizationalUnit_example"  -Locality "Locality_example"  -Province "Province_example"  -Bits 123  -Algo "Algo_example"  -Hosts @("Hosts_example")  -ValidForDays 123  -ValidFrom Get-Date) # CertificateRequest | 
 
@@ -646,10 +658,11 @@ Retrieves the admin identified by adminID for this virtual site
 ```powershell
 Import-Module -Name SS6AdminModule
 
-$Configuration = Get-SS6AdminModuleConfiguration
-# Configure HTTP basic authorization: BearerAuth
-$Configuration["Username"] = "YOUR_USERNAME";
-$Configuration["Password"] = "YOUR_PASSWORD";
+# Login to get access token (no need to log in more than once)
+Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
+$res = Invoke-SS6AdminLogin
+# Put access token in script configuration to call APIs
+Set-SS6Configuration -AccessToken $res.token
 
 $Id = "Id_example" # String | ID of the virtual site (default to null)
 $AdminID = "AdminID_example" # String | ID of the admin (default to null)
@@ -699,10 +712,11 @@ Retrieves the admins for the specified virtual site
 ```powershell
 Import-Module -Name SS6AdminModule
 
-$Configuration = Get-SS6AdminModuleConfiguration
-# Configure HTTP basic authorization: BearerAuth
-$Configuration["Username"] = "YOUR_USERNAME";
-$Configuration["Password"] = "YOUR_PASSWORD";
+# Login to get access token (no need to log in more than once)
+Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
+$res = Invoke-SS6AdminLogin
+# Put access token in script configuration to call APIs
+Set-SS6Configuration -AccessToken $res.token
 
 $Id = "Id_example" # String | ID of the virtual site (default to null)
 $Offset = 987 # Int32 |  (optional) (default to 0)
@@ -752,10 +766,11 @@ Retrieves the available bindings
 ```powershell
 Import-Module -Name SS6AdminModule
 
-$Configuration = Get-SS6AdminModuleConfiguration
-# Configure HTTP basic authorization: BearerAuth
-$Configuration["Username"] = "YOUR_USERNAME";
-$Configuration["Password"] = "YOUR_PASSWORD";
+# Login to get access token (no need to log in more than once)
+Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
+$res = Invoke-SS6AdminLogin
+# Put access token in script configuration to call APIs
+Set-SS6Configuration -AccessToken $res.token
 
 
 # Retrieves the available bindings
@@ -795,10 +810,11 @@ Retrieves the node
 ```powershell
 Import-Module -Name SS6AdminModule
 
-$Configuration = Get-SS6AdminModuleConfiguration
-# Configure HTTP basic authorization: BearerAuth
-$Configuration["Username"] = "YOUR_USERNAME";
-$Configuration["Password"] = "YOUR_PASSWORD";
+# Login to get access token (no need to log in more than once)
+Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
+$res = Invoke-SS6AdminLogin
+# Put access token in script configuration to call APIs
+Set-SS6Configuration -AccessToken $res.token
 
 
 # Retrieves the node
@@ -839,10 +855,11 @@ Retrieves the node CSR identified by id
 ```powershell
 Import-Module -Name SS6AdminModule
 
-$Configuration = Get-SS6AdminModuleConfiguration
-# Configure HTTP basic authorization: BearerAuth
-$Configuration["Username"] = "YOUR_USERNAME";
-$Configuration["Password"] = "YOUR_PASSWORD";
+# Login to get access token (no need to log in more than once)
+Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
+$res = Invoke-SS6AdminLogin
+# Put access token in script configuration to call APIs
+Set-SS6Configuration -AccessToken $res.token
 
 $Id = "Id_example" # String | ID of the certificate signing request (default to null)
 
@@ -886,10 +903,11 @@ Retrieves node pre-generated certificate signing requests
 ```powershell
 Import-Module -Name SS6AdminModule
 
-$Configuration = Get-SS6AdminModuleConfiguration
-# Configure HTTP basic authorization: BearerAuth
-$Configuration["Username"] = "YOUR_USERNAME";
-$Configuration["Password"] = "YOUR_PASSWORD";
+# Login to get access token (no need to log in more than once)
+Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
+$res = Invoke-SS6AdminLogin
+# Put access token in script configuration to call APIs
+Set-SS6Configuration -AccessToken $res.token
 
 
 # Retrieves node pre-generated certificate signing requests
@@ -929,10 +947,11 @@ Retrieves node certificates
 ```powershell
 Import-Module -Name SS6AdminModule
 
-$Configuration = Get-SS6AdminModuleConfiguration
-# Configure HTTP basic authorization: BearerAuth
-$Configuration["Username"] = "YOUR_USERNAME";
-$Configuration["Password"] = "YOUR_PASSWORD";
+# Login to get access token (no need to log in more than once)
+Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
+$res = Invoke-SS6AdminLogin
+# Put access token in script configuration to call APIs
+Set-SS6Configuration -AccessToken $res.token
 
 
 # Retrieves node certificates
@@ -973,10 +992,11 @@ Retrieves the node certificate identified by id
 ```powershell
 Import-Module -Name SS6AdminModule
 
-$Configuration = Get-SS6AdminModuleConfiguration
-# Configure HTTP basic authorization: BearerAuth
-$Configuration["Username"] = "YOUR_USERNAME";
-$Configuration["Password"] = "YOUR_PASSWORD";
+# Login to get access token (no need to log in more than once)
+Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
+$res = Invoke-SS6AdminLogin
+# Put access token in script configuration to call APIs
+Set-SS6Configuration -AccessToken $res.token
 
 $Id = "Id_example" # String | ID of the node certificate (default to null)
 
@@ -1023,10 +1043,11 @@ Get the QR code png
 ```powershell
 Import-Module -Name SS6AdminModule
 
-$Configuration = Get-SS6AdminModuleConfiguration
-# Configure HTTP basic authorization: BearerAuth
-$Configuration["Username"] = "YOUR_USERNAME";
-$Configuration["Password"] = "YOUR_PASSWORD";
+# Login to get access token (no need to log in more than once)
+Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
+$res = Invoke-SS6AdminLogin
+# Put access token in script configuration to call APIs
+Set-SS6Configuration -AccessToken $res.token
 
 $Issuer = "Issuer_example" # String |  (default to null)
 $Email = "Email_example" # String |  (default to null)
@@ -1075,10 +1096,11 @@ Get a random base32 string
 ```powershell
 Import-Module -Name SS6AdminModule
 
-$Configuration = Get-SS6AdminModuleConfiguration
-# Configure HTTP basic authorization: BearerAuth
-$Configuration["Username"] = "YOUR_USERNAME";
-$Configuration["Password"] = "YOUR_PASSWORD";
+# Login to get access token (no need to log in more than once)
+Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
+$res = Invoke-SS6AdminLogin
+# Put access token in script configuration to call APIs
+Set-SS6Configuration -AccessToken $res.token
 
 $Length = "Length_example" # String | length of the random string (default to null)
 
@@ -1122,10 +1144,11 @@ Get a random name
 ```powershell
 Import-Module -Name SS6AdminModule
 
-$Configuration = Get-SS6AdminModuleConfiguration
-# Configure HTTP basic authorization: BearerAuth
-$Configuration["Username"] = "YOUR_USERNAME";
-$Configuration["Password"] = "YOUR_PASSWORD";
+# Login to get access token (no need to log in more than once)
+Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
+$res = Invoke-SS6AdminLogin
+# Put access token in script configuration to call APIs
+Set-SS6Configuration -AccessToken $res.token
 
 
 # Get a random name
@@ -1166,10 +1189,11 @@ Retrieves the SuperAdmin configuration identified by id
 ```powershell
 Import-Module -Name SS6AdminModule
 
-$Configuration = Get-SS6AdminModuleConfiguration
-# Configure HTTP basic authorization: BearerAuth
-$Configuration["Username"] = "YOUR_USERNAME";
-$Configuration["Password"] = "YOUR_PASSWORD";
+# Login to get access token (no need to log in more than once)
+Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
+$res = Invoke-SS6AdminLogin
+# Put access token in script configuration to call APIs
+Set-SS6Configuration -AccessToken $res.token
 
 $Id = "Id_example" # String | ID of the SuperAdmin (default to null)
 
@@ -1216,10 +1240,11 @@ Retrieves the SuperAdmin users
 ```powershell
 Import-Module -Name SS6AdminModule
 
-$Configuration = Get-SS6AdminModuleConfiguration
-# Configure HTTP basic authorization: BearerAuth
-$Configuration["Username"] = "YOUR_USERNAME";
-$Configuration["Password"] = "YOUR_PASSWORD";
+# Login to get access token (no need to log in more than once)
+Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
+$res = Invoke-SS6AdminLogin
+# Put access token in script configuration to call APIs
+Set-SS6Configuration -AccessToken $res.token
 
 $Offset = 987 # Int32 |  (optional) (default to 0)
 $Limit = 987 # Int32 | The maximum number of items to return. Max value is 500, default is 100 (optional) (default to 100)
@@ -1268,10 +1293,11 @@ Retrieves the virtual site identified by id
 ```powershell
 Import-Module -Name SS6AdminModule
 
-$Configuration = Get-SS6AdminModuleConfiguration
-# Configure HTTP basic authorization: BearerAuth
-$Configuration["Username"] = "YOUR_USERNAME";
-$Configuration["Password"] = "YOUR_PASSWORD";
+# Login to get access token (no need to log in more than once)
+Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
+$res = Invoke-SS6AdminLogin
+# Put access token in script configuration to call APIs
+Set-SS6Configuration -AccessToken $res.token
 
 $Id = "Id_example" # String | ID of the virtual site (default to null)
 
@@ -1318,10 +1344,11 @@ Retrieves virtual sites
 ```powershell
 Import-Module -Name SS6AdminModule
 
-$Configuration = Get-SS6AdminModuleConfiguration
-# Configure HTTP basic authorization: BearerAuth
-$Configuration["Username"] = "YOUR_USERNAME";
-$Configuration["Password"] = "YOUR_PASSWORD";
+# Login to get access token (no need to log in more than once)
+Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
+$res = Invoke-SS6AdminLogin
+# Put access token in script configuration to call APIs
+Set-SS6Configuration -AccessToken $res.token
 
 $Offset = 987 # Int32 |  (optional) (default to 0)
 $Limit = 987 # Int32 | The maximum number of items to return. Max value is 500, default is 100 (optional) (default to 100)
@@ -1371,10 +1398,11 @@ Test a google Authenticator token with explicit secret
 ```powershell
 Import-Module -Name SS6AdminModule
 
-$Configuration = Get-SS6AdminModuleConfiguration
-# Configure HTTP basic authorization: BearerAuth
-$Configuration["Username"] = "YOUR_USERNAME";
-$Configuration["Password"] = "YOUR_PASSWORD";
+# Login to get access token (no need to log in more than once)
+Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
+$res = Invoke-SS6AdminLogin
+# Put access token in script configuration to call APIs
+Set-SS6Configuration -AccessToken $res.token
 
 $Secret = "Secret_example" # String | secret of GOTP (default to null)
 $Token = "Token_example" # String | token to be verified (default to null)
@@ -1423,10 +1451,11 @@ Partial update for the admin identified by adminID for this virtual site
 ```powershell
 Import-Module -Name SS6AdminModule
 
-$Configuration = Get-SS6AdminModuleConfiguration
-# Configure HTTP basic authorization: BearerAuth
-$Configuration["Username"] = "YOUR_USERNAME";
-$Configuration["Password"] = "YOUR_PASSWORD";
+# Login to get access token (no need to log in more than once)
+Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
+$res = Invoke-SS6AdminLogin
+# Put access token in script configuration to call APIs
+Set-SS6Configuration -AccessToken $res.token
 
 $Id = "Id_example" # String | ID of the virtual site (default to null)
 $AdminID = "AdminID_example" # String | ID of the admin (default to null)
@@ -1475,10 +1504,11 @@ Partial update for the node
 ```powershell
 Import-Module -Name SS6AdminModule
 
-$Configuration = Get-SS6AdminModuleConfiguration
-# Configure HTTP basic authorization: BearerAuth
-$Configuration["Username"] = "YOUR_USERNAME";
-$Configuration["Password"] = "YOUR_PASSWORD";
+# Login to get access token (no need to log in more than once)
+Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
+$res = Invoke-SS6AdminLogin
+# Put access token in script configuration to call APIs
+Set-SS6Configuration -AccessToken $res.token
 
 $Node = (New-Node -Id "Id_example"  -Description "Description_example"  -Secret "Secret_example") # Node | 
 
@@ -1524,10 +1554,11 @@ Partial update for the SuperAdmin user identified by id
 ```powershell
 Import-Module -Name SS6AdminModule
 
-$Configuration = Get-SS6AdminModuleConfiguration
-# Configure HTTP basic authorization: BearerAuth
-$Configuration["Username"] = "YOUR_USERNAME";
-$Configuration["Password"] = "YOUR_PASSWORD";
+# Login to get access token (no need to log in more than once)
+Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
+$res = Invoke-SS6AdminLogin
+# Put access token in script configuration to call APIs
+Set-SS6Configuration -AccessToken $res.token
 
 $Id = "Id_example" # String | ID of the SuperAdmin (default to null)
 $SuperAdmin = (New-SuperAdmin -Id "Id_example"  -Password   -Email "Email_example"  -Picture   -AllowList @("AllowList_example")  -AuthenticatorSecret   -AuthenticatorType (New-Authenticator)) # SuperAdmin | 
@@ -1575,10 +1606,11 @@ Partial update for the virtual site identified by id
 ```powershell
 Import-Module -Name SS6AdminModule
 
-$Configuration = Get-SS6AdminModuleConfiguration
-# Configure HTTP basic authorization: BearerAuth
-$Configuration["Username"] = "YOUR_USERNAME";
-$Configuration["Password"] = "YOUR_PASSWORD";
+# Login to get access token (no need to log in more than once)
+Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
+$res = Invoke-SS6AdminLogin
+# Put access token in script configuration to call APIs
+Set-SS6Configuration -AccessToken $res.token
 
 $Id = "Id_example" # String | ID of the virtual site (default to null)
 $VirtualSite = (New-VirtualSite -Id "Id_example"  -Name "Name_example"  -AutoStart $false  -AutoRestart $false  -NodeBindings @((New-NodeBinding -NodeId "NodeId_example"  -Bindings @((New-Binding -Service (New-ServiceType)  -IpVersion (New-IPVersion)  -Ip "Ip_example"  -Port 123  -HostName "HostName_example"  -BehindHaProxy $false  -DataPort 123  -PortRangeMin 123  -PortRangeMax 123))))  -AdminUiLogo "TODO"  -AdminUiLogoType "AdminUiLogoType_example"  -AdminUiDisclaimer "AdminUiDisclaimer_example") # VirtualSite | 
@@ -1624,10 +1656,11 @@ Generate a backup as zip file
 ```powershell
 Import-Module -Name SS6AdminModule
 
-$Configuration = Get-SS6AdminModuleConfiguration
-# Configure HTTP basic authorization: BearerAuth
-$Configuration["Username"] = "YOUR_USERNAME";
-$Configuration["Password"] = "YOUR_PASSWORD";
+# Login to get access token (no need to log in more than once)
+Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
+$res = Invoke-SS6AdminLogin
+# Put access token in script configuration to call APIs
+Set-SS6Configuration -AccessToken $res.token
 
 
 # Generate a backup as zip file
@@ -1668,10 +1701,8 @@ Login functions for the 'sa' power-user
 ```powershell
 Import-Module -Name SS6AdminModule
 
-$Configuration = Get-SS6AdminModuleConfiguration
-# Configure HTTP basic authorization: BasicAuth
-$Configuration["Username"] = "YOUR_USERNAME";
-$Configuration["Password"] = "YOUR_PASSWORD";
+# Set configuration information before logging in
+Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
 
 $X_OTP = "X_OTP_example" # String |  (optional) (default to null)
 
@@ -1715,10 +1746,11 @@ Logout functions for the 'sa' power-user
 ```powershell
 Import-Module -Name SS6AdminModule
 
-$Configuration = Get-SS6AdminModuleConfiguration
-# Configure HTTP basic authorization: BearerAuth
-$Configuration["Username"] = "YOUR_USERNAME";
-$Configuration["Password"] = "YOUR_PASSWORD";
+# Login to get access token (no need to log in more than once)
+Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
+$res = Invoke-SS6AdminLogin
+# Put access token in script configuration to call APIs
+Set-SS6Configuration -AccessToken $res.token
 
 
 # Logout functions for the 'sa' power-user
@@ -1759,10 +1791,11 @@ Restore a backup from a zip file
 ```powershell
 Import-Module -Name SS6AdminModule
 
-$Configuration = Get-SS6AdminModuleConfiguration
-# Configure HTTP basic authorization: BearerAuth
-$Configuration["Username"] = "YOUR_USERNAME";
-$Configuration["Password"] = "YOUR_PASSWORD";
+# Login to get access token (no need to log in more than once)
+Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
+$res = Invoke-SS6AdminLogin
+# Put access token in script configuration to call APIs
+Set-SS6Configuration -AccessToken $res.token
 
 $Filename = 987 # System.IO.FileInfo |  (default to null)
 
@@ -1807,10 +1840,11 @@ Starts the virtual site identified by id
 ```powershell
 Import-Module -Name SS6AdminModule
 
-$Configuration = Get-SS6AdminModuleConfiguration
-# Configure HTTP basic authorization: BearerAuth
-$Configuration["Username"] = "YOUR_USERNAME";
-$Configuration["Password"] = "YOUR_PASSWORD";
+# Login to get access token (no need to log in more than once)
+Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
+$res = Invoke-SS6AdminLogin
+# Put access token in script configuration to call APIs
+Set-SS6Configuration -AccessToken $res.token
 
 $Id = "Id_example" # String | ID of the virtual site (default to null)
 
@@ -1855,10 +1889,11 @@ Stops the virtual site identified by id
 ```powershell
 Import-Module -Name SS6AdminModule
 
-$Configuration = Get-SS6AdminModuleConfiguration
-# Configure HTTP basic authorization: BearerAuth
-$Configuration["Username"] = "YOUR_USERNAME";
-$Configuration["Password"] = "YOUR_PASSWORD";
+# Login to get access token (no need to log in more than once)
+Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
+$res = Invoke-SS6AdminLogin
+# Put access token in script configuration to call APIs
+Set-SS6Configuration -AccessToken $res.token
 
 $Id = "Id_example" # String | ID of the virtual site (default to null)
 
@@ -1905,10 +1940,11 @@ Updates  the admin identified by adminID for this virtual site
 ```powershell
 Import-Module -Name SS6AdminModule
 
-$Configuration = Get-SS6AdminModuleConfiguration
-# Configure HTTP basic authorization: BearerAuth
-$Configuration["Username"] = "YOUR_USERNAME";
-$Configuration["Password"] = "YOUR_PASSWORD";
+# Login to get access token (no need to log in more than once)
+Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
+$res = Invoke-SS6AdminLogin
+# Put access token in script configuration to call APIs
+Set-SS6Configuration -AccessToken $res.token
 
 $Id = "Id_example" # String | ID of the virtual site (default to null)
 $AdminID = "AdminID_example" # String | ID of the admin (default to null)
@@ -1957,10 +1993,11 @@ Updates the node
 ```powershell
 Import-Module -Name SS6AdminModule
 
-$Configuration = Get-SS6AdminModuleConfiguration
-# Configure HTTP basic authorization: BearerAuth
-$Configuration["Username"] = "YOUR_USERNAME";
-$Configuration["Password"] = "YOUR_PASSWORD";
+# Login to get access token (no need to log in more than once)
+Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
+$res = Invoke-SS6AdminLogin
+# Put access token in script configuration to call APIs
+Set-SS6Configuration -AccessToken $res.token
 
 $Node = (New-Node -Id "Id_example"  -Description "Description_example"  -Secret "Secret_example") # Node | 
 
@@ -2005,10 +2042,11 @@ Updates the password for the logged in super admin
 ```powershell
 Import-Module -Name SS6AdminModule
 
-$Configuration = Get-SS6AdminModuleConfiguration
-# Configure HTTP basic authorization: BearerAuth
-$Configuration["Username"] = "YOUR_USERNAME";
-$Configuration["Password"] = "YOUR_PASSWORD";
+# Login to get access token (no need to log in more than once)
+Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
+$res = Invoke-SS6AdminLogin
+# Put access token in script configuration to call APIs
+Set-SS6Configuration -AccessToken $res.token
 
 $PasswordType =  # PasswordType | 
 
@@ -2054,10 +2092,11 @@ Update the SuperAdmin user identified by id
 ```powershell
 Import-Module -Name SS6AdminModule
 
-$Configuration = Get-SS6AdminModuleConfiguration
-# Configure HTTP basic authorization: BearerAuth
-$Configuration["Username"] = "YOUR_USERNAME";
-$Configuration["Password"] = "YOUR_PASSWORD";
+# Login to get access token (no need to log in more than once)
+Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
+$res = Invoke-SS6AdminLogin
+# Put access token in script configuration to call APIs
+Set-SS6Configuration -AccessToken $res.token
 
 $Id = "Id_example" # String | ID of the SuperAdmin (default to null)
 $SuperAdmin =  # SuperAdmin | 
@@ -2105,10 +2144,11 @@ Updates the virtual site identified by id
 ```powershell
 Import-Module -Name SS6AdminModule
 
-$Configuration = Get-SS6AdminModuleConfiguration
-# Configure HTTP basic authorization: BearerAuth
-$Configuration["Username"] = "YOUR_USERNAME";
-$Configuration["Password"] = "YOUR_PASSWORD";
+# Login to get access token (no need to log in more than once)
+Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
+$res = Invoke-SS6AdminLogin
+# Put access token in script configuration to call APIs
+Set-SS6Configuration -AccessToken $res.token
 
 $Id = "Id_example" # String | ID of the virtual site (default to null)
 $VirtualSite =  # VirtualSite | 
