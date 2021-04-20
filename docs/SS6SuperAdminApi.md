@@ -63,10 +63,7 @@ Import-Module -Name SS6AdminModule
 
 # Login to get access token (no need to log in more than once)
 Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
-$res = Invoke-SS6AdminLogin
-# Put access token in script configuration to call APIs
-Set-SS6Configuration -AccessToken $res.token
-
+Invoke-SS6SaLogin
 $Id = "Id_example" # String | ID of the virtual site (default to null)
 $Admin = (New-Admin -Id "Id_example"  -Password (New-PasswordType -Version (New-PassVerType)  -Salt "Salt_example"  -Payload "Payload_example"  -MustChange $false)  -Email "Email_example"  -Permissions (New-AdminPerm -View @((New-AdminConfigObjects))  -Edit @((New-AdminConfigObjects)))  -Picture (New-PictureType -Kind (New-PictureKind)  -IdIfBuiltIn 123  -Base64ifCustom "Base64ifCustom_example")  -Status (New-AccountStatus)  -AutoDisable $false  -AutoDisableDate Get-Date  -AllowList @("AllowList_example")) # Admin | 
 
@@ -115,10 +112,7 @@ Import-Module -Name SS6AdminModule
 
 # Login to get access token (no need to log in more than once)
 Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
-$res = Invoke-SS6AdminLogin
-# Put access token in script configuration to call APIs
-Set-SS6Configuration -AccessToken $res.token
-
+Invoke-SS6SaLogin
 $Id = "Id_example" # String | ID of the certificate signing request (default to null)
 $InlineObject2 = (New-inline_object_2 -Cert "Cert_example") # InlineObject2 | 
 
@@ -166,10 +160,7 @@ Import-Module -Name SS6AdminModule
 
 # Login to get access token (no need to log in more than once)
 Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
-$res = Invoke-SS6AdminLogin
-# Put access token in script configuration to call APIs
-Set-SS6Configuration -AccessToken $res.token
-
+Invoke-SS6SaLogin
 $NodeCertificate = (New-NodeCertificate -Id "Id_example"  -Certificate (New-TLSCertificate -Id "Id_example"  -Cert "Cert_example"  -Key "Key_example"  -CaBundle "CaBundle_example"  -KeyPass (New-Secret -Status (New-SecretStatus)  -Payload "Payload_example")  -Hash "Hash_example"  -CommonName "CommonName_example"  -ValidFrom Get-Date  -ValidUntil Get-Date)) # NodeCertificate | 
 
 # Adds a new node certificate, a restart is required to load it
@@ -215,10 +206,7 @@ Import-Module -Name SS6AdminModule
 
 # Login to get access token (no need to log in more than once)
 Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
-$res = Invoke-SS6AdminLogin
-# Put access token in script configuration to call APIs
-Set-SS6Configuration -AccessToken $res.token
-
+Invoke-SS6SaLogin
 $SuperAdmin = (New-SuperAdmin -Id "Id_example"  -Password (New-PasswordType -Version (New-PassVerType)  -Salt "Salt_example"  -Payload "Payload_example"  -MustChange $false)  -Email "Email_example"  -Picture (New-PictureType -Kind (New-PictureKind)  -IdIfBuiltIn 123  -Base64ifCustom "Base64ifCustom_example")  -AllowList @("AllowList_example")  -AuthenticatorSecret (New-Secret -Status (New-SecretStatus)  -Payload "Payload_example")  -AuthenticatorType (New-Authenticator)) # SuperAdmin | 
 
 # Adds a new SuperAdmin
@@ -264,10 +252,7 @@ Import-Module -Name SS6AdminModule
 
 # Login to get access token (no need to log in more than once)
 Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
-$res = Invoke-SS6AdminLogin
-# Put access token in script configuration to call APIs
-Set-SS6Configuration -AccessToken $res.token
-
+Invoke-SS6SaLogin
 $VirtualSite = (New-VirtualSite -Id "Id_example"  -Name "Name_example"  -AutoStart $false  -AutoRestart $false  -NodeBindings @((New-NodeBinding -NodeId "NodeId_example"  -Bindings @((New-Binding -Service (New-ServiceType)  -IpVersion (New-IPVersion)  -Ip "Ip_example"  -Port 123  -HostName "HostName_example"  -BehindHaProxy $false  -DataPort 123  -PortRangeMin 123  -PortRangeMax 123))))  -AdminUiLogo "TODO"  -AdminUiLogoType "AdminUiLogoType_example"  -AdminUiDisclaimer "AdminUiDisclaimer_example") # VirtualSite | 
 
 # Adds a new virtual site
@@ -313,10 +298,7 @@ Import-Module -Name SS6AdminModule
 
 # Login to get access token (no need to log in more than once)
 Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
-$res = Invoke-SS6AdminLogin
-# Put access token in script configuration to call APIs
-Set-SS6Configuration -AccessToken $res.token
-
+Invoke-SS6SaLogin
 $CSR = (New-CSR -CommonName "CommonName_example"  -Country "Country_example"  -Organization "Organization_example"  -OrganizationalUnit "OrganizationalUnit_example"  -Locality "Locality_example"  -Province "Province_example"  -Bits 123  -Algo "Algo_example"  -Hosts @("Hosts_example")  -Id "Id_example"  -EmailAddress "EmailAddress_example"  -UriList @("UriList_example")  -SigningReq "SigningReq_example") # CSR | 
 
 # Creates a brand new CSR and its associated private key
@@ -363,10 +345,7 @@ Import-Module -Name SS6AdminModule
 
 # Login to get access token (no need to log in more than once)
 Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
-$res = Invoke-SS6AdminLogin
-# Put access token in script configuration to call APIs
-Set-SS6Configuration -AccessToken $res.token
-
+Invoke-SS6SaLogin
 $Id = "Id_example" # String | ID of the virtual site (default to null)
 $AdminID = "AdminID_example" # String | ID of the admin (default to null)
 
@@ -414,10 +393,7 @@ Import-Module -Name SS6AdminModule
 
 # Login to get access token (no need to log in more than once)
 Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
-$res = Invoke-SS6AdminLogin
-# Put access token in script configuration to call APIs
-Set-SS6Configuration -AccessToken $res.token
-
+Invoke-SS6SaLogin
 $Id = "Id_example" # String | ID of the certificate signing request (default to null)
 
 # Deletes the node CSR identified by id
@@ -463,10 +439,7 @@ Import-Module -Name SS6AdminModule
 
 # Login to get access token (no need to log in more than once)
 Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
-$res = Invoke-SS6AdminLogin
-# Put access token in script configuration to call APIs
-Set-SS6Configuration -AccessToken $res.token
-
+Invoke-SS6SaLogin
 $Id = "Id_example" # String | ID of the node certificate (default to null)
 
 # Deletes the node identified by id, a restart is required to apply the change
@@ -512,10 +485,7 @@ Import-Module -Name SS6AdminModule
 
 # Login to get access token (no need to log in more than once)
 Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
-$res = Invoke-SS6AdminLogin
-# Put access token in script configuration to call APIs
-Set-SS6Configuration -AccessToken $res.token
-
+Invoke-SS6SaLogin
 $Id = "Id_example" # String | ID of the SuperAdmin (default to null)
 
 # Deletes the SuperAdmin user identified by id
@@ -561,10 +531,7 @@ Import-Module -Name SS6AdminModule
 
 # Login to get access token (no need to log in more than once)
 Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
-$res = Invoke-SS6AdminLogin
-# Put access token in script configuration to call APIs
-Set-SS6Configuration -AccessToken $res.token
-
+Invoke-SS6SaLogin
 $Id = "Id_example" # String | ID of the virtual site (default to null)
 
 # Deletes the virtual site identified by id
@@ -610,10 +577,7 @@ Import-Module -Name SS6AdminModule
 
 # Login to get access token (no need to log in more than once)
 Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
-$res = Invoke-SS6AdminLogin
-# Put access token in script configuration to call APIs
-Set-SS6Configuration -AccessToken $res.token
-
+Invoke-SS6SaLogin
 $CertificateRequest = (New-CertificateRequest -CommonName "CommonName_example"  -Country "Country_example"  -Organization "Organization_example"  -OrganizationalUnit "OrganizationalUnit_example"  -Locality "Locality_example"  -Province "Province_example"  -Bits 123  -Algo "Algo_example"  -Hosts @("Hosts_example")  -ValidForDays 123  -ValidFrom Get-Date) # CertificateRequest | 
 
 # creates a brand new CERTIFICATE and its associated private key
@@ -660,10 +624,7 @@ Import-Module -Name SS6AdminModule
 
 # Login to get access token (no need to log in more than once)
 Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
-$res = Invoke-SS6AdminLogin
-# Put access token in script configuration to call APIs
-Set-SS6Configuration -AccessToken $res.token
-
+Invoke-SS6SaLogin
 $Id = "Id_example" # String | ID of the virtual site (default to null)
 $AdminID = "AdminID_example" # String | ID of the admin (default to null)
 
@@ -714,10 +675,7 @@ Import-Module -Name SS6AdminModule
 
 # Login to get access token (no need to log in more than once)
 Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
-$res = Invoke-SS6AdminLogin
-# Put access token in script configuration to call APIs
-Set-SS6Configuration -AccessToken $res.token
-
+Invoke-SS6SaLogin
 $Id = "Id_example" # String | ID of the virtual site (default to null)
 $Offset = 987 # Int32 |  (optional) (default to 0)
 $Limit = 987 # Int32 | The maximum number of items to return. Max value is 500, default is 100 (optional) (default to 100)
@@ -768,10 +726,7 @@ Import-Module -Name SS6AdminModule
 
 # Login to get access token (no need to log in more than once)
 Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
-$res = Invoke-SS6AdminLogin
-# Put access token in script configuration to call APIs
-Set-SS6Configuration -AccessToken $res.token
-
+Invoke-SS6SaLogin
 
 # Retrieves the available bindings
 try {
@@ -812,10 +767,7 @@ Import-Module -Name SS6AdminModule
 
 # Login to get access token (no need to log in more than once)
 Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
-$res = Invoke-SS6AdminLogin
-# Put access token in script configuration to call APIs
-Set-SS6Configuration -AccessToken $res.token
-
+Invoke-SS6SaLogin
 
 # Retrieves the node
 try {
@@ -857,10 +809,7 @@ Import-Module -Name SS6AdminModule
 
 # Login to get access token (no need to log in more than once)
 Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
-$res = Invoke-SS6AdminLogin
-# Put access token in script configuration to call APIs
-Set-SS6Configuration -AccessToken $res.token
-
+Invoke-SS6SaLogin
 $Id = "Id_example" # String | ID of the certificate signing request (default to null)
 
 # Retrieves the node CSR identified by id
@@ -905,10 +854,7 @@ Import-Module -Name SS6AdminModule
 
 # Login to get access token (no need to log in more than once)
 Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
-$res = Invoke-SS6AdminLogin
-# Put access token in script configuration to call APIs
-Set-SS6Configuration -AccessToken $res.token
-
+Invoke-SS6SaLogin
 
 # Retrieves node pre-generated certificate signing requests
 try {
@@ -949,10 +895,7 @@ Import-Module -Name SS6AdminModule
 
 # Login to get access token (no need to log in more than once)
 Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
-$res = Invoke-SS6AdminLogin
-# Put access token in script configuration to call APIs
-Set-SS6Configuration -AccessToken $res.token
-
+Invoke-SS6SaLogin
 
 # Retrieves node certificates
 try {
@@ -994,10 +937,7 @@ Import-Module -Name SS6AdminModule
 
 # Login to get access token (no need to log in more than once)
 Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
-$res = Invoke-SS6AdminLogin
-# Put access token in script configuration to call APIs
-Set-SS6Configuration -AccessToken $res.token
-
+Invoke-SS6SaLogin
 $Id = "Id_example" # String | ID of the node certificate (default to null)
 
 # Retrieves the node certificate identified by id
@@ -1045,10 +985,7 @@ Import-Module -Name SS6AdminModule
 
 # Login to get access token (no need to log in more than once)
 Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
-$res = Invoke-SS6AdminLogin
-# Put access token in script configuration to call APIs
-Set-SS6Configuration -AccessToken $res.token
-
+Invoke-SS6SaLogin
 $Issuer = "Issuer_example" # String |  (default to null)
 $Email = "Email_example" # String |  (default to null)
 $Secret = "Secret_example" # String |  (default to null)
@@ -1098,10 +1035,7 @@ Import-Module -Name SS6AdminModule
 
 # Login to get access token (no need to log in more than once)
 Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
-$res = Invoke-SS6AdminLogin
-# Put access token in script configuration to call APIs
-Set-SS6Configuration -AccessToken $res.token
-
+Invoke-SS6SaLogin
 $Length = "Length_example" # String | length of the random string (default to null)
 
 # Get a random base32 string
@@ -1146,10 +1080,7 @@ Import-Module -Name SS6AdminModule
 
 # Login to get access token (no need to log in more than once)
 Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
-$res = Invoke-SS6AdminLogin
-# Put access token in script configuration to call APIs
-Set-SS6Configuration -AccessToken $res.token
-
+Invoke-SS6SaLogin
 
 # Get a random name
 try {
@@ -1191,10 +1122,7 @@ Import-Module -Name SS6AdminModule
 
 # Login to get access token (no need to log in more than once)
 Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
-$res = Invoke-SS6AdminLogin
-# Put access token in script configuration to call APIs
-Set-SS6Configuration -AccessToken $res.token
-
+Invoke-SS6SaLogin
 $Id = "Id_example" # String | ID of the SuperAdmin (default to null)
 
 # Retrieves the SuperAdmin configuration identified by id
@@ -1242,10 +1170,7 @@ Import-Module -Name SS6AdminModule
 
 # Login to get access token (no need to log in more than once)
 Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
-$res = Invoke-SS6AdminLogin
-# Put access token in script configuration to call APIs
-Set-SS6Configuration -AccessToken $res.token
-
+Invoke-SS6SaLogin
 $Offset = 987 # Int32 |  (optional) (default to 0)
 $Limit = 987 # Int32 | The maximum number of items to return. Max value is 500, default is 100 (optional) (default to 100)
 $Order = "Order_example" # String | Ordering by id. Default ASC (optional) (default to null)
@@ -1295,10 +1220,7 @@ Import-Module -Name SS6AdminModule
 
 # Login to get access token (no need to log in more than once)
 Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
-$res = Invoke-SS6AdminLogin
-# Put access token in script configuration to call APIs
-Set-SS6Configuration -AccessToken $res.token
-
+Invoke-SS6SaLogin
 $Id = "Id_example" # String | ID of the virtual site (default to null)
 
 # Retrieves the virtual site identified by id
@@ -1346,10 +1268,7 @@ Import-Module -Name SS6AdminModule
 
 # Login to get access token (no need to log in more than once)
 Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
-$res = Invoke-SS6AdminLogin
-# Put access token in script configuration to call APIs
-Set-SS6Configuration -AccessToken $res.token
-
+Invoke-SS6SaLogin
 $Offset = 987 # Int32 |  (optional) (default to 0)
 $Limit = 987 # Int32 | The maximum number of items to return. Max value is 500, default is 100 (optional) (default to 100)
 $Order = "Order_example" # String | Ordering by id. Default ASC (optional) (default to null)
@@ -1400,10 +1319,7 @@ Import-Module -Name SS6AdminModule
 
 # Login to get access token (no need to log in more than once)
 Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
-$res = Invoke-SS6AdminLogin
-# Put access token in script configuration to call APIs
-Set-SS6Configuration -AccessToken $res.token
-
+Invoke-SS6SaLogin
 $Secret = "Secret_example" # String | secret of GOTP (default to null)
 $Token = "Token_example" # String | token to be verified (default to null)
 
@@ -1453,10 +1369,7 @@ Import-Module -Name SS6AdminModule
 
 # Login to get access token (no need to log in more than once)
 Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
-$res = Invoke-SS6AdminLogin
-# Put access token in script configuration to call APIs
-Set-SS6Configuration -AccessToken $res.token
-
+Invoke-SS6SaLogin
 $Id = "Id_example" # String | ID of the virtual site (default to null)
 $AdminID = "AdminID_example" # String | ID of the admin (default to null)
 $Admin = (New-Admin -Id "Id_example"  -Password   -Email "Email_example"  -Permissions (New-AdminPerm -View @()  -Edit @())  -Picture   -Status (New-AccountStatus)  -AutoDisable $false  -AutoDisableDate Get-Date  -AllowList @("AllowList_example")) # Admin | 
@@ -1506,10 +1419,7 @@ Import-Module -Name SS6AdminModule
 
 # Login to get access token (no need to log in more than once)
 Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
-$res = Invoke-SS6AdminLogin
-# Put access token in script configuration to call APIs
-Set-SS6Configuration -AccessToken $res.token
-
+Invoke-SS6SaLogin
 $Node = (New-Node -Id "Id_example"  -Description "Description_example"  -Secret "Secret_example") # Node | 
 
 # Partial update for the node
@@ -1556,10 +1466,7 @@ Import-Module -Name SS6AdminModule
 
 # Login to get access token (no need to log in more than once)
 Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
-$res = Invoke-SS6AdminLogin
-# Put access token in script configuration to call APIs
-Set-SS6Configuration -AccessToken $res.token
-
+Invoke-SS6SaLogin
 $Id = "Id_example" # String | ID of the SuperAdmin (default to null)
 $SuperAdmin = (New-SuperAdmin -Id "Id_example"  -Password   -Email "Email_example"  -Picture   -AllowList @("AllowList_example")  -AuthenticatorSecret   -AuthenticatorType (New-Authenticator)) # SuperAdmin | 
 
@@ -1608,10 +1515,7 @@ Import-Module -Name SS6AdminModule
 
 # Login to get access token (no need to log in more than once)
 Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
-$res = Invoke-SS6AdminLogin
-# Put access token in script configuration to call APIs
-Set-SS6Configuration -AccessToken $res.token
-
+Invoke-SS6SaLogin
 $Id = "Id_example" # String | ID of the virtual site (default to null)
 $VirtualSite = (New-VirtualSite -Id "Id_example"  -Name "Name_example"  -AutoStart $false  -AutoRestart $false  -NodeBindings @((New-NodeBinding -NodeId "NodeId_example"  -Bindings @((New-Binding -Service (New-ServiceType)  -IpVersion (New-IPVersion)  -Ip "Ip_example"  -Port 123  -HostName "HostName_example"  -BehindHaProxy $false  -DataPort 123  -PortRangeMin 123  -PortRangeMax 123))))  -AdminUiLogo "TODO"  -AdminUiLogoType "AdminUiLogoType_example"  -AdminUiDisclaimer "AdminUiDisclaimer_example") # VirtualSite | 
 
@@ -1658,10 +1562,7 @@ Import-Module -Name SS6AdminModule
 
 # Login to get access token (no need to log in more than once)
 Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
-$res = Invoke-SS6AdminLogin
-# Put access token in script configuration to call APIs
-Set-SS6Configuration -AccessToken $res.token
-
+Invoke-SS6SaLogin
 
 # Generate a backup as zip file
 try {
@@ -1748,10 +1649,7 @@ Import-Module -Name SS6AdminModule
 
 # Login to get access token (no need to log in more than once)
 Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
-$res = Invoke-SS6AdminLogin
-# Put access token in script configuration to call APIs
-Set-SS6Configuration -AccessToken $res.token
-
+Invoke-SS6SaLogin
 
 # Logout functions for the 'sa' power-user
 try {
@@ -1793,10 +1691,7 @@ Import-Module -Name SS6AdminModule
 
 # Login to get access token (no need to log in more than once)
 Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
-$res = Invoke-SS6AdminLogin
-# Put access token in script configuration to call APIs
-Set-SS6Configuration -AccessToken $res.token
-
+Invoke-SS6SaLogin
 $Filename = 987 # System.IO.FileInfo |  (default to null)
 
 # Restore a backup from a zip file
@@ -1842,10 +1737,7 @@ Import-Module -Name SS6AdminModule
 
 # Login to get access token (no need to log in more than once)
 Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
-$res = Invoke-SS6AdminLogin
-# Put access token in script configuration to call APIs
-Set-SS6Configuration -AccessToken $res.token
-
+Invoke-SS6SaLogin
 $Id = "Id_example" # String | ID of the virtual site (default to null)
 
 # Starts the virtual site identified by id
@@ -1891,10 +1783,7 @@ Import-Module -Name SS6AdminModule
 
 # Login to get access token (no need to log in more than once)
 Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
-$res = Invoke-SS6AdminLogin
-# Put access token in script configuration to call APIs
-Set-SS6Configuration -AccessToken $res.token
-
+Invoke-SS6SaLogin
 $Id = "Id_example" # String | ID of the virtual site (default to null)
 
 # Stops the virtual site identified by id
@@ -1942,10 +1831,7 @@ Import-Module -Name SS6AdminModule
 
 # Login to get access token (no need to log in more than once)
 Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
-$res = Invoke-SS6AdminLogin
-# Put access token in script configuration to call APIs
-Set-SS6Configuration -AccessToken $res.token
-
+Invoke-SS6SaLogin
 $Id = "Id_example" # String | ID of the virtual site (default to null)
 $AdminID = "AdminID_example" # String | ID of the admin (default to null)
 $Admin =  # Admin | 
@@ -1995,10 +1881,7 @@ Import-Module -Name SS6AdminModule
 
 # Login to get access token (no need to log in more than once)
 Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
-$res = Invoke-SS6AdminLogin
-# Put access token in script configuration to call APIs
-Set-SS6Configuration -AccessToken $res.token
-
+Invoke-SS6SaLogin
 $Node = (New-Node -Id "Id_example"  -Description "Description_example"  -Secret "Secret_example") # Node | 
 
 # Updates the node
@@ -2044,10 +1927,7 @@ Import-Module -Name SS6AdminModule
 
 # Login to get access token (no need to log in more than once)
 Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
-$res = Invoke-SS6AdminLogin
-# Put access token in script configuration to call APIs
-Set-SS6Configuration -AccessToken $res.token
-
+Invoke-SS6SaLogin
 $PasswordType =  # PasswordType | 
 
 # Updates the password for the logged in super admin
@@ -2094,10 +1974,7 @@ Import-Module -Name SS6AdminModule
 
 # Login to get access token (no need to log in more than once)
 Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
-$res = Invoke-SS6AdminLogin
-# Put access token in script configuration to call APIs
-Set-SS6Configuration -AccessToken $res.token
-
+Invoke-SS6SaLogin
 $Id = "Id_example" # String | ID of the SuperAdmin (default to null)
 $SuperAdmin =  # SuperAdmin | 
 
@@ -2146,10 +2023,7 @@ Import-Module -Name SS6AdminModule
 
 # Login to get access token (no need to log in more than once)
 Set-SS6Configuration -Username "YOUR_SUPERADMIN_USERNAME" -Password "YOUR_SUPERADMIN_PASSWORD" -SkipCertificateCheck $true
-$res = Invoke-SS6AdminLogin
-# Put access token in script configuration to call APIs
-Set-SS6Configuration -AccessToken $res.token
-
+Invoke-SS6SaLogin
 $Id = "Id_example" # String | ID of the virtual site (default to null)
 $VirtualSite =  # VirtualSite | 
 

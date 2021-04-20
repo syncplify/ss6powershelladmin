@@ -2423,7 +2423,12 @@ function Invoke-SS6SaLogin {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "TokenObj"                               
+                                -ReturnType "TokenObj"  
+        
+                       
+        if ($LocalVarResult.StatusCode -eq 200) {
+            Set-SS6Configuration -AccessToken $LocalVarResult["Response"].token
+        }
 
         return $LocalVarResult["Response"]
     }

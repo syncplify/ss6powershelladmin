@@ -799,6 +799,10 @@ function Invoke-SS6AdminLogin {
                                 -CookieParameters $LocalVarCookieParameters `
                                 -ReturnType "TokenObj"
 
+        if ($LocalVarResult.StatusCode -eq 200) {
+            Set-SS6Configuration -AccessToken $LocalVarResult["Response"].token
+        }
+
         return $LocalVarResult["Response"]
     }
 }
