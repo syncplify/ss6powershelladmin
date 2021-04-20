@@ -51,16 +51,16 @@ $FunctionPath = 'Api', 'Model', 'Client' | ForEach-Object {Join-Path "$ScriptDir
 $Manifest = @{
     Path = "$ScriptDir\src\SS6AdminModule\SS6AdminModule.psd1"
 
-    Author = 'OpenAPI Generator Team'
-    CompanyName = 'openapitools.org'
-    Description = 'SS6AdminModule - the PowerShell module for SMServer V6'
+    Author = 'Syncplify Development Team'
+    CompanyName = 'Syncplify, Inc.'
+    Description = 'SS6AdminModule - the PowerShell module for SMServer v6.x'
 
-    ModuleVersion = '0.0.1'
+    ModuleVersion = '0.0.2'
 
     RootModule = 'SS6AdminModule.psm1'
     Guid = 'a693ed89-7fc7-4612-8e6d-410386dd3011' 
 
-    PowerShellVersion = '3.0'
+    PowerShellVersion = '6.0'
 
     FunctionsToExport = $FunctionPath | Get-ChildItem -Filter *.ps1 | Get-FunctionsToExport
 
