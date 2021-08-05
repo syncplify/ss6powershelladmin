@@ -51,8 +51,8 @@ $FunctionPath = 'Api', 'Model', 'Client' | ForEach-Object {Join-Path "$ScriptDir
 $Manifest = @{
     Path = "$ScriptDir\src\SS6AdminModule\SS6AdminModule.psd1"
 
-    Author = 'OpenAPI Generator Team'
-    CompanyName = 'openapitools.org'
+    Author = 'Syncplify Development Team'
+    CompanyName = 'Syncplify, Inc.'
     Description = 'SS6AdminModule - the PowerShell module for SMServer V6'
 
     ModuleVersion = '0.1.2'
