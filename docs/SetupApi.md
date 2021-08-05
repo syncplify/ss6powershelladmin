@@ -1,6 +1,6 @@
 # SS6AdminModule.SS6AdminModule/Api.SetupApi
 
-All URIs are relative to *http://localhost/api/v1*
+All URIs are relative to *http://127.0.0.1:6443/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------

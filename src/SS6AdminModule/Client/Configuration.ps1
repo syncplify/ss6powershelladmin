@@ -23,7 +23,7 @@ function Get-Configuration {
     $Configuration = $Script:Configuration
 
     if ([string]::IsNullOrEmpty($Configuration["BaseUrl"])) {
-        $Configuration["BaseUrl"] = "http://localhost/api/v1";
+        $Configuration["BaseUrl"] = "http://127.0.0.1:6443/api/v1";
     }
 
     if (!$Configuration.containsKey("Username")) {
