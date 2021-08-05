@@ -3,22 +3,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**View** | [**AdminConfigObjects[]**](AdminConfigObjects.md) |  | [optional] [default to null]
-**Edit** | [**AdminConfigObjects[]**](AdminConfigObjects.md) |  | [optional] [default to null]
+**View** | [**AdminConfigObjects[]**](AdminConfigObjects.md) |  | [optional] 
+**Edit** | [**AdminConfigObjects[]**](AdminConfigObjects.md) |  | [optional] 
 
 ## Examples
 
-- Create a new object
+- Prepare the resource
 ```powershell
-New-SS6AdminModuleAdminPerm  -View null `
+$AdminPerm = Initialize-SS6AdminModuleAdminPerm  -View null `
  -Edit null
 ```
 
-- Convert the object to JSON
+- Convert the resource to JSON
 ```powershell
-$ | Convert-ToJSON
+$AdminPerm | ConvertTo-JSON
 ```
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

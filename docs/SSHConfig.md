@@ -3,27 +3,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Banner** | **String** |  | [optional] [default to null]
-**Greeting** | **String** |  | [optional] [default to null]
-**HostKeys** | [**SSHHostKey[]**](SSHHostKey.md) |  | [optional] [default to null]
-**ZCompress** | **Boolean** |  | [optional] [default to null]
-**UseAllocator** | **Boolean** |  | [optional] [default to null]
-**AssumeUtf8** | **Boolean** |  | [optional] [default to null]
-**OverrideTimeout** | **Boolean** |  | [optional] [default to null]
-**AllowForwardingTo** | **String[]** |  | [optional] [default to null]
-**SftpVer** | [**SFTPVersions[]**](SFTPVersions.md) |  | [optional] [default to null]
-**Auth** | [**SSHAuths[]**](SSHAuths.md) |  | [optional] [default to null]
-**Kex** | [**SSHKex[]**](SSHKex.md) |  | [optional] [default to null]
-**Mac** | [**SSHMac[]**](SSHMac.md) |  | [optional] [default to null]
-**Crypto** | [**SSHCrypto[]**](SSHCrypto.md) |  | [optional] [default to null]
+**SoftwareId** | **String** | If will be automatically set to &#39;Syncplify_me_Server-&lt;version&gt;&#39;. Cannot be empty | [optional] 
+**Greeting** | **String** | optional login banner | [optional] 
+**ZCompress** | **Boolean** |  | [optional] 
+**UseAllocator** | **Boolean** |  | [optional] 
+**AssumeUtf8** | **Boolean** |  | [optional] 
+**OverrideTimeout** | **Boolean** |  | [optional] 
+**AllowForwardingTo** | **String[]** |  | [optional] 
+**SftpVer** | [**SFTPVersions[]**](SFTPVersions.md) |  | [optional] 
+**Auth** | [**SSHAuths[]**](SSHAuths.md) |  | [optional] 
+**Kex** | [**SSHKex[]**](SSHKex.md) |  | [optional] 
+**Mac** | [**SSHMac[]**](SSHMac.md) |  | [optional] 
+**Crypto** | [**SSHCrypto[]**](SSHCrypto.md) |  | [optional] 
 
 ## Examples
 
-- Create a new object
+- Prepare the resource
 ```powershell
-New-SS6AdminModuleSSHConfig  -Banner null `
+$SSHConfig = Initialize-SS6AdminModuleSSHConfig  -SoftwareId null `
  -Greeting null `
- -HostKeys null `
  -ZCompress null `
  -UseAllocator null `
  -AssumeUtf8 null `
@@ -36,11 +34,10 @@ New-SS6AdminModuleSSHConfig  -Banner null `
  -Crypto null
 ```
 
-- Convert the object to JSON
+- Convert the resource to JSON
 ```powershell
-$ | Convert-ToJSON
+$SSHConfig | ConvertTo-JSON
 ```
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

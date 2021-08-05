@@ -3,24 +3,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **String** | ID of the node/machine (chosen by SuperAdmin, only letters and numbers, no spaces, no special characters) | [optional] [default to null]
-**Description** | **String** | Friendly name of the node/machine (can be anything, decided by SuperAdmin) | [optional] [default to null]
-**Secret** | **String** | A secret that&#39;ll be used to authorize inter-node communication/synchronization | [optional] [default to null]
+**Id** | **String** | ID of the node/machine (chosen by SuperAdmin, only letters and numbers, no spaces, no special characters). This field is required | [optional] 
+**Description** | **String** | Friendly name of the node/machine (can be anything, decided by SuperAdmin) | [optional] 
+**PrivateKey** | **String** | auto generated | [optional] 
+**PublicKey** | **String** | auto generated | [optional] 
 
 ## Examples
 
-- Create a new object
+- Prepare the resource
 ```powershell
-New-SS6AdminModuleNode  -Id null `
+$Node = Initialize-SS6AdminModuleNode  -Id null `
  -Description null `
- -Secret null
+ -PrivateKey null `
+ -PublicKey null
 ```
 
-- Convert the object to JSON
+- Convert the resource to JSON
 ```powershell
-$ | Convert-ToJSON
+$Node | ConvertTo-JSON
 ```
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

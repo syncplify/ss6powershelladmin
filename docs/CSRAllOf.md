@@ -3,26 +3,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **String** | Unique ID, it will be auto-generated | [optional] [default to null]
-**EmailAddress** | **String** |  | [optional] [default to null]
-**UriList** | **String[]** |  | [optional] [default to null]
-**SigningReq** | **String** |  | [optional] [default to null]
+**Id** | **String** | Unique ID, it will be auto-generated | [optional] 
+**EmailAddress** | **String** |  | [optional] 
+**UriList** | **String[]** | optional list of valid URIs | [optional] 
+**SigningReq** | **String** |  | [optional] 
 
 ## Examples
 
-- Create a new object
+- Prepare the resource
 ```powershell
-New-SS6AdminModuleCSRAllOf  -Id null `
+$CSRAllOf = Initialize-SS6AdminModuleCSRAllOf  -Id null `
  -EmailAddress null `
  -UriList null `
  -SigningReq null
 ```
 
-- Convert the object to JSON
+- Convert the resource to JSON
 ```powershell
-$ | Convert-ToJSON
+$CSRAllOf | ConvertTo-JSON
 ```
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -3,26 +3,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **String** | Unique ID, it will be auto-generated if empty | [optional] [default to null]
-**Name** | **String** | short human-readable name for the script | [optional] [default to null]
-**Description** | **String** | optional description | [optional] [default to null]
-**Code** | **String** | the actual JavaScript code for this script | [optional] [default to null]
+**Id** | **String** | Unique ID, it will be auto-generated if empty | [optional] 
+**Name** | **String** | short human-readable name for the script. This field is required | [optional] 
+**Description** | **String** | optional description | [optional] 
+**Code** | **String** | the actual JavaScript code for this script. This field is required | [optional] 
 
 ## Examples
 
-- Create a new object
+- Prepare the resource
 ```powershell
-New-SS6AdminModuleScript  -Id null `
+$Script = Initialize-SS6AdminModuleScript  -Id null `
  -Name null `
  -Description null `
  -Code null
 ```
 
-- Convert the object to JSON
+- Convert the resource to JSON
 ```powershell
-$ | Convert-ToJSON
+$Script | ConvertTo-JSON
 ```
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

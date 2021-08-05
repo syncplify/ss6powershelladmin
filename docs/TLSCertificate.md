@@ -3,21 +3,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **String** | Unique ID, it will be auto-generated | [optional] [default to null]
-**Cert** | **String** | X.509 certificate | [optional] [default to null]
-**Key** | **String** | X.509 certificate&#39;s private key | [optional] [default to null]
-**CaBundle** | **String** |  | [optional] [default to null]
-**KeyPass** | [**Secret**](Secret.md) |  | [optional] [default to null]
-**Hash** | **String** |  | [optional] [default to null]
-**CommonName** | **String** |  | [optional] [default to null]
-**ValidFrom** | **System.DateTime** |  | [optional] [default to null]
-**ValidUntil** | **System.DateTime** |  | [optional] [default to null]
+**Id** | **String** | Unique ID, it will be auto-generated | [optional] 
+**Cert** | **String** | X.509 certificate | [optional] 
+**Key** | **String** | X.509 certificate&#39;s private key | [optional] 
+**CaBundle** | **String** | optional CA bundle | [optional] 
+**KeyPass** | [**Secret**](Secret.md) |  | [optional] 
+**Hash** | **String** | auto generated | [optional] 
+**CommonName** | **String** | automatically extracted from the certificate | [optional] 
+**ValidFrom** | **System.DateTime** | automatically extracted from the certificate | [optional] 
+**ValidUntil** | **System.DateTime** | automatically extracted from the certificate | [optional] 
 
 ## Examples
 
-- Create a new object
+- Prepare the resource
 ```powershell
-New-SS6AdminModuleTLSCertificate  -Id null `
+$TLSCertificate = Initialize-SS6AdminModuleTLSCertificate  -Id null `
  -Cert null `
  -Key null `
  -CaBundle null `
@@ -28,11 +28,10 @@ New-SS6AdminModuleTLSCertificate  -Id null `
  -ValidUntil null
 ```
 
-- Convert the object to JSON
+- Convert the resource to JSON
 ```powershell
-$ | Convert-ToJSON
+$TLSCertificate | ConvertTo-JSON
 ```
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -3,20 +3,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Filename** | **System.IO.FileInfo** |  | [default to null]
+**RemoteAddr** | **String** | address as IP:port | [optional] 
+**Username** | **String** |  | [optional] 
+**Password** | **String** |  | [optional] 
 
 ## Examples
 
-- Create a new object
+- Prepare the resource
 ```powershell
-New-SS6AdminModuleInlineObject1  -Filename null
+$InlineObject1 = Initialize-SS6AdminModuleInlineObject1  -RemoteAddr null `
+ -Username null `
+ -Password null
 ```
 
-- Convert the object to JSON
+- Convert the resource to JSON
 ```powershell
-$ | Convert-ToJSON
+$InlineObject1 | ConvertTo-JSON
 ```
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -3,25 +3,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CommonName** | **String** |  | [default to null]
-**Country** | **String** |  | [optional] [default to null]
-**Organization** | **String** |  | [optional] [default to null]
-**OrganizationalUnit** | **String** |  | [optional] [default to null]
-**Locality** | **String** |  | [optional] [default to null]
-**Province** | **String** |  | [optional] [default to null]
-**Bits** | **Int32** |  | [optional] [default to null]
-**Algo** | **String** |  | [optional] [default to null]
-**Hosts** | **String[]** |  | [optional] [default to null]
-**Id** | **String** | Unique ID, it will be auto-generated | [optional] [default to null]
-**EmailAddress** | **String** |  | [optional] [default to null]
-**UriList** | **String[]** |  | [optional] [default to null]
-**SigningReq** | **String** |  | [optional] [default to null]
+**CommonName** | **String** |  | 
+**Country** | **String** |  | [optional] 
+**Organization** | **String** |  | [optional] 
+**OrganizationalUnit** | **String** |  | [optional] 
+**Locality** | **String** |  | [optional] 
+**Province** | **String** |  | [optional] 
+**Bits** | **Int32** |  | 
+**Algo** | **String** |  | [optional] 
+**Hosts** | **String[]** |  | [optional] 
+**Id** | **String** | Unique ID, it will be auto-generated | [optional] 
+**EmailAddress** | **String** |  | [optional] 
+**UriList** | **String[]** | optional list of valid URIs | [optional] 
+**SigningReq** | **String** |  | [optional] 
 
 ## Examples
 
-- Create a new object
+- Prepare the resource
 ```powershell
-New-SS6AdminModuleCSR  -CommonName null `
+$CSR = Initialize-SS6AdminModuleCSR  -CommonName null `
  -Country null `
  -Organization null `
  -OrganizationalUnit null `
@@ -36,11 +36,10 @@ New-SS6AdminModuleCSR  -CommonName null `
  -SigningReq null
 ```
 
-- Convert the object to JSON
+- Convert the resource to JSON
 ```powershell
-$ | Convert-ToJSON
+$CSR | ConvertTo-JSON
 ```
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -3,24 +3,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **String** |  | [optional] [default to null]
-**Type** | [**SSHKeyType**](SSHKeyType.md) |  | [optional] [default to null]
-**Bits** | [**OneOfSSHRSAKeyBitsSSHECDSAKeyBits**](OneOfSSHRSAKeyBitsSSHECDSAKeyBits.md) |  | [optional] [default to null]
+**Name** | **String** | optional name | [optional] 
+**Type** | [**SSHKeyType**](SSHKeyType.md) |  | [optional] 
+**Bits** | [**OneOfSSHRSAKeyBitsSSHECDSAKeyBits**](OneOfSSHRSAKeyBitsSSHECDSAKeyBits.md) |  | [optional] 
 
 ## Examples
 
-- Create a new object
+- Prepare the resource
 ```powershell
-New-SS6AdminModuleHostKeyRequestFields  -Name null `
+$HostKeyRequestFields = Initialize-SS6AdminModuleHostKeyRequestFields  -Name null `
  -Type null `
  -Bits null
 ```
 
-- Convert the object to JSON
+- Convert the resource to JSON
 ```powershell
-$ | Convert-ToJSON
+$HostKeyRequestFields | ConvertTo-JSON
 ```
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

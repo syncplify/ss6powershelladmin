@@ -3,24 +3,29 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**To** | [**LogToType**](LogToType.md) |  | [optional] [default to null]
-**Detail** | [**LogDetailType**](LogDetailType.md) |  | [optional] [default to null]
-**Destination** | **String** |  | [optional] [default to null]
+**To** | [**LogToType**](LogToType.md) |  | [optional] 
+**Detail** | [**LogDetailType**](LogDetailType.md) |  | [optional] 
+**CfgToStdout** | [**LogToStdoutCfg**](LogToStdoutCfg.md) |  | [optional] 
+**CfgToFile** | [**LogToFileCfg**](LogToFileCfg.md) |  | [optional] 
+**CfgToDb** | [**LogToDatabaseCfg**](LogToDatabaseCfg.md) |  | [optional] 
+**CfgToSyslog** | [**LogToSyslogCfg**](LogToSyslogCfg.md) |  | [optional] 
 
 ## Examples
 
-- Create a new object
+- Prepare the resource
 ```powershell
-New-SS6AdminModuleLogConfig  -To null `
+$LogConfig = Initialize-SS6AdminModuleLogConfig  -To null `
  -Detail null `
- -Destination null
+ -CfgToStdout null `
+ -CfgToFile null `
+ -CfgToDb null `
+ -CfgToSyslog null
 ```
 
-- Convert the object to JSON
+- Convert the resource to JSON
 ```powershell
-$ | Convert-ToJSON
+$LogConfig | ConvertTo-JSON
 ```
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -3,28 +3,27 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **String** |  | [optional] [default to null]
-**Name** | **String** |  | [optional] [default to null]
-**Key** | **String** |  | [optional] [default to null]
-**Type** | [**SSHKeyType**](SSHKeyType.md) |  | [optional] [default to null]
-**Fingerprint** | **String** |  | [optional] [default to null]
+**Id** | **String** | auto generated if missing | [optional] 
+**Name** | **String** | optional key name | [optional] 
+**Key** | **String** | this field is required. Also the type will be extracted from the key | [optional] 
+**Type** | [**SSHKeyType**](SSHKeyType.md) |  | [optional] 
+**Fingerprint** | **String** | automaticaly extracted from the key | [optional] 
 
 ## Examples
 
-- Create a new object
+- Prepare the resource
 ```powershell
-New-SS6AdminModuleSSHHostKey  -Id null `
+$SSHHostKey = Initialize-SS6AdminModuleSSHHostKey  -Id null `
  -Name null `
  -Key null `
  -Type null `
  -Fingerprint null
 ```
 
-- Convert the object to JSON
+- Convert the resource to JSON
 ```powershell
-$ | Convert-ToJSON
+$SSHHostKey | ConvertTo-JSON
 ```
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

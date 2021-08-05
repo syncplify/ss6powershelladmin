@@ -3,26 +3,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Version** | [**PassVerType**](PassVerType.md) |  | [optional] [default to null]
-**Salt** | **String** |  | [optional] [default to null]
-**Payload** | **String** |  | [optional] [default to null]
-**MustChange** | **Boolean** |  | [optional] [default to null]
+**Version** | [**PassVerType**](PassVerType.md) |  | [optional] 
+**Salt** | **String** |  | [optional] 
+**Payload** | **String** |  | [optional] 
+**MustChange** | **Boolean** |  | [optional] 
 
 ## Examples
 
-- Create a new object
+- Prepare the resource
 ```powershell
-New-SS6AdminModulePasswordType  -Version null `
+$PasswordType = Initialize-SS6AdminModulePasswordType  -Version null `
  -Salt null `
  -Payload null `
  -MustChange null
 ```
 
-- Convert the object to JSON
+- Convert the resource to JSON
 ```powershell
-$ | Convert-ToJSON
+$PasswordType | ConvertTo-JSON
 ```
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

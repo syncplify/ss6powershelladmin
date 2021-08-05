@@ -3,26 +3,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Event** | [**EventType**](EventType.md) |  | [optional] [default to null]
-**Script** | **String** |  | [optional] [default to null]
-**Priority** | **Int32** |  | [optional] [default to null]
-**ExecTimeoutSecs** | **Int32** |  | [optional] [default to null]
+**VarEvent** | [**EventType**](EventType.md) |  | [optional] 
+**Script** | **String** | reference to a valid Script. This field is required | [optional] 
+**Priority** | **Int32** |  | [optional] 
+**ExecTimeoutSecs** | **Int32** |  | [optional] 
 
 ## Examples
 
-- Create a new object
+- Prepare the resource
 ```powershell
-New-SS6AdminModuleEventHandler  -Event null `
+$EventHandler = Initialize-SS6AdminModuleEventHandler  -VarEvent null `
  -Script null `
  -Priority null `
  -ExecTimeoutSecs null
 ```
 
-- Convert the object to JSON
+- Convert the resource to JSON
 ```powershell
-$ | Convert-ToJSON
+$EventHandler | ConvertTo-JSON
 ```
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

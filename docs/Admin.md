@@ -3,21 +3,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **String** | This is the admin&#39;s USERNAME | [optional] [default to null]
-**Password** | [**PasswordType**](PasswordType.md) |  | [optional] [default to null]
-**Email** | **String** |  | [optional] [default to null]
-**Permissions** | [**AdminPerm**](AdminPerm.md) |  | [optional] [default to null]
-**Picture** | [**PictureType**](PictureType.md) |  | [optional] [default to null]
-**Status** | [**AccountStatus**](AccountStatus.md) |  | [optional] [default to null]
-**AutoDisable** | **Boolean** | Is this account to be automatically disabled at a certaind date? | [optional] [default to null]
-**AutoDisableDate** | **System.DateTime** | If the above is TRUE, this is the exact timestamp when the account must be disabled | [optional] [default to null]
-**AllowList** | **String[]** | List of allowed sources (IPs and Networks) this Admin can log in from | [optional] [default to null]
+**Id** | **String** | This is the admin&#39;s USERNAME. Only letters and numbers, no spaces, no special characters | [optional] 
+**Password** | [**PasswordType**](PasswordType.md) |  | [optional] 
+**Email** | **String** |  | [optional] 
+**Permissions** | [**AdminPerm**](AdminPerm.md) |  | [optional] 
+**Picture** | [**PictureType**](PictureType.md) |  | [optional] 
+**Status** | [**AccountStatus**](AccountStatus.md) |  | [optional] 
+**AutoDisable** | **Boolean** | Is this account to be automatically disabled at a certaind date? | [optional] 
+**AutoDisableDate** | **System.DateTime** | If the above is TRUE, this is the exact timestamp when the account must be disabled | [optional] 
+**AllowList** | **String[]** | Optional list of allowed sources (IPs and Networks) this Admin can log in from. Each item must be a valid IPv4/6 or a CIDR network | [optional] 
+**TourTaken** | **Boolean** |  | [optional] 
+**ReceiveEmailNotifications** | [**NotificationKind[]**](NotificationKind.md) |  | [optional] 
+**AuthenticatorSecret** | [**Secret**](Secret.md) |  | [optional] 
+**AuthenticatorType** | [**Authenticator**](Authenticator.md) |  | [optional] 
 
 ## Examples
 
-- Create a new object
+- Prepare the resource
 ```powershell
-New-SS6AdminModuleAdmin  -Id null `
+$Admin = Initialize-SS6AdminModuleAdmin  -Id null `
  -Password null `
  -Email null `
  -Permissions null `
@@ -25,14 +29,17 @@ New-SS6AdminModuleAdmin  -Id null `
  -Status null `
  -AutoDisable null `
  -AutoDisableDate null `
- -AllowList null
+ -AllowList null `
+ -TourTaken null `
+ -ReceiveEmailNotifications null `
+ -AuthenticatorSecret null `
+ -AuthenticatorType null
 ```
 
-- Convert the object to JSON
+- Convert the resource to JSON
 ```powershell
-$ | Convert-ToJSON
+$Admin | ConvertTo-JSON
 ```
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

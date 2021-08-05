@@ -3,22 +3,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Soft** | **Int32** |  | [optional] [default to null]
-**Hard** | **Int32** |  | [optional] [default to null]
+**Soft** | **Int32** | bytes. If broken the current upload can continue, but after that it&#39;s game over. 0 means unlimited. If missing 0 is assumed | [optional] 
+**Hard** | **Int32** | bytes. If broken the current upload is forcefully interrupted. 0 means unlimited. If missing 0 is assumed | [optional] 
 
 ## Examples
 
-- Create a new object
+- Prepare the resource
 ```powershell
-New-SS6AdminModuleVFSQuota  -Soft null `
+$VFSQuota = Initialize-SS6AdminModuleVFSQuota  -Soft null `
  -Hard null
 ```
 
-- Convert the object to JSON
+- Convert the resource to JSON
 ```powershell
-$ | Convert-ToJSON
+$VFSQuota | ConvertTo-JSON
 ```
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

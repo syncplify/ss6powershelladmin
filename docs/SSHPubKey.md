@@ -3,18 +3,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **String** |  | [optional] [default to null]
-**Name** | **String** | a free-text name for the public key | [optional] [default to null]
-**Key** | **String** | the key itself | [optional] [default to null]
-**Fingerprint** | **String** |  | [optional] [default to null]
-**Type** | **String** |  | [optional] [default to null]
-**Comment** | **String** |  | [optional] [default to null]
+**Id** | **String** |  | [optional] 
+**Name** | **String** | a free-text name for the public key | [optional] 
+**Key** | **String** | the key itself | [optional] 
+**Fingerprint** | **String** |  | [optional] 
+**Type** | **String** |  | [optional] 
+**Comment** | **String** |  | [optional] 
 
 ## Examples
 
-- Create a new object
+- Prepare the resource
 ```powershell
-New-SS6AdminModuleSSHPubKey  -Id null `
+$SSHPubKey = Initialize-SS6AdminModuleSSHPubKey  -Id null `
  -Name null `
  -Key null `
  -Fingerprint null `
@@ -22,11 +22,10 @@ New-SS6AdminModuleSSHPubKey  -Id null `
  -Comment null
 ```
 
-- Convert the object to JSON
+- Convert the resource to JSON
 ```powershell
-$ | Convert-ToJSON
+$SSHPubKey | ConvertTo-JSON
 ```
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

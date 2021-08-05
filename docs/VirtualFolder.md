@@ -3,24 +3,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**VfsId** | **String** | Identifies which VFS actually manages the storage for this virtual folder | [optional] [default to null]
-**Permissions** | [**VFSPermissions[]**](VFSPermissions.md) |  | [optional] [default to null]
-**Visible** | **Boolean** | Is this virtual folder visible in the parent&#39;s directory list? | [optional] [default to null]
+**VfsId** | **String** | Identifies which VFS actually manages the storage for this virtual folder | [optional] 
+**Permissions** | [**VFSPermissions[]**](VFSPermissions.md) |  | [optional] 
+**Visible** | **Boolean** | Is this virtual folder visible in the parent&#39;s directory list? | [optional] 
 
 ## Examples
 
-- Create a new object
+- Prepare the resource
 ```powershell
-New-SS6AdminModuleVirtualFolder  -VfsId null `
+$VirtualFolder = Initialize-SS6AdminModuleVirtualFolder  -VfsId null `
  -Permissions null `
  -Visible null
 ```
 
-- Convert the object to JSON
+- Convert the resource to JSON
 ```powershell
-$ | Convert-ToJSON
+$VirtualFolder | ConvertTo-JSON
 ```
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

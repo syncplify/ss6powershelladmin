@@ -3,22 +3,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Status** | [**SecretStatus**](SecretStatus.md) |  | [optional] [default to null]
-**Payload** | **String** | The actual secret | [optional] [default to null]
+**Status** | [**SecretStatus**](SecretStatus.md) |  | [optional] 
+**Payload** | **String** | The actual secret | [optional] 
 
 ## Examples
 
-- Create a new object
+- Prepare the resource
 ```powershell
-New-SS6AdminModuleSecret  -Status null `
+$Secret = Initialize-SS6AdminModuleSecret  -Status null `
  -Payload null
 ```
 
-- Convert the object to JSON
+- Convert the resource to JSON
 ```powershell
-$ | Convert-ToJSON
+$Secret | ConvertTo-JSON
 ```
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

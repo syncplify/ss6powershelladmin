@@ -3,31 +3,37 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**TlsMode** | [**TLSModeType**](TLSModeType.md) |  | [optional] [default to null]
-**ModeZ** | **Boolean** |  | [optional] [default to null]
-**GreetBanner** | **String** |  | [optional] [default to null]
-**GreetLogin** | **String** |  | [optional] [default to null]
-**GreetLoginFail** | **String** |  | [optional] [default to null]
-**GreetLogout** | **String** |  | [optional] [default to null]
-**SameIpOnPasv** | **Boolean** |  | [optional] [default to null]
-**SameIpOnPort** | **Boolean** |  | [optional] [default to null]
-**BlockPort** | **Boolean** | disable Active FTP | [optional] [default to null]
-**DisableStat** | **Boolean** |  | [optional] [default to null]
-**DisableSyst** | **Boolean** |  | [optional] [default to null]
-**EnableSite** | **Boolean** |  | [optional] [default to null]
-**DelayAnonymousRejection** | **Boolean** |  | [optional] [default to null]
-**MinTlsVersion** | [**TLSVersions**](TLSVersions.md) |  | [optional] [default to null]
-**MaxTlsVersion** | [**TLSVersions**](TLSVersions.md) |  | [optional] [default to null]
-**AllowedCipherSuites** | [**CipherSuites[]**](CipherSuites.md) |  | [optional] [default to null]
-**ExtPasvIp** | **String** |  | [optional] [default to null]
-**ExtPasvIpForTls** | **String** |  | [optional] [default to null]
-**ExtPasvLans** | **String[]** |  | [optional] [default to null]
+**Certificates** | **String[]** | id for TLS certificates to be used for FTPS and FTPES. Required if TLS is enabled | [optional] 
+**TlsMode** | [**TLSModeType**](TLSModeType.md) |  | [optional] 
+**ModeZ** | **Boolean** |  | [optional] 
+**GreetBanner** | **String** |  | [optional] 
+**GreetLogin** | **String** |  | [optional] 
+**GreetLoginFail** | **String** |  | [optional] 
+**GreetLogout** | **String** |  | [optional] 
+**SameIpOnPasv** | **Boolean** |  | [optional] 
+**SameIpOnPort** | **Boolean** |  | [optional] 
+**EnablePort** | **Boolean** | enable active FTP | [optional] 
+**EnableHash** | **Boolean** |  | [optional] 
+**EnableComb** | **Boolean** |  | [optional] 
+**EnableStat** | **Boolean** |  | [optional] 
+**EnableSyst** | **Boolean** |  | [optional] 
+**EnableSite** | **Boolean** |  | [optional] 
+**EnableMlsd** | **Boolean** |  | [optional] 
+**EnableMlst** | **Boolean** |  | [optional] 
+**EnableMfmt** | **Boolean** |  | [optional] 
+**MinTlsVersion** | [**TLSVersions**](TLSVersions.md) |  | [optional] 
+**MaxTlsVersion** | [**TLSVersions**](TLSVersions.md) |  | [optional] 
+**AllowedCipherSuites** | [**CipherSuites[]**](CipherSuites.md) | required if TLS is enabled | [optional] 
+**ExtPasvIp** | **String** |  | [optional] 
+**ExtPasvIpForTls** | **String** |  | [optional] 
+**ExtPasvLans** | **String[]** |  | [optional] 
 
 ## Examples
 
-- Create a new object
+- Prepare the resource
 ```powershell
-New-SS6AdminModuleFTPConfig  -TlsMode null `
+$FTPConfig = Initialize-SS6AdminModuleFTPConfig  -Certificates null `
+ -TlsMode null `
  -ModeZ null `
  -GreetBanner null `
  -GreetLogin null `
@@ -35,11 +41,15 @@ New-SS6AdminModuleFTPConfig  -TlsMode null `
  -GreetLogout null `
  -SameIpOnPasv null `
  -SameIpOnPort null `
- -BlockPort null `
- -DisableStat null `
- -DisableSyst null `
+ -EnablePort null `
+ -EnableHash null `
+ -EnableComb null `
+ -EnableStat null `
+ -EnableSyst null `
  -EnableSite null `
- -DelayAnonymousRejection null `
+ -EnableMlsd null `
+ -EnableMlst null `
+ -EnableMfmt null `
  -MinTlsVersion null `
  -MaxTlsVersion null `
  -AllowedCipherSuites null `
@@ -48,11 +58,10 @@ New-SS6AdminModuleFTPConfig  -TlsMode null `
  -ExtPasvLans null
 ```
 
-- Convert the object to JSON
+- Convert the resource to JSON
 ```powershell
-$ | Convert-ToJSON
+$FTPConfig | ConvertTo-JSON
 ```
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

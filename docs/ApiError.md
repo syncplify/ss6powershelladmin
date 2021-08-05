@@ -3,28 +3,27 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ErrorType** | [**ErrorType**](ErrorType.md) |  | [optional] [default to null]
-**Data** | **String** |  | [optional] [default to null]
-**Reason** | **String** |  | [optional] [default to null]
-**CausedBy** | **String** |  | [optional] [default to null]
-**HumanReadable** | **String** |  | [optional] [default to null]
+**ErrorType** | [**ErrorType**](ErrorType.md) |  | [optional] 
+**VarData** | **String** |  | [optional] 
+**Reason** | **String** |  | [optional] 
+**CausedBy** | **String** |  | [optional] 
+**HumanReadable** | **String** |  | [optional] 
 
 ## Examples
 
-- Create a new object
+- Prepare the resource
 ```powershell
-New-SS6AdminModuleApiError  -ErrorType null `
- -Data null `
+$ApiError = Initialize-SS6AdminModuleApiError  -ErrorType null `
+ -VarData null `
  -Reason null `
  -CausedBy null `
  -HumanReadable null
 ```
 
-- Convert the object to JSON
+- Convert the resource to JSON
 ```powershell
-$ | Convert-ToJSON
+$ApiError | ConvertTo-JSON
 ```
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

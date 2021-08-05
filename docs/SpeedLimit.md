@@ -3,24 +3,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Source** | **String** | IP address or Network to which this limit applies | [optional] [default to null]
-**UpKbps** | **Int32** | Upload speed limit in KB/s | [optional] [default to null]
-**DnKbps** | **Int32** | Download speed limit in KB/s | [optional] [default to null]
+**Source** | **String** | IPv4/6 address or Network to which this limit applies. This field is required | [optional] 
+**UpKbps** | **Int32** | Upload speed limit in KB/s. If omitted 0 is assumed. 0 means unlimited | [optional] 
+**DnKbps** | **Int32** | Download speed limit in KB/s. If omitted 0 is assumed. 0 means unlimited | [optional] 
 
 ## Examples
 
-- Create a new object
+- Prepare the resource
 ```powershell
-New-SS6AdminModuleSpeedLimit  -Source null `
+$SpeedLimit = Initialize-SS6AdminModuleSpeedLimit  -Source null `
  -UpKbps null `
  -DnKbps null
 ```
 
-- Convert the object to JSON
+- Convert the resource to JSON
 ```powershell
-$ | Convert-ToJSON
+$SpeedLimit | ConvertTo-JSON
 ```
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

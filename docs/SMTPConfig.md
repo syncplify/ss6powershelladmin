@@ -3,30 +3,29 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Host** | **String** |  | [optional] [default to null]
-**Port** | **Int32** |  | [optional] [default to null]
-**Sender** | **String** |  | [optional] [default to null]
-**User** | **String** |  | [optional] [default to null]
-**Pass** | [**Secret**](Secret.md) |  | [optional] [default to null]
-**TlsCliMode** | [**TLSCliModeType**](TLSCliModeType.md) |  | [optional] [default to null]
+**VarHost** | **String** |  | [optional] 
+**Port** | **Int32** |  | [optional] 
+**VarSender** | **String** |  | [optional] 
+**User** | **String** |  | [optional] 
+**Pass** | [**Secret**](Secret.md) |  | [optional] 
+**TlsCliMode** | [**TLSCliModeType**](TLSCliModeType.md) |  | [optional] 
 
 ## Examples
 
-- Create a new object
+- Prepare the resource
 ```powershell
-New-SS6AdminModuleSMTPConfig  -Host null `
+$SMTPConfig = Initialize-SS6AdminModuleSMTPConfig  -VarHost null `
  -Port null `
- -Sender null `
+ -VarSender null `
  -User null `
  -Pass null `
  -TlsCliMode null
 ```
 
-- Convert the object to JSON
+- Convert the resource to JSON
 ```powershell
-$ | Convert-ToJSON
+$SMTPConfig | ConvertTo-JSON
 ```
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

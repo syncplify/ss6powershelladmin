@@ -3,24 +3,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Kind** | [**PictureKind**](PictureKind.md) |  | [optional] [default to null]
-**IdIfBuiltIn** | **Int32** |  | [optional] [default to null]
-**Base64ifCustom** | **String** |  | [optional] [default to null]
+**Kind** | [**PictureKind**](PictureKind.md) |  | [optional] 
+**IdIfBuiltIn** | **Int32** |  | [optional] 
+**Base64IfCustom** | **String** |  | [optional] 
 
 ## Examples
 
-- Create a new object
+- Prepare the resource
 ```powershell
-New-SS6AdminModulePictureType  -Kind null `
+$PictureType = Initialize-SS6AdminModulePictureType  -Kind null `
  -IdIfBuiltIn null `
- -Base64ifCustom null
+ -Base64IfCustom null
 ```
 
-- Convert the object to JSON
+- Convert the resource to JSON
 ```powershell
-$ | Convert-ToJSON
+$PictureType | ConvertTo-JSON
 ```
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

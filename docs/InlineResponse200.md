@@ -3,20 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Totp** | **String** | Time based password. It is required for the others setup steps and must be passed as X-Setup-OTP header | [optional] [default to null]
+**Totp** | **String** | Time based password. It is required for the others setup steps and must be passed as X-Setup-OTP header | [optional] 
 
 ## Examples
 
-- Create a new object
+- Prepare the resource
 ```powershell
-New-SS6AdminModuleInlineResponse200  -Totp null
+$InlineResponse200 = Initialize-SS6AdminModuleInlineResponse200  -Totp null
 ```
 
-- Convert the object to JSON
+- Convert the resource to JSON
 ```powershell
-$ | Convert-ToJSON
+$InlineResponse200 | ConvertTo-JSON
 ```
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
