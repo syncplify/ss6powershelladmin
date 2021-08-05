@@ -27,7 +27,7 @@ the actual JavaScript code for this script. This field is required
 Script<PSCustomObject>
 #>
 
-function Initialize-Script {
+function Initialize-SS6Script {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -45,7 +45,7 @@ function Initialize-Script {
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => Script' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6Script' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -78,19 +78,19 @@ Json object
 
 Script<PSCustomObject>
 #>
-function ConvertFrom-JsonToScript {
+function ConvertFrom-SS6JsonToScript {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => Script' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6Script' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in Script
+        # check if Json contains properties not defined in SS6Script
         $AllProperties = ("id", "name", "description", "code")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

@@ -35,7 +35,7 @@ No description available.
 VirtualFileSystem<PSCustomObject>
 #>
 
-function Initialize-VirtualFileSystem {
+function Initialize-SS6VirtualFileSystem {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -65,7 +65,7 @@ function Initialize-VirtualFileSystem {
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => VirtualFileSystem' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6VirtualFileSystem' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -102,19 +102,19 @@ Json object
 
 VirtualFileSystem<PSCustomObject>
 #>
-function ConvertFrom-JsonToVirtualFileSystem {
+function ConvertFrom-SS6JsonToVirtualFileSystem {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => VirtualFileSystem' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6VirtualFileSystem' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in VirtualFileSystem
+        # check if Json contains properties not defined in SS6VirtualFileSystem
         $AllProperties = ("id", "name", "type", "target", "targetPayload", "encrypt", "passPhrase", "quota")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

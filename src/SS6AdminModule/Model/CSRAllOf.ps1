@@ -27,7 +27,7 @@ No description available.
 CSRAllOf<PSCustomObject>
 #>
 
-function Initialize-CSRAllOf {
+function Initialize-SS6CSRAllOf {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -45,7 +45,7 @@ function Initialize-CSRAllOf {
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => CSRAllOf' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6CSRAllOf' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -78,19 +78,19 @@ Json object
 
 CSRAllOf<PSCustomObject>
 #>
-function ConvertFrom-JsonToCSRAllOf {
+function ConvertFrom-SS6JsonToCSRAllOf {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => CSRAllOf' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6CSRAllOf' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in CSRAllOf
+        # check if Json contains properties not defined in SS6CSRAllOf
         $AllProperties = ("id", "emailAddress", "uriList", "signingReq")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

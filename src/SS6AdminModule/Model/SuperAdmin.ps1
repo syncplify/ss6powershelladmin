@@ -37,7 +37,7 @@ No description available.
 SuperAdmin<PSCustomObject>
 #>
 
-function Initialize-SuperAdmin {
+function Initialize-SS6SuperAdmin {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -70,7 +70,7 @@ function Initialize-SuperAdmin {
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => SuperAdmin' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6SuperAdmin' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -108,19 +108,19 @@ Json object
 
 SuperAdmin<PSCustomObject>
 #>
-function ConvertFrom-JsonToSuperAdmin {
+function ConvertFrom-SS6JsonToSuperAdmin {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => SuperAdmin' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6SuperAdmin' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in SuperAdmin
+        # check if Json contains properties not defined in SS6SuperAdmin
         $AllProperties = ("id", "password", "email", "picture", "allowList", "tourTaken", "authenticatorSecret", "authenticatorType", "receiveEmailNotifications")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

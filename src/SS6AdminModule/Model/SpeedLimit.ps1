@@ -25,7 +25,7 @@ Download speed limit in KB/s. If omitted 0 is assumed. 0 means unlimited
 SpeedLimit<PSCustomObject>
 #>
 
-function Initialize-SpeedLimit {
+function Initialize-SS6SpeedLimit {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -40,7 +40,7 @@ function Initialize-SpeedLimit {
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => SpeedLimit' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6SpeedLimit' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -72,19 +72,19 @@ Json object
 
 SpeedLimit<PSCustomObject>
 #>
-function ConvertFrom-JsonToSpeedLimit {
+function ConvertFrom-SS6JsonToSpeedLimit {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => SpeedLimit' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6SpeedLimit' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in SpeedLimit
+        # check if Json contains properties not defined in SS6SpeedLimit
         $AllProperties = ("source", "upKbps", "dnKbps")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

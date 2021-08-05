@@ -43,7 +43,7 @@ No description available.
 NodeSession<PSCustomObject>
 #>
 
-function Initialize-NodeSession {
+function Initialize-SS6NodeSession {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -85,7 +85,7 @@ function Initialize-NodeSession {
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => NodeSession' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6NodeSession' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -126,19 +126,19 @@ Json object
 
 NodeSession<PSCustomObject>
 #>
-function ConvertFrom-JsonToNodeSession {
+function ConvertFrom-SS6JsonToNodeSession {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => NodeSession' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6NodeSession' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in NodeSession
+        # check if Json contains properties not defined in SS6NodeSession
         $AllProperties = ("id", "nodeId", "userId", "protocol", "startTime", "lastActivity", "clientVersion", "remoteAddr", "lastCommand", "LastCommandTime", "LastError", "LastErrorTime")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

@@ -19,13 +19,13 @@ No description available.
 IPVersion<PSCustomObject>
 #>
 
-function Initialize-IPVersion {
+function Initialize-SS6IPVersion {
     [CmdletBinding()]
     Param (
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => IPVersion' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6IPVersion' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -54,19 +54,19 @@ Json object
 
 IPVersion<PSCustomObject>
 #>
-function ConvertFrom-JsonToIPVersion {
+function ConvertFrom-SS6JsonToIPVersion {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => IPVersion' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6IPVersion' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in IPVersion
+        # check if Json contains properties not defined in SS6IPVersion
         $AllProperties = @()
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

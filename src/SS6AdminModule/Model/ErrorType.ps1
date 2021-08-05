@@ -19,13 +19,13 @@ No description available.
 ErrorType<PSCustomObject>
 #>
 
-function Initialize-ErrorType {
+function Initialize-SS6ErrorType {
     [CmdletBinding()]
     Param (
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => ErrorType' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6ErrorType' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -54,19 +54,19 @@ Json object
 
 ErrorType<PSCustomObject>
 #>
-function ConvertFrom-JsonToErrorType {
+function ConvertFrom-SS6JsonToErrorType {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => ErrorType' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6ErrorType' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in ErrorType
+        # check if Json contains properties not defined in SS6ErrorType
         $AllProperties = @()
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

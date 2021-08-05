@@ -45,7 +45,7 @@ No description available.
 CSR<PSCustomObject>
 #>
 
-function Initialize-CSR {
+function Initialize-SS6CSR {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -92,7 +92,7 @@ function Initialize-CSR {
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => CSR' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6CSR' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($CommonName -eq $null) {
@@ -142,19 +142,19 @@ Json object
 
 CSR<PSCustomObject>
 #>
-function ConvertFrom-JsonToCSR {
+function ConvertFrom-SS6JsonToCSR {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => CSR' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6CSR' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in CSR
+        # check if Json contains properties not defined in SS6CSR
         $AllProperties = ("commonName", "country", "organization", "organizationalUnit", "locality", "province", "bits", "algo", "hosts", "id", "emailAddress", "uriList", "signingReq")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

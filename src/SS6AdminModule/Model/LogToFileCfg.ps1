@@ -31,7 +31,7 @@ No description available.
 LogToFileCfg<PSCustomObject>
 #>
 
-function Initialize-LogToFileCfg {
+function Initialize-SS6LogToFileCfg {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -55,7 +55,7 @@ function Initialize-LogToFileCfg {
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => LogToFileCfg' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6LogToFileCfg' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -90,19 +90,19 @@ Json object
 
 LogToFileCfg<PSCustomObject>
 #>
-function ConvertFrom-JsonToLogToFileCfg {
+function ConvertFrom-SS6JsonToLogToFileCfg {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => LogToFileCfg' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6LogToFileCfg' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LogToFileCfg
+        # check if Json contains properties not defined in SS6LogToFileCfg
         $AllProperties = ("encoding", "directory", "maxFileSize", "maxFiles", "maxKeepDays", "gzipOnRotation")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

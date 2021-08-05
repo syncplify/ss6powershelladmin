@@ -19,13 +19,13 @@ No description available.
 ServiceStatus<PSCustomObject>
 #>
 
-function Initialize-ServiceStatus {
+function Initialize-SS6ServiceStatus {
     [CmdletBinding()]
     Param (
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => ServiceStatus' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6ServiceStatus' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -54,19 +54,19 @@ Json object
 
 ServiceStatus<PSCustomObject>
 #>
-function ConvertFrom-JsonToServiceStatus {
+function ConvertFrom-SS6JsonToServiceStatus {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => ServiceStatus' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6ServiceStatus' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in ServiceStatus
+        # check if Json contains properties not defined in SS6ServiceStatus
         $AllProperties = @()
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

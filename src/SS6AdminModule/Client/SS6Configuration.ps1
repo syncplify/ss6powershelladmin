@@ -8,22 +8,22 @@
 <#
 .SYNOPSIS
 
-Get the configuration object 'Configuration'.
+Get the configuration object 'SS6Configuration'.
 
 .DESCRIPTION
 
-Get the configuration object 'Configuration'.
+Get the configuration object 'SS6Configuration'.
 
 .OUTPUTS
 
 System.Collections.Hashtable
 #>
-function Get-Configuration {
+function Get-SS6Configuration {
 
     $Configuration = $Script:Configuration
 
     if ([string]::IsNullOrEmpty($Configuration["BaseUrl"])) {
-        $Configuration["BaseUrl"] = "http://127.0.0.1:6443/api/v1";
+        $Configuration["BaseUrl"] = "http://localhost/api/v1";
     }
 
     if (!$Configuration.containsKey("Username")) {
@@ -112,7 +112,7 @@ Return an object of the Configuration
 
 System.Collections.Hashtable
 #>
-function Set-Configuration {
+function Set-SS6Configuration {
 
     [CmdletBinding()]
     Param(
@@ -212,7 +212,7 @@ API Key
 
 None
 #>
-function Set-ConfigurationApiKey {
+function Set-SS6ConfigurationApiKey {
     [CmdletBinding()]
     Param(
         [string]$Id,
@@ -246,7 +246,7 @@ API Key prefix
 
 None
 #>
-function Set-ConfigurationApiKeyPrefix {
+function Set-SS6ConfigurationApiKeyPrefix {
     [CmdletBinding()]
     Param(
         [string]$Id,
@@ -280,7 +280,7 @@ Value of the HTTP header
 
 None
 #>
-function Set-ConfigurationDefaultHeader {
+function Set-SS6ConfigurationDefaultHeader {
     [CmdletBinding()]
     Param(
         [string]$Key,
@@ -309,7 +309,7 @@ Get the host setting in the form of array of hashtables.
 
 System.Collections.Hashtable[]
 #>
-function Get-HostSetting {
+function Get-SS6HostSetting {
     return ,@(
           @{
             "Url" = "/api/v1";
@@ -338,7 +338,7 @@ Get the URL from the host settings.
 
 String
 #>
-function Get-UrlFromHostSetting {
+function Get-SS6UrlFromHostSetting {
 
     [CmdletBinding()]
     Param(
@@ -348,7 +348,7 @@ function Get-UrlFromHostSetting {
     )
 
     Process {
-        $Hosts = Get-HostSetting
+        $Hosts = Get-SS6HostSetting
 
         # check array index out of bound
         if ($Index -lt 0 -or $Index -ge $Hosts.Length) {
@@ -421,7 +421,7 @@ SignatureValidityPeriod specifies the signature maximum validity time in seconds
 
 System.Collections.Hashtable
 #>
-function Set-ConfigurationHttpSigning {
+function Set-SS6ConfigurationHttpSigning {
     [CmdletBinding()]
     param(
         [Parameter(Mandatory = $true)]
@@ -455,7 +455,7 @@ function Set-ConfigurationHttpSigning {
             throw "Private key file path does not exist"
         }
 
-        $keyType = Get-KeyTypeFromFile -KeyFilePath $KeyFilePath
+        $keyType = Get-SS6KeyTypeFromFile -KeyFilePath $KeyFilePath
         if ([String]::IsNullOrEmpty($SigningAlgorithm)) {
             if ($keyType -eq "RSA") {
                 $SigningAlgorithm = "RSASSA-PKCS1-v1_5"
@@ -497,17 +497,17 @@ function Set-ConfigurationHttpSigning {
 <#
 .SYNOPSIS
 
-Get the configuration object 'ConfigurationHttpSigning'.
+Get the configuration object 'SS6ConfigurationHttpSigning'.
 
 .DESCRIPTION
 
-Get the configuration object 'ConfigurationHttpSigning'.
+Get the configuration object 'SS6ConfigurationHttpSigning'.
 
 .OUTPUTS
 
 [PSCustomObject]
 #>
-function Get-ConfigurationHttpSigning{
+function Get-SS6ConfigurationHttpSigning{
 
     $httpSignatureConfiguration = $Script:Configuration["HttpSigning"]
     return $httpSignatureConfiguration

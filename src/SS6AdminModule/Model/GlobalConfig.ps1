@@ -35,7 +35,7 @@ No description available.
 GlobalConfig<PSCustomObject>
 #>
 
-function Initialize-GlobalConfig {
+function Initialize-SS6GlobalConfig {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -65,7 +65,7 @@ function Initialize-GlobalConfig {
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => GlobalConfig' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6GlobalConfig' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -102,19 +102,19 @@ Json object
 
 GlobalConfig<PSCustomObject>
 #>
-function ConvertFrom-JsonToGlobalConfig {
+function ConvertFrom-SS6JsonToGlobalConfig {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => GlobalConfig' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6GlobalConfig' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in GlobalConfig
+        # check if Json contains properties not defined in SS6GlobalConfig
         $AllProperties = ("id", "smtpConf", "logConf", "securityConf", "corsConf", "jwtLifeSpan", "jwtAutoRefresh", "jwtAutoRefreshMaxTimes")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

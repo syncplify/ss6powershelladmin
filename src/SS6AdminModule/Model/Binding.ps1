@@ -37,7 +37,7 @@ The upper limit of the port range for passive FTP dynamic ports
 Binding<PSCustomObject>
 #>
 
-function Initialize-Binding {
+function Initialize-SS6Binding {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -70,7 +70,7 @@ function Initialize-Binding {
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => Binding' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6Binding' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($Port -and $Port -gt 65535) {
@@ -140,19 +140,19 @@ Json object
 
 Binding<PSCustomObject>
 #>
-function ConvertFrom-JsonToBinding {
+function ConvertFrom-SS6JsonToBinding {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => Binding' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6Binding' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in Binding
+        # check if Json contains properties not defined in SS6Binding
         $AllProperties = ("service", "ipVersion", "ip", "port", "hostName", "behindHaProxy", "dataPort", "portRangeMin", "portRangeMax")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

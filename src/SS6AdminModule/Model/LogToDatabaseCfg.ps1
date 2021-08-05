@@ -27,7 +27,7 @@ No description available.
 LogToDatabaseCfg<PSCustomObject>
 #>
 
-function Initialize-LogToDatabaseCfg {
+function Initialize-SS6LogToDatabaseCfg {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -45,7 +45,7 @@ function Initialize-LogToDatabaseCfg {
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => LogToDatabaseCfg' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6LogToDatabaseCfg' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -78,19 +78,19 @@ Json object
 
 LogToDatabaseCfg<PSCustomObject>
 #>
-function ConvertFrom-JsonToLogToDatabaseCfg {
+function ConvertFrom-SS6JsonToLogToDatabaseCfg {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => LogToDatabaseCfg' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6LogToDatabaseCfg' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LogToDatabaseCfg
+        # check if Json contains properties not defined in SS6LogToDatabaseCfg
         $AllProperties = ("sameAsServer", "dbUri", "user", "pass")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

@@ -25,7 +25,7 @@ No description available.
 VersionInfo<PSCustomObject>
 #>
 
-function Initialize-VersionInfo {
+function Initialize-SS6VersionInfo {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -40,7 +40,7 @@ function Initialize-VersionInfo {
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => VersionInfo' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6VersionInfo' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -72,19 +72,19 @@ Json object
 
 VersionInfo<PSCustomObject>
 #>
-function ConvertFrom-JsonToVersionInfo {
+function ConvertFrom-SS6JsonToVersionInfo {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => VersionInfo' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6VersionInfo' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in VersionInfo
+        # check if Json contains properties not defined in SS6VersionInfo
         $AllProperties = ("name", "version", "build_date")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

@@ -33,7 +33,7 @@ default 15
 CORSConfig<PSCustomObject>
 #>
 
-function Initialize-CORSConfig {
+function Initialize-SS6CORSConfig {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -60,7 +60,7 @@ function Initialize-CORSConfig {
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => CORSConfig' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6CORSConfig' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -96,19 +96,19 @@ Json object
 
 CORSConfig<PSCustomObject>
 #>
-function ConvertFrom-JsonToCORSConfig {
+function ConvertFrom-SS6JsonToCORSConfig {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => CORSConfig' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6CORSConfig' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in CORSConfig
+        # check if Json contains properties not defined in SS6CORSConfig
         $AllProperties = ("enable", "origins", "validateHeaders", "requestHeaders", "exposedHeaders", "methods", "maxAgeMinutes")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

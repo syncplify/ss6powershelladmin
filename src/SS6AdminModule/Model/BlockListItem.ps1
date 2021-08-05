@@ -33,7 +33,7 @@ No description available.
 BlockListItem<PSCustomObject>
 #>
 
-function Initialize-BlockListItem {
+function Initialize-SS6BlockListItem {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -60,7 +60,7 @@ function Initialize-BlockListItem {
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => BlockListItem' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6BlockListItem' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($IpOrNetwork -eq $null) {
@@ -100,19 +100,19 @@ Json object
 
 BlockListItem<PSCustomObject>
 #>
-function ConvertFrom-JsonToBlockListItem {
+function ConvertFrom-SS6JsonToBlockListItem {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => BlockListItem' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6BlockListItem' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in BlockListItem
+        # check if Json contains properties not defined in SS6BlockListItem
         $AllProperties = ("id", "ipOrNetwork", "persistence", "expirationUTC", "hits", "addReason", "notes")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

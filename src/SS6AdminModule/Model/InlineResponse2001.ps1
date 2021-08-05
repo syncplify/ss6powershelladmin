@@ -21,7 +21,7 @@ No description available.
 InlineResponse2001<PSCustomObject>
 #>
 
-function Initialize-InlineResponse2001 {
+function Initialize-SS6InlineResponse2001 {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -30,7 +30,7 @@ function Initialize-InlineResponse2001 {
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => InlineResponse2001' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6InlineResponse2001' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -60,19 +60,19 @@ Json object
 
 InlineResponse2001<PSCustomObject>
 #>
-function ConvertFrom-JsonToInlineResponse2001 {
+function ConvertFrom-SS6JsonToInlineResponse2001 {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => InlineResponse2001' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6InlineResponse2001' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in InlineResponse2001
+        # check if Json contains properties not defined in SS6InlineResponse2001
         $AllProperties = ("name")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

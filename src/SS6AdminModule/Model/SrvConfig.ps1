@@ -63,7 +63,7 @@ Refresh VFS quotas every not-less-than this number of seconds
 SrvConfig<PSCustomObject>
 #>
 
-function Initialize-SrvConfig {
+function Initialize-SS6SrvConfig {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -135,7 +135,7 @@ function Initialize-SrvConfig {
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => SrvConfig' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6SrvConfig' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($ProtectorCompoundIncr -and $ProtectorCompoundIncr -gt 100) {
@@ -198,19 +198,19 @@ Json object
 
 SrvConfig<PSCustomObject>
 #>
-function ConvertFrom-JsonToSrvConfig {
+function ConvertFrom-SS6JsonToSrvConfig {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => SrvConfig' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6SrvConfig' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in SrvConfig
+        # check if Json contains properties not defined in SS6SrvConfig
         $AllProperties = ("id", "maxConn", "maxConnPerClient", "maxConnPerUser", "connDelaySecs", "idleTimeoutMinutes", "protectorTimeWindowMin", "protectorErrThreshold", "protectorBanForMin", "ProtectorBehavior", "protectorCompoundIncr", "passComplexity", "safeList", "allowList", "ftpConf", "sshConf", "httpConf", "speedLimits", "eventHandlers", "smtpConf", "logConf", "quotaTtl")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

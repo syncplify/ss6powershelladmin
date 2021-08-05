@@ -1,15 +1,15 @@
-# SS6AdminModule.SS6AdminModule/Api.MiscApi
+# SS6AdminModule.SS6AdminModule\Api.SS6MiscApi
 
-All URIs are relative to *http://127.0.0.1:6443/api/v1*
+All URIs are relative to *http://localhost/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**Get-Version**](MiscApi.md#Get-Version) | **GET** /version | Get version details
+[**Get-SS6Version**](SS6MiscApi.md#Get-SS6Version) | **GET** /version | Get version details
 
 
-<a name="Get-Version"></a>
-# **Get-Version**
-> VersionInfo Get-Version<br>
+<a name="Get-SS6Version"></a>
+# **Get-SS6Version**
+> VersionInfo Get-SS6Version<br>
 
 Get version details
 
@@ -18,9 +18,9 @@ Get version details
 
 # Get version details
 try {
-    $Result = Get-Version
+    $Result = Get-SS6Version
 } catch {
-    Write-Host ("Exception occured when calling Get-Version: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Get-SS6Version: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```

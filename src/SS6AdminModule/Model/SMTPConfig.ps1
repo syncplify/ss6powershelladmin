@@ -31,7 +31,7 @@ No description available.
 SMTPConfig<PSCustomObject>
 #>
 
-function Initialize-SMTPConfig {
+function Initialize-SS6SMTPConfig {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -55,7 +55,7 @@ function Initialize-SMTPConfig {
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => SMTPConfig' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6SMTPConfig' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($Port -and $Port -gt 65535) {
@@ -98,19 +98,19 @@ Json object
 
 SMTPConfig<PSCustomObject>
 #>
-function ConvertFrom-JsonToSMTPConfig {
+function ConvertFrom-SS6JsonToSMTPConfig {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => SMTPConfig' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6SMTPConfig' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in SMTPConfig
+        # check if Json contains properties not defined in SS6SMTPConfig
         $AllProperties = ("host", "port", "sender", "user", "pass", "tlsCliMode")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

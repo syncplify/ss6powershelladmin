@@ -27,7 +27,7 @@ No description available.
 PasswordType<PSCustomObject>
 #>
 
-function Initialize-PasswordType {
+function Initialize-SS6PasswordType {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -45,7 +45,7 @@ function Initialize-PasswordType {
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => PasswordType' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6PasswordType' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -78,19 +78,19 @@ Json object
 
 PasswordType<PSCustomObject>
 #>
-function ConvertFrom-JsonToPasswordType {
+function ConvertFrom-SS6JsonToPasswordType {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => PasswordType' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6PasswordType' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in PasswordType
+        # check if Json contains properties not defined in SS6PasswordType
         $AllProperties = ("version", "salt", "payload", "mustChange")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

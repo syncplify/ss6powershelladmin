@@ -21,7 +21,7 @@ No description available.
 LogToStdoutCfg<PSCustomObject>
 #>
 
-function Initialize-LogToStdoutCfg {
+function Initialize-SS6LogToStdoutCfg {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -30,7 +30,7 @@ function Initialize-LogToStdoutCfg {
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => LogToStdoutCfg' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6LogToStdoutCfg' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -60,19 +60,19 @@ Json object
 
 LogToStdoutCfg<PSCustomObject>
 #>
-function ConvertFrom-JsonToLogToStdoutCfg {
+function ConvertFrom-SS6JsonToLogToStdoutCfg {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => LogToStdoutCfg' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6LogToStdoutCfg' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LogToStdoutCfg
+        # check if Json contains properties not defined in SS6LogToStdoutCfg
         $AllProperties = ("colorOutput")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

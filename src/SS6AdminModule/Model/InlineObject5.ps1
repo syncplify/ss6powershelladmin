@@ -21,7 +21,7 @@ payload obtained from the license server
 InlineObject5<PSCustomObject>
 #>
 
-function Initialize-InlineObject5 {
+function Initialize-SS6InlineObject5 {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -30,7 +30,7 @@ function Initialize-InlineObject5 {
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => InlineObject5' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6InlineObject5' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -60,19 +60,19 @@ Json object
 
 InlineObject5<PSCustomObject>
 #>
-function ConvertFrom-JsonToInlineObject5 {
+function ConvertFrom-SS6JsonToInlineObject5 {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => InlineObject5' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6InlineObject5' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in InlineObject5
+        # check if Json contains properties not defined in SS6InlineObject5
         $AllProperties = ("payload")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

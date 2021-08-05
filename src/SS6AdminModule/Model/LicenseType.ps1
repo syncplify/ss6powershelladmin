@@ -19,13 +19,13 @@ No description available.
 LicenseType<PSCustomObject>
 #>
 
-function Initialize-LicenseType {
+function Initialize-SS6LicenseType {
     [CmdletBinding()]
     Param (
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => LicenseType' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6LicenseType' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -54,19 +54,19 @@ Json object
 
 LicenseType<PSCustomObject>
 #>
-function ConvertFrom-JsonToLicenseType {
+function ConvertFrom-SS6JsonToLicenseType {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => LicenseType' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6LicenseType' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LicenseType
+        # check if Json contains properties not defined in SS6LicenseType
         $AllProperties = @()
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

@@ -19,13 +19,13 @@ No description available.
 AuthType<PSCustomObject>
 #>
 
-function Initialize-AuthType {
+function Initialize-SS6AuthType {
     [CmdletBinding()]
     Param (
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => AuthType' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6AuthType' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -54,19 +54,19 @@ Json object
 
 AuthType<PSCustomObject>
 #>
-function ConvertFrom-JsonToAuthType {
+function ConvertFrom-SS6JsonToAuthType {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => AuthType' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6AuthType' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in AuthType
+        # check if Json contains properties not defined in SS6AuthType
         $AllProperties = @()
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

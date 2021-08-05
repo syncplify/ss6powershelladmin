@@ -21,7 +21,7 @@ No description available.
 TokenObj<PSCustomObject>
 #>
 
-function Initialize-TokenObj {
+function Initialize-SS6TokenObj {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -30,7 +30,7 @@ function Initialize-TokenObj {
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => TokenObj' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6TokenObj' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -60,19 +60,19 @@ Json object
 
 TokenObj<PSCustomObject>
 #>
-function ConvertFrom-JsonToTokenObj {
+function ConvertFrom-SS6JsonToTokenObj {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => TokenObj' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6TokenObj' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in TokenObj
+        # check if Json contains properties not defined in SS6TokenObj
         $AllProperties = ("token")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

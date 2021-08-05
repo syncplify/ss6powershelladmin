@@ -37,7 +37,7 @@ Legal disclaimer (free text) to be displayed on the Admin UI's login page
 VirtualSite<PSCustomObject>
 #>
 
-function Initialize-VirtualSite {
+function Initialize-SS6VirtualSite {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -70,7 +70,7 @@ function Initialize-VirtualSite {
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => VirtualSite' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6VirtualSite' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -108,19 +108,19 @@ Json object
 
 VirtualSite<PSCustomObject>
 #>
-function ConvertFrom-JsonToVirtualSite {
+function ConvertFrom-SS6JsonToVirtualSite {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => VirtualSite' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6VirtualSite' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in VirtualSite
+        # check if Json contains properties not defined in SS6VirtualSite
         $AllProperties = ("id", "name", "autoStart", "autoRestart", "serviceStatus", "nodeBindings", "adminUiLogo", "adminUiLogoType", "adminUiDisclaimer")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

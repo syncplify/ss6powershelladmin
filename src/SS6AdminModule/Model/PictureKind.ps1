@@ -19,13 +19,13 @@ No description available.
 PictureKind<PSCustomObject>
 #>
 
-function Initialize-PictureKind {
+function Initialize-SS6PictureKind {
     [CmdletBinding()]
     Param (
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => PictureKind' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6PictureKind' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -54,19 +54,19 @@ Json object
 
 PictureKind<PSCustomObject>
 #>
-function ConvertFrom-JsonToPictureKind {
+function ConvertFrom-SS6JsonToPictureKind {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => PictureKind' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6PictureKind' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in PictureKind
+        # check if Json contains properties not defined in SS6PictureKind
         $AllProperties = @()
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

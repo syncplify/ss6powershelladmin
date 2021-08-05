@@ -33,7 +33,7 @@ No description available.
 SystemProps<PSCustomObject>
 #>
 
-function Initialize-SystemProps {
+function Initialize-SS6SystemProps {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -60,7 +60,7 @@ function Initialize-SystemProps {
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => SystemProps' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6SystemProps' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -96,19 +96,19 @@ Json object
 
 SystemProps<PSCustomObject>
 #>
-function ConvertFrom-JsonToSystemProps {
+function ConvertFrom-SS6JsonToSystemProps {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => SystemProps' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6SystemProps' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in SystemProps
+        # check if Json contains properties not defined in SS6SystemProps
         $AllProperties = ("nodeId", "ramMb", "cpuUsage", "system", "arch", "service_status", "connPeak")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

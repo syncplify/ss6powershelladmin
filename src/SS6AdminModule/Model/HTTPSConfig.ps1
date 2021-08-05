@@ -57,7 +57,7 @@ Legal disclaimer (free text) to be displayed on the WebClient UI's login page
 HTTPSConfig<PSCustomObject>
 #>
 
-function Initialize-HTTPSConfig {
+function Initialize-SS6HTTPSConfig {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -120,7 +120,7 @@ function Initialize-HTTPSConfig {
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => HTTPSConfig' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6HTTPSConfig' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -168,19 +168,19 @@ Json object
 
 HTTPSConfig<PSCustomObject>
 #>
-function ConvertFrom-JsonToHTTPSConfig {
+function ConvertFrom-SS6JsonToHTTPSConfig {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => HTTPSConfig' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6HTTPSConfig' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in HTTPSConfig
+        # check if Json contains properties not defined in SS6HTTPSConfig
         $AllProperties = ("certificates", "minTlsVersion", "maxTlsVersion", "allowedCipherSuites", "jwtLifeSpan", "jwtSecretWc", "jwtSecretShare", "jwtAutoRefresh", "jwtAutoRefreshMaxTimes", "trustedProxies", "securityConf", "corsConf", "webClientRateLimit", "maxUploadSize", "maxZipFiles", "maxZipDataSize", "webClientUiLogo", "webClientUiLogoType", "webClientUiDisclaimer")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

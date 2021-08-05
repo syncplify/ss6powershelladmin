@@ -67,7 +67,7 @@ No description available.
 FTPConfig<PSCustomObject>
 #>
 
-function Initialize-FTPConfig {
+function Initialize-SS6FTPConfig {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -145,7 +145,7 @@ function Initialize-FTPConfig {
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => FTPConfig' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6FTPConfig' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -198,19 +198,19 @@ Json object
 
 FTPConfig<PSCustomObject>
 #>
-function ConvertFrom-JsonToFTPConfig {
+function ConvertFrom-SS6JsonToFTPConfig {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => FTPConfig' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6FTPConfig' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in FTPConfig
+        # check if Json contains properties not defined in SS6FTPConfig
         $AllProperties = ("certificates", "tlsMode", "modeZ", "greetBanner", "greetLogin", "greetLoginFail", "greetLogout", "sameIpOnPasv", "sameIpOnPort", "enablePort", "enableHash", "enableComb", "enableStat", "enableSyst", "enableSite", "enableMlsd", "enableMlst", "enableMfmt", "minTlsVersion", "maxTlsVersion", "allowedCipherSuites", "extPasvIp", "extPasvIpForTls", "extPasvLans")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

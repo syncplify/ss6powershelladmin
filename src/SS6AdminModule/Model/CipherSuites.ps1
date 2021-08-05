@@ -19,13 +19,13 @@ No description available.
 CipherSuites<PSCustomObject>
 #>
 
-function Initialize-CipherSuites {
+function Initialize-SS6CipherSuites {
     [CmdletBinding()]
     Param (
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => CipherSuites' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6CipherSuites' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -54,19 +54,19 @@ Json object
 
 CipherSuites<PSCustomObject>
 #>
-function ConvertFrom-JsonToCipherSuites {
+function ConvertFrom-SS6JsonToCipherSuites {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => CipherSuites' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6CipherSuites' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in CipherSuites
+        # check if Json contains properties not defined in SS6CipherSuites
         $AllProperties = @()
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

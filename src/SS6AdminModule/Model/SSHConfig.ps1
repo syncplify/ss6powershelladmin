@@ -43,7 +43,7 @@ No description available.
 SSHConfig<PSCustomObject>
 #>
 
-function Initialize-SSHConfig {
+function Initialize-SS6SSHConfig {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -85,7 +85,7 @@ function Initialize-SSHConfig {
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => SSHConfig' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6SSHConfig' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -126,19 +126,19 @@ Json object
 
 SSHConfig<PSCustomObject>
 #>
-function ConvertFrom-JsonToSSHConfig {
+function ConvertFrom-SS6JsonToSSHConfig {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => SSHConfig' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6SSHConfig' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in SSHConfig
+        # check if Json contains properties not defined in SS6SSHConfig
         $AllProperties = ("softwareId", "greeting", "zCompress", "useAllocator", "assumeUtf8", "overrideTimeout", "allowForwardingTo", "sftpVer", "auth", "kex", "mac", "crypto")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

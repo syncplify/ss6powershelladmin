@@ -28,7 +28,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 ApiResponse
 #>
-function New-SA {
+function New-SS6SA {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
@@ -42,7 +42,7 @@ function New-SA {
     )
 
     Process {
-        'Calling method: New-SA' | Write-Debug
+        'Calling method: New-SS6SA' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $LocalVarAccepts = @()
@@ -54,7 +54,7 @@ function New-SA {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $Configuration = Get-Configuration
+        $Configuration = Get-SS6Configuration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -74,7 +74,7 @@ function New-SA {
 
         $LocalVarBodyParameter = $SuperAdmin | ConvertTo-Json -Depth 100
 
-        $LocalVarResult = Invoke-ApiClient -Method 'POST' `
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
                                 -Accepts $LocalVarAccepts `
                                 -ContentTypes $LocalVarContentTypes `
@@ -124,7 +124,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 System.IO.FileInfo
 #>
-function Get-SetupQRCodePng {
+function Get-SS6SetupQRCodePng {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
@@ -144,7 +144,7 @@ function Get-SetupQRCodePng {
     )
 
     Process {
-        'Calling method: Get-SetupQRCodePng' | Write-Debug
+        'Calling method: Get-SS6SetupQRCodePng' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $LocalVarAccepts = @()
@@ -156,7 +156,7 @@ function Get-SetupQRCodePng {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $Configuration = Get-Configuration
+        $Configuration = Get-SS6Configuration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('image/png', 'application/json')
 
@@ -182,7 +182,7 @@ function Get-SetupQRCodePng {
         }
         $LocalVarQueryParameters['secret'] = $Secret
 
-        $LocalVarResult = Invoke-ApiClient -Method 'GET' `
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
                                 -Accepts $LocalVarAccepts `
                                 -ContentTypes $LocalVarContentTypes `
@@ -222,7 +222,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 InlineObject
 #>
-function Get-SetupRandomBase32 {
+function Get-SS6SetupRandomBase32 {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
@@ -233,7 +233,7 @@ function Get-SetupRandomBase32 {
     )
 
     Process {
-        'Calling method: Get-SetupRandomBase32' | Write-Debug
+        'Calling method: Get-SS6SetupRandomBase32' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $LocalVarAccepts = @()
@@ -245,7 +245,7 @@ function Get-SetupRandomBase32 {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $Configuration = Get-Configuration
+        $Configuration = Get-SS6Configuration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -255,7 +255,7 @@ function Get-SetupRandomBase32 {
         }
         $LocalVarUri = $LocalVarUri.replace('{length}', [System.Web.HTTPUtility]::UrlEncode($Length))
 
-        $LocalVarResult = Invoke-ApiClient -Method 'GET' `
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
                                 -Accepts $LocalVarAccepts `
                                 -ContentTypes $LocalVarContentTypes `
@@ -292,7 +292,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 InlineResponse2001
 #>
-function Get-SetupRandomName {
+function Get-SS6SetupRandomName {
     [CmdletBinding()]
     Param (
         [Switch]
@@ -300,7 +300,7 @@ function Get-SetupRandomName {
     )
 
     Process {
-        'Calling method: Get-SetupRandomName' | Write-Debug
+        'Calling method: Get-SS6SetupRandomName' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $LocalVarAccepts = @()
@@ -312,13 +312,13 @@ function Get-SetupRandomName {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $Configuration = Get-Configuration
+        $Configuration = Get-SS6Configuration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/randomname'
 
-        $LocalVarResult = Invoke-ApiClient -Method 'GET' `
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
                                 -Accepts $LocalVarAccepts `
                                 -ContentTypes $LocalVarContentTypes `
@@ -361,7 +361,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 ApiResponse
 #>
-function Invoke-Googleauthenticatortest {
+function Invoke-SS6Googleauthenticatortest {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
@@ -375,7 +375,7 @@ function Invoke-Googleauthenticatortest {
     )
 
     Process {
-        'Calling method: Invoke-Googleauthenticatortest' | Write-Debug
+        'Calling method: Invoke-SS6Googleauthenticatortest' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $LocalVarAccepts = @()
@@ -387,7 +387,7 @@ function Invoke-Googleauthenticatortest {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $Configuration = Get-Configuration
+        $Configuration = Get-SS6Configuration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -401,7 +401,7 @@ function Invoke-Googleauthenticatortest {
         }
         $LocalVarUri = $LocalVarUri.replace('{token}', [System.Web.HTTPUtility]::UrlEncode($Token))
 
-        $LocalVarResult = Invoke-ApiClient -Method 'GET' `
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
                                 -Accepts $LocalVarAccepts `
                                 -ContentTypes $LocalVarContentTypes `
@@ -444,7 +444,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 ApiResponse
 #>
-function Join-HANode {
+function Join-SS6HANode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
@@ -458,7 +458,7 @@ function Join-HANode {
     )
 
     Process {
-        'Calling method: Join-HANode' | Write-Debug
+        'Calling method: Join-SS6HANode' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $LocalVarAccepts = @()
@@ -470,7 +470,7 @@ function Join-HANode {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $Configuration = Get-Configuration
+        $Configuration = Get-SS6Configuration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -490,7 +490,7 @@ function Join-HANode {
 
         $LocalVarBodyParameter = $InlineObject1 | ConvertTo-Json -Depth 100
 
-        $LocalVarResult = Invoke-ApiClient -Method 'POST' `
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
                                 -Accepts $LocalVarAccepts `
                                 -ContentTypes $LocalVarContentTypes `
@@ -533,7 +533,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 ApiResponse
 #>
-function Set-Node {
+function Set-SS6Node {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
@@ -547,7 +547,7 @@ function Set-Node {
     )
 
     Process {
-        'Calling method: Set-Node' | Write-Debug
+        'Calling method: Set-SS6Node' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $LocalVarAccepts = @()
@@ -559,7 +559,7 @@ function Set-Node {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $Configuration = Get-Configuration
+        $Configuration = Get-SS6Configuration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -579,7 +579,7 @@ function Set-Node {
 
         $LocalVarBodyParameter = $Node | ConvertTo-Json -Depth 100
 
-        $LocalVarResult = Invoke-ApiClient -Method 'POST' `
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
                                 -Accepts $LocalVarAccepts `
                                 -ContentTypes $LocalVarContentTypes `
@@ -619,7 +619,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 InlineResponse200
 #>
-function Set-SSC {
+function Set-SS6SSC {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
@@ -630,7 +630,7 @@ function Set-SSC {
     )
 
     Process {
-        'Calling method: Set-SSC' | Write-Debug
+        'Calling method: Set-SS6SSC' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $LocalVarAccepts = @()
@@ -642,7 +642,7 @@ function Set-SSC {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $Configuration = Get-Configuration
+        $Configuration = Get-SS6Configuration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -657,7 +657,7 @@ function Set-SSC {
 
         $LocalVarBodyParameter = $InlineObject | ConvertTo-Json -Depth 100
 
-        $LocalVarResult = Invoke-ApiClient -Method 'POST' `
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
                                 -Accepts $LocalVarAccepts `
                                 -ContentTypes $LocalVarContentTypes `

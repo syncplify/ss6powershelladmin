@@ -22,7 +22,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 VersionInfo
 #>
-function Get-Version {
+function Get-SS6Version {
     [CmdletBinding()]
     Param (
         [Switch]
@@ -30,7 +30,7 @@ function Get-Version {
     )
 
     Process {
-        'Calling method: Get-Version' | Write-Debug
+        'Calling method: Get-SS6Version' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $LocalVarAccepts = @()
@@ -42,13 +42,13 @@ function Get-Version {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $Configuration = Get-Configuration
+        $Configuration = Get-SS6Configuration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/version'
 
-        $LocalVarResult = Invoke-ApiClient -Method 'GET' `
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
                                 -Accepts $LocalVarAccepts `
                                 -ContentTypes $LocalVarContentTypes `

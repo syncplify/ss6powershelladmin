@@ -19,13 +19,13 @@ No description available.
 SSHKeyType<PSCustomObject>
 #>
 
-function Initialize-SSHKeyType {
+function Initialize-SS6SSHKeyType {
     [CmdletBinding()]
     Param (
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => SSHKeyType' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6SSHKeyType' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -54,19 +54,19 @@ Json object
 
 SSHKeyType<PSCustomObject>
 #>
-function ConvertFrom-JsonToSSHKeyType {
+function ConvertFrom-SS6JsonToSSHKeyType {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => SSHKeyType' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6SSHKeyType' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in SSHKeyType
+        # check if Json contains properties not defined in SS6SSHKeyType
         $AllProperties = @()
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

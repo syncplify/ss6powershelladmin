@@ -1,16 +1,16 @@
-# SS6AdminModule.SS6AdminModule/Api.ResourcesApi
+# SS6AdminModule.SS6AdminModule\Api.SS6ResourcesApi
 
-All URIs are relative to *http://127.0.0.1:6443/api/v1*
+All URIs are relative to *http://localhost/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**Get-VSiteDisclaimer**](ResourcesApi.md#Get-VSiteDisclaimer) | **GET** /res/disclaimer/{vsiteID} | 
-[**Get-VSiteLogo**](ResourcesApi.md#Get-VSiteLogo) | **GET** /res/logo/{vsiteID} | 
+[**Get-SS6VSiteDisclaimer**](SS6ResourcesApi.md#Get-SS6VSiteDisclaimer) | **GET** /res/disclaimer/{vsiteID} | 
+[**Get-SS6VSiteLogo**](SS6ResourcesApi.md#Get-SS6VSiteLogo) | **GET** /res/logo/{vsiteID} | 
 
 
-<a name="Get-VSiteDisclaimer"></a>
-# **Get-VSiteDisclaimer**
-> String Get-VSiteDisclaimer<br>
+<a name="Get-SS6VSiteDisclaimer"></a>
+# **Get-SS6VSiteDisclaimer**
+> String Get-SS6VSiteDisclaimer<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-VsiteID] <String><br>
 
 
@@ -20,9 +20,9 @@ Method | HTTP request | Description
 $VsiteID = "MyVsiteID" # String | ID of the virtual site
 
 try {
-    $Result = Get-VSiteDisclaimer -VsiteID $VsiteID
+    $Result = Get-SS6VSiteDisclaimer -VsiteID $VsiteID
 } catch {
-    Write-Host ("Exception occured when calling Get-VSiteDisclaimer: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Get-SS6VSiteDisclaimer: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -48,9 +48,9 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-VSiteLogo"></a>
-# **Get-VSiteLogo**
-> System.IO.FileInfo Get-VSiteLogo<br>
+<a name="Get-SS6VSiteLogo"></a>
+# **Get-SS6VSiteLogo**
+> System.IO.FileInfo Get-SS6VSiteLogo<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-VsiteID] <String><br>
 
 
@@ -60,9 +60,9 @@ No authorization required
 $VsiteID = "MyVsiteID" # String | ID of the virtual site
 
 try {
-    $Result = Get-VSiteLogo -VsiteID $VsiteID
+    $Result = Get-SS6VSiteLogo -VsiteID $VsiteID
 } catch {
-    Write-Host ("Exception occured when calling Get-VSiteLogo: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Get-SS6VSiteLogo: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```

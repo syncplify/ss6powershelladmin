@@ -23,7 +23,7 @@ No description available.
 ApiResponse<PSCustomObject>
 #>
 
-function Initialize-ApiResponse {
+function Initialize-SS6ApiResponse {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -35,7 +35,7 @@ function Initialize-ApiResponse {
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => ApiResponse' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6ApiResponse' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -66,19 +66,19 @@ Json object
 
 ApiResponse<PSCustomObject>
 #>
-function ConvertFrom-JsonToApiResponse {
+function ConvertFrom-SS6JsonToApiResponse {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => ApiResponse' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6ApiResponse' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in ApiResponse
+        # check if Json contains properties not defined in SS6ApiResponse
         $AllProperties = ("message", "errors")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

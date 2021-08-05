@@ -29,7 +29,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 String
 #>
-function Get-VSiteDisclaimer {
+function Get-SS6VSiteDisclaimer {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
@@ -43,7 +43,7 @@ function Get-VSiteDisclaimer {
     )
 
     Process {
-        'Calling method: Get-VSiteDisclaimer' | Write-Debug
+        'Calling method: Get-SS6VSiteDisclaimer' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $LocalVarAccepts = @()
@@ -55,7 +55,7 @@ function Get-VSiteDisclaimer {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $Configuration = Get-Configuration
+        $Configuration = Get-SS6Configuration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('text/plain', 'application/json')
 
@@ -70,7 +70,7 @@ function Get-VSiteDisclaimer {
         }
         $LocalVarUri = $LocalVarUri.replace('{vsiteID}', [System.Web.HTTPUtility]::UrlEncode($VsiteID))
 
-        $LocalVarResult = Invoke-ApiClient -Method 'GET' `
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
                                 -Accepts $LocalVarAccepts `
                                 -ContentTypes $LocalVarContentTypes `
@@ -114,7 +114,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 System.IO.FileInfo
 #>
-function Get-VSiteLogo {
+function Get-SS6VSiteLogo {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
@@ -128,7 +128,7 @@ function Get-VSiteLogo {
     )
 
     Process {
-        'Calling method: Get-VSiteLogo' | Write-Debug
+        'Calling method: Get-SS6VSiteLogo' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $LocalVarAccepts = @()
@@ -140,7 +140,7 @@ function Get-VSiteLogo {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $Configuration = Get-Configuration
+        $Configuration = Get-SS6Configuration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('image/jpeg', 'image/png', 'image/jp2', 'image/gif', 'image/webp', 'image/tiff', 'image/bmp', 'application/json')
 
@@ -155,7 +155,7 @@ function Get-VSiteLogo {
         }
         $LocalVarUri = $LocalVarUri.replace('{vsiteID}', [System.Web.HTTPUtility]::UrlEncode($VsiteID))
 
-        $LocalVarResult = Invoke-ApiClient -Method 'GET' `
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
                                 -Accepts $LocalVarAccepts `
                                 -ContentTypes $LocalVarContentTypes `

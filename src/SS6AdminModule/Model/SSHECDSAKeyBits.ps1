@@ -19,13 +19,13 @@ No description available.
 SSHECDSAKeyBits<PSCustomObject>
 #>
 
-function Initialize-SSHECDSAKeyBits {
+function Initialize-SS6SSHECDSAKeyBits {
     [CmdletBinding()]
     Param (
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => SSHECDSAKeyBits' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6SSHECDSAKeyBits' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -54,19 +54,19 @@ Json object
 
 SSHECDSAKeyBits<PSCustomObject>
 #>
-function ConvertFrom-JsonToSSHECDSAKeyBits {
+function ConvertFrom-SS6JsonToSSHECDSAKeyBits {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => SSHECDSAKeyBits' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6SSHECDSAKeyBits' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in SSHECDSAKeyBits
+        # check if Json contains properties not defined in SS6SSHECDSAKeyBits
         $AllProperties = @()
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

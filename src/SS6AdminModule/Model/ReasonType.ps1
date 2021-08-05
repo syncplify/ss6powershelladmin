@@ -19,13 +19,13 @@ No description available.
 ReasonType<PSCustomObject>
 #>
 
-function Initialize-ReasonType {
+function Initialize-SS6ReasonType {
     [CmdletBinding()]
     Param (
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => ReasonType' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6ReasonType' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -54,19 +54,19 @@ Json object
 
 ReasonType<PSCustomObject>
 #>
-function ConvertFrom-JsonToReasonType {
+function ConvertFrom-SS6JsonToReasonType {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => ReasonType' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6ReasonType' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in ReasonType
+        # check if Json contains properties not defined in SS6ReasonType
         $AllProperties = @()
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

@@ -1,81 +1,81 @@
-# SS6AdminModule.SS6AdminModule/Api.AdminApi
+# SS6AdminModule.SS6AdminModule\Api.SS6AdminApi
 
-All URIs are relative to *http://127.0.0.1:6443/api/v1*
+All URIs are relative to *http://localhost/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**Invoke-AckAdminNotificationByID**](AdminApi.md#Invoke-AckAdminNotificationByID) | **PATCH** /adm/notifications/{id}/ack | Mark as read the notification with the specicied ID for the logged in admin
-[**Invoke-AckAdminNotifications**](AdminApi.md#Invoke-AckAdminNotifications) | **PATCH** /adm/notifications/ack | Mark as read all the unread notification for the logged in admin
-[**Add-BlockList**](AdminApi.md#Add-BlockList) | **POST** /adm/blocklist | Adds a new BlockList for the logged in admin
-[**Add-CRTToCSR**](AdminApi.md#Add-CRTToCSR) | **POST** /adm/csr/{id} | Takes an existing CSR and adds the CRT to it to create an actual certificate, and deletes the CSR
-[**Add-Cert**](AdminApi.md#Add-Cert) | **POST** /adm/certs | Adds a new certificate
-[**Add-LDAPConfig**](AdminApi.md#Add-LDAPConfig) | **POST** /adm/ldapconfig | Adds a new LDAPConfig for the logged in admin
-[**Add-SSHHostKey**](AdminApi.md#Add-SSHHostKey) | **POST** /adm/sshhostkeys | Adds a new ssh host key
-[**Add-Script**](AdminApi.md#Add-Script) | **POST** /adm/script | Adds a new script for the logged in admin
-[**Add-User**](AdminApi.md#Add-User) | **POST** /adm/users | Adds a new user for the logged in admin
-[**Add-UserPublicKey**](AdminApi.md#Add-UserPublicKey) | **POST** /adm/users/{id}/pubkeys | Add a public key for the user identified by id
-[**Add-VFS**](AdminApi.md#Add-VFS) | **POST** /adm/vfs | Adds a new VFS for the logged in admin
-[**Invoke-AdminLogin**](AdminApi.md#Invoke-AdminLogin) | **GET** /adm/login/{vsiteID} | Login function for an Admin user
-[**Invoke-AdminLogout**](AdminApi.md#Invoke-AdminLogout) | **GET** /adm/logout | Logout functions for an Admin user
-[**Clear-BlockList**](AdminApi.md#Clear-BlockList) | **DELETE** /adm/blocklist | Remove all the elements from the blocklist
-[**Close-SessionById**](AdminApi.md#Close-SessionById) | **DELETE** /adm/sessions/{id} | Close the active session with the specified id
-[**Close-Sessions**](AdminApi.md#Close-Sessions) | **DELETE** /adm/sessions | Close all the active sessions
-[**New-CSR**](AdminApi.md#New-CSR) | **POST** /adm/csr | Creates a brand new CSR and its associated private key
-[**Invoke-DeleteBlockListConfig**](AdminApi.md#Invoke-DeleteBlockListConfig) | **DELETE** /adm/blocklist/{id} | Deletes the BlockList configuration identified by id
-[**Invoke-DeleteCSR**](AdminApi.md#Invoke-DeleteCSR) | **DELETE** /adm/csr/{id} | Deletes the CSR identified by id
-[**Invoke-DeleteFTPCertByID**](AdminApi.md#Invoke-DeleteFTPCertByID) | **DELETE** /adm/certs/{id} | Deletes the ftp certificate with the given ID
-[**Invoke-DeleteLDAPConfig**](AdminApi.md#Invoke-DeleteLDAPConfig) | **DELETE** /adm/ldapconfig/{id} | Deletes the LDAP configuration identified by id
-[**Invoke-DeletePublicKey**](AdminApi.md#Invoke-DeletePublicKey) | **DELETE** /adm/users/{id}/pubkeys/{keyID} | Deletes the public key identified by keyID
-[**Invoke-DeleteSSHHostKeyByID**](AdminApi.md#Invoke-DeleteSSHHostKeyByID) | **DELETE** /adm/sshhostkeys/{id} | Deletes the ftp ssh host key with the given ID
-[**Invoke-DeleteScript**](AdminApi.md#Invoke-DeleteScript) | **DELETE** /adm/script/{id} | Deletes the Script by id
-[**Invoke-DeleteUser**](AdminApi.md#Invoke-DeleteUser) | **DELETE** /adm/users/{id} | Deletes the admin user identified by id
-[**Invoke-DeleteVFS**](AdminApi.md#Invoke-DeleteVFS) | **DELETE** /adm/vfs/{id} | Deletes the Virtual File System identified by id
-[**New-Cert**](AdminApi.md#New-Cert) | **POST** /adm/certs/generator | Generates a new cert and adds it to server certificate collection
-[**New-SSHHostKey**](AdminApi.md#New-SSHHostKey) | **POST** /adm/sshhostkeys/generator | Generates a new ssh host key and adds it to server configuration
-[**New-UserPublicKeys**](AdminApi.md#New-UserPublicKeys) | **POST** /adm/users/{id}/pubkeys/generator | 
-[**Get-ActiveSessions**](AdminApi.md#Get-ActiveSessions) | **GET** /adm/sessions | Retrieves active sessions for all nodes
-[**Get-AdminNotification**](AdminApi.md#Get-AdminNotification) | **GET** /adm/notifications | Search notifications, the resulted are ordering based on the &quot;&quot;created&quot;&quot; fiels, the most recent first. Notifications that have already been read will be automatically excluded
-[**Get-AdminNotificationByID**](AdminApi.md#Get-AdminNotificationByID) | **GET** /adm/notifications/{id} | Returns the notification with the specicied ID
-[**Get-AdminProfile**](AdminApi.md#Get-AdminProfile) | **GET** /adm/profile | Returns the profile for the logged in admin
-[**Get-BlockListConfig**](AdminApi.md#Get-BlockListConfig) | **GET** /adm/blocklist/{id} | Retrieves the BlockList configuration identified by id for this admin
-[**Get-BlockLists**](AdminApi.md#Get-BlockLists) | **GET** /adm/blocklist | Retrieves blocklist objects for the logged in admin
-[**Get-CSR**](AdminApi.md#Get-CSR) | **GET** /adm/csr/{id} | Retrieves the CSR identified by id
-[**Get-CSRs**](AdminApi.md#Get-CSRs) | **GET** /adm/csr | Retrieves pre-generated certificate signing requests
-[**Get-CertByID**](AdminApi.md#Get-CertByID) | **GET** /adm/certs/{id} | Retrieves the certificate with the given ID
-[**Get-Certs**](AdminApi.md#Get-Certs) | **GET** /adm/certs | Retrieves certificates for the logged in admin
-[**Get-GlobalStats**](AdminApi.md#Get-GlobalStats) | **GET** /adm/stats/global | Retrieves aggregate statistics for all nodes
-[**Get-LDAPConfig**](AdminApi.md#Get-LDAPConfig) | **GET** /adm/ldapconfig/{id} | Retrieves the LDAP configuration identified by id for this admin
-[**Get-LDAPConfigs**](AdminApi.md#Get-LDAPConfigs) | **GET** /adm/ldapconfig | Retrieves LDAP configurations for the logged in admin
-[**Get-SSHHostKeyByID**](AdminApi.md#Get-SSHHostKeyByID) | **GET** /adm/sshhostkeys/{id} | Retrieves the ssh host key with the given ID
-[**Get-SSHHostKeys**](AdminApi.md#Get-SSHHostKeys) | **GET** /adm/sshhostkeys | Retrieves SSH host keys for the virtual site of the logged in admin
-[**Get-Scrips**](AdminApi.md#Get-Scrips) | **GET** /adm/script/{id} | Retrieves the Script identified by id for this admin
-[**Get-Scripts**](AdminApi.md#Get-Scripts) | **GET** /adm/script | Retrieves scripts for the logged in admin
-[**Get-StatsSinceLastStart**](AdminApi.md#Get-StatsSinceLastStart) | **GET** /adm/stats/sincestart | Retrieves aggregate statistics for all nodes since last start
-[**Get-SystemProperties**](AdminApi.md#Get-SystemProperties) | **GET** /adm/systemprops | Retrieves system properties for each node
-[**Get-User**](AdminApi.md#Get-User) | **GET** /adm/users/{id} | Retrieves the user identified by id for this admin
-[**Get-UserPublicKeyByID**](AdminApi.md#Get-UserPublicKeyByID) | **GET** /adm/users/{id}/pubkeys/{keyID} | Retrieves the public keys with the specified keyID
-[**Get-UserPublicKeys**](AdminApi.md#Get-UserPublicKeys) | **GET** /adm/users/{id}/pubkeys | Retrieves the public keys for the user identified by id
-[**Get-Users**](AdminApi.md#Get-Users) | **GET** /adm/users | Retrieves users for the logged in admin
-[**Get-VFS**](AdminApi.md#Get-VFS) | **GET** /adm/vfs/{id} | Retrieves the Virtual File System identified by id for this admin
-[**Get-VFSs**](AdminApi.md#Get-VFSs) | **GET** /adm/vfs | Retrieves virtual file systems for the logged in admin
-[**Get-VsiteConfig**](AdminApi.md#Get-VsiteConfig) | **GET** /adm/srvconfig | Retrieves the configuration for the virtual site that belongs to the logged in admin
-[**Invoke-ParchVsiteConfig**](AdminApi.md#Invoke-ParchVsiteConfig) | **PATCH** /adm/srvconfig | Partial update the configuration for the virtual site that belongs to the logged in admin. Partial update is not supported for sub-structs such as SSHConfig, FTPConfig etc. You have to pass the whole sub-struct
-[**Invoke-PatchLDAPConfig**](AdminApi.md#Invoke-PatchLDAPConfig) | **PATCH** /adm/ldapconfig/{id} | Partial updates for the LDAP configuration identified by id
-[**Invoke-PatchScript**](AdminApi.md#Invoke-PatchScript) | **PATCH** /adm/script/{id} | Partial update for the script identified by id
-[**Invoke-PatchUser**](AdminApi.md#Invoke-PatchUser) | **PATCH** /adm/users/{id} | Partial update for the user identified by id
-[**Invoke-PatchVFS**](AdminApi.md#Invoke-PatchVFS) | **PATCH** /adm/vfs/{id} | Partial update for the Virtual File System identified by id
-[**Update-AdminPassword**](AdminApi.md#Update-AdminPassword) | **PUT** /adm/password | Updates the password for the logged in admin
-[**Update-LDAPConfig**](AdminApi.md#Update-LDAPConfig) | **PUT** /adm/ldapconfig/{id} | Updates the LDAP configuration identified by id
-[**Update-Script**](AdminApi.md#Update-Script) | **PUT** /adm/script/{id} | Updates the Script identified by id
-[**Update-User**](AdminApi.md#Update-User) | **PUT** /adm/users/{id} | Updates the user identified by id
-[**Update-VFS**](AdminApi.md#Update-VFS) | **PUT** /adm/vfs/{id} | Updates the Virtual File System identified by id
-[**Update-VsiteConfig**](AdminApi.md#Update-VsiteConfig) | **PUT** /adm/srvconfig | Updates the configuration for the virtual site that belongs to the logged in admin
-[**Update-VsiteConfigMode**](AdminApi.md#Update-VsiteConfigMode) | **PATCH** /adm/srvconfig/{mode} | Updates the configuration mode for the virtual site that belongs to the logged in admin
+[**Invoke-SS6AckAdminNotificationByID**](SS6AdminApi.md#Invoke-SS6AckAdminNotificationByID) | **PATCH** /adm/notifications/{id}/ack | Mark as read the notification with the specicied ID for the logged in admin
+[**Invoke-SS6AckAdminNotifications**](SS6AdminApi.md#Invoke-SS6AckAdminNotifications) | **PATCH** /adm/notifications/ack | Mark as read all the unread notification for the logged in admin
+[**Add-SS6BlockList**](SS6AdminApi.md#Add-SS6BlockList) | **POST** /adm/blocklist | Adds a new BlockList for the logged in admin
+[**Add-SS6CRTToCSR**](SS6AdminApi.md#Add-SS6CRTToCSR) | **POST** /adm/csr/{id} | Takes an existing CSR and adds the CRT to it to create an actual certificate, and deletes the CSR
+[**Add-SS6Cert**](SS6AdminApi.md#Add-SS6Cert) | **POST** /adm/certs | Adds a new certificate
+[**Add-SS6LDAPConfig**](SS6AdminApi.md#Add-SS6LDAPConfig) | **POST** /adm/ldapconfig | Adds a new LDAPConfig for the logged in admin
+[**Add-SS6SSHHostKey**](SS6AdminApi.md#Add-SS6SSHHostKey) | **POST** /adm/sshhostkeys | Adds a new ssh host key
+[**Add-SS6Script**](SS6AdminApi.md#Add-SS6Script) | **POST** /adm/script | Adds a new script for the logged in admin
+[**Add-SS6User**](SS6AdminApi.md#Add-SS6User) | **POST** /adm/users | Adds a new user for the logged in admin
+[**Add-SS6UserPublicKey**](SS6AdminApi.md#Add-SS6UserPublicKey) | **POST** /adm/users/{id}/pubkeys | Add a public key for the user identified by id
+[**Add-SS6VFS**](SS6AdminApi.md#Add-SS6VFS) | **POST** /adm/vfs | Adds a new VFS for the logged in admin
+[**Invoke-SS6AdminLogin**](SS6AdminApi.md#Invoke-SS6AdminLogin) | **GET** /adm/login/{vsiteID} | Login function for an Admin user
+[**Invoke-SS6AdminLogout**](SS6AdminApi.md#Invoke-SS6AdminLogout) | **GET** /adm/logout | Logout functions for an Admin user
+[**Clear-SS6BlockList**](SS6AdminApi.md#Clear-SS6BlockList) | **DELETE** /adm/blocklist | Remove all the elements from the blocklist
+[**Close-SS6SessionById**](SS6AdminApi.md#Close-SS6SessionById) | **DELETE** /adm/sessions/{id} | Close the active session with the specified id
+[**Close-SS6Sessions**](SS6AdminApi.md#Close-SS6Sessions) | **DELETE** /adm/sessions | Close all the active sessions
+[**New-SS6CSR**](SS6AdminApi.md#New-SS6CSR) | **POST** /adm/csr | Creates a brand new CSR and its associated private key
+[**Invoke-SS6DeleteBlockListConfig**](SS6AdminApi.md#Invoke-SS6DeleteBlockListConfig) | **DELETE** /adm/blocklist/{id} | Deletes the BlockList configuration identified by id
+[**Invoke-SS6DeleteCSR**](SS6AdminApi.md#Invoke-SS6DeleteCSR) | **DELETE** /adm/csr/{id} | Deletes the CSR identified by id
+[**Invoke-SS6DeleteFTPCertByID**](SS6AdminApi.md#Invoke-SS6DeleteFTPCertByID) | **DELETE** /adm/certs/{id} | Deletes the ftp certificate with the given ID
+[**Invoke-SS6DeleteLDAPConfig**](SS6AdminApi.md#Invoke-SS6DeleteLDAPConfig) | **DELETE** /adm/ldapconfig/{id} | Deletes the LDAP configuration identified by id
+[**Invoke-SS6DeletePublicKey**](SS6AdminApi.md#Invoke-SS6DeletePublicKey) | **DELETE** /adm/users/{id}/pubkeys/{keyID} | Deletes the public key identified by keyID
+[**Invoke-SS6DeleteSSHHostKeyByID**](SS6AdminApi.md#Invoke-SS6DeleteSSHHostKeyByID) | **DELETE** /adm/sshhostkeys/{id} | Deletes the ftp ssh host key with the given ID
+[**Invoke-SS6DeleteScript**](SS6AdminApi.md#Invoke-SS6DeleteScript) | **DELETE** /adm/script/{id} | Deletes the Script by id
+[**Invoke-SS6DeleteUser**](SS6AdminApi.md#Invoke-SS6DeleteUser) | **DELETE** /adm/users/{id} | Deletes the admin user identified by id
+[**Invoke-SS6DeleteVFS**](SS6AdminApi.md#Invoke-SS6DeleteVFS) | **DELETE** /adm/vfs/{id} | Deletes the Virtual File System identified by id
+[**New-SS6Cert**](SS6AdminApi.md#New-SS6Cert) | **POST** /adm/certs/generator | Generates a new cert and adds it to server certificate collection
+[**New-SS6SSHHostKey**](SS6AdminApi.md#New-SS6SSHHostKey) | **POST** /adm/sshhostkeys/generator | Generates a new ssh host key and adds it to server configuration
+[**New-SS6UserPublicKeys**](SS6AdminApi.md#New-SS6UserPublicKeys) | **POST** /adm/users/{id}/pubkeys/generator | 
+[**Get-SS6ActiveSessions**](SS6AdminApi.md#Get-SS6ActiveSessions) | **GET** /adm/sessions | Retrieves active sessions for all nodes
+[**Get-SS6AdminNotification**](SS6AdminApi.md#Get-SS6AdminNotification) | **GET** /adm/notifications | Search notifications, the resulted are ordering based on the &quot;&quot;created&quot;&quot; fiels, the most recent first. Notifications that have already been read will be automatically excluded
+[**Get-SS6AdminNotificationByID**](SS6AdminApi.md#Get-SS6AdminNotificationByID) | **GET** /adm/notifications/{id} | Returns the notification with the specicied ID
+[**Get-SS6AdminProfile**](SS6AdminApi.md#Get-SS6AdminProfile) | **GET** /adm/profile | Returns the profile for the logged in admin
+[**Get-SS6BlockListConfig**](SS6AdminApi.md#Get-SS6BlockListConfig) | **GET** /adm/blocklist/{id} | Retrieves the BlockList configuration identified by id for this admin
+[**Get-SS6BlockLists**](SS6AdminApi.md#Get-SS6BlockLists) | **GET** /adm/blocklist | Retrieves blocklist objects for the logged in admin
+[**Get-SS6CSR**](SS6AdminApi.md#Get-SS6CSR) | **GET** /adm/csr/{id} | Retrieves the CSR identified by id
+[**Get-SS6CSRs**](SS6AdminApi.md#Get-SS6CSRs) | **GET** /adm/csr | Retrieves pre-generated certificate signing requests
+[**Get-SS6CertByID**](SS6AdminApi.md#Get-SS6CertByID) | **GET** /adm/certs/{id} | Retrieves the certificate with the given ID
+[**Get-SS6Certs**](SS6AdminApi.md#Get-SS6Certs) | **GET** /adm/certs | Retrieves certificates for the logged in admin
+[**Get-SS6GlobalStats**](SS6AdminApi.md#Get-SS6GlobalStats) | **GET** /adm/stats/global | Retrieves aggregate statistics for all nodes
+[**Get-SS6LDAPConfig**](SS6AdminApi.md#Get-SS6LDAPConfig) | **GET** /adm/ldapconfig/{id} | Retrieves the LDAP configuration identified by id for this admin
+[**Get-SS6LDAPConfigs**](SS6AdminApi.md#Get-SS6LDAPConfigs) | **GET** /adm/ldapconfig | Retrieves LDAP configurations for the logged in admin
+[**Get-SS6SSHHostKeyByID**](SS6AdminApi.md#Get-SS6SSHHostKeyByID) | **GET** /adm/sshhostkeys/{id} | Retrieves the ssh host key with the given ID
+[**Get-SS6SSHHostKeys**](SS6AdminApi.md#Get-SS6SSHHostKeys) | **GET** /adm/sshhostkeys | Retrieves SSH host keys for the virtual site of the logged in admin
+[**Get-SS6Scrips**](SS6AdminApi.md#Get-SS6Scrips) | **GET** /adm/script/{id} | Retrieves the Script identified by id for this admin
+[**Get-SS6Scripts**](SS6AdminApi.md#Get-SS6Scripts) | **GET** /adm/script | Retrieves scripts for the logged in admin
+[**Get-SS6StatsSinceLastStart**](SS6AdminApi.md#Get-SS6StatsSinceLastStart) | **GET** /adm/stats/sincestart | Retrieves aggregate statistics for all nodes since last start
+[**Get-SS6SystemProperties**](SS6AdminApi.md#Get-SS6SystemProperties) | **GET** /adm/systemprops | Retrieves system properties for each node
+[**Get-SS6User**](SS6AdminApi.md#Get-SS6User) | **GET** /adm/users/{id} | Retrieves the user identified by id for this admin
+[**Get-SS6UserPublicKeyByID**](SS6AdminApi.md#Get-SS6UserPublicKeyByID) | **GET** /adm/users/{id}/pubkeys/{keyID} | Retrieves the public keys with the specified keyID
+[**Get-SS6UserPublicKeys**](SS6AdminApi.md#Get-SS6UserPublicKeys) | **GET** /adm/users/{id}/pubkeys | Retrieves the public keys for the user identified by id
+[**Get-SS6Users**](SS6AdminApi.md#Get-SS6Users) | **GET** /adm/users | Retrieves users for the logged in admin
+[**Get-SS6VFS**](SS6AdminApi.md#Get-SS6VFS) | **GET** /adm/vfs/{id} | Retrieves the Virtual File System identified by id for this admin
+[**Get-SS6VFSs**](SS6AdminApi.md#Get-SS6VFSs) | **GET** /adm/vfs | Retrieves virtual file systems for the logged in admin
+[**Get-SS6VsiteConfig**](SS6AdminApi.md#Get-SS6VsiteConfig) | **GET** /adm/srvconfig | Retrieves the configuration for the virtual site that belongs to the logged in admin
+[**Invoke-SS6ParchVsiteConfig**](SS6AdminApi.md#Invoke-SS6ParchVsiteConfig) | **PATCH** /adm/srvconfig | Partial update the configuration for the virtual site that belongs to the logged in admin. Partial update is not supported for sub-structs such as SSHConfig, FTPConfig etc. You have to pass the whole sub-struct
+[**Invoke-SS6PatchLDAPConfig**](SS6AdminApi.md#Invoke-SS6PatchLDAPConfig) | **PATCH** /adm/ldapconfig/{id} | Partial updates for the LDAP configuration identified by id
+[**Invoke-SS6PatchScript**](SS6AdminApi.md#Invoke-SS6PatchScript) | **PATCH** /adm/script/{id} | Partial update for the script identified by id
+[**Invoke-SS6PatchUser**](SS6AdminApi.md#Invoke-SS6PatchUser) | **PATCH** /adm/users/{id} | Partial update for the user identified by id
+[**Invoke-SS6PatchVFS**](SS6AdminApi.md#Invoke-SS6PatchVFS) | **PATCH** /adm/vfs/{id} | Partial update for the Virtual File System identified by id
+[**Update-SS6AdminPassword**](SS6AdminApi.md#Update-SS6AdminPassword) | **PUT** /adm/password | Updates the password for the logged in admin
+[**Update-SS6LDAPConfig**](SS6AdminApi.md#Update-SS6LDAPConfig) | **PUT** /adm/ldapconfig/{id} | Updates the LDAP configuration identified by id
+[**Update-SS6Script**](SS6AdminApi.md#Update-SS6Script) | **PUT** /adm/script/{id} | Updates the Script identified by id
+[**Update-SS6User**](SS6AdminApi.md#Update-SS6User) | **PUT** /adm/users/{id} | Updates the user identified by id
+[**Update-SS6VFS**](SS6AdminApi.md#Update-SS6VFS) | **PUT** /adm/vfs/{id} | Updates the Virtual File System identified by id
+[**Update-SS6VsiteConfig**](SS6AdminApi.md#Update-SS6VsiteConfig) | **PUT** /adm/srvconfig | Updates the configuration for the virtual site that belongs to the logged in admin
+[**Update-SS6VsiteConfigMode**](SS6AdminApi.md#Update-SS6VsiteConfigMode) | **PATCH** /adm/srvconfig/{mode} | Updates the configuration mode for the virtual site that belongs to the logged in admin
 
 
-<a name="Invoke-AckAdminNotificationByID"></a>
-# **Invoke-AckAdminNotificationByID**
-> ApiResponse Invoke-AckAdminNotificationByID<br>
+<a name="Invoke-SS6AckAdminNotificationByID"></a>
+# **Invoke-SS6AckAdminNotificationByID**
+> ApiResponse Invoke-SS6AckAdminNotificationByID<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Id] <String><br>
 
 Mark as read the notification with the specicied ID for the logged in admin
@@ -92,9 +92,9 @@ $Id = "MyId" # String | ID of the notification
 
 # Mark as read the notification with the specicied ID for the logged in admin
 try {
-    $Result = Invoke-AckAdminNotificationByID -Id $Id
+    $Result = Invoke-SS6AckAdminNotificationByID -Id $Id
 } catch {
-    Write-Host ("Exception occured when calling Invoke-AckAdminNotificationByID: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Invoke-SS6AckAdminNotificationByID: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -120,9 +120,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Invoke-AckAdminNotifications"></a>
-# **Invoke-AckAdminNotifications**
-> ApiResponse Invoke-AckAdminNotifications<br>
+<a name="Invoke-SS6AckAdminNotifications"></a>
+# **Invoke-SS6AckAdminNotifications**
+> ApiResponse Invoke-SS6AckAdminNotifications<br>
 
 Mark as read all the unread notification for the logged in admin
 
@@ -137,9 +137,9 @@ $Configuration.Password = "YOUR_PASSWORD"
 
 # Mark as read all the unread notification for the logged in admin
 try {
-    $Result = Invoke-AckAdminNotifications
+    $Result = Invoke-SS6AckAdminNotifications
 } catch {
-    Write-Host ("Exception occured when calling Invoke-AckAdminNotifications: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Invoke-SS6AckAdminNotifications: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -162,9 +162,9 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Add-BlockList"></a>
-# **Add-BlockList**
-> ApiResponse Add-BlockList<br>
+<a name="Add-SS6BlockList"></a>
+# **Add-SS6BlockList**
+> ApiResponse Add-SS6BlockList<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-BlockListItem] <PSCustomObject><br>
 
 Adds a new BlockList for the logged in admin
@@ -183,9 +183,9 @@ $BlockListItem = Initialize-BlockListItem -Id "MyId" -IpOrNetwork "MyIpOrNetwork
 
 # Adds a new BlockList for the logged in admin
 try {
-    $Result = Add-BlockList -BlockListItem $BlockListItem
+    $Result = Add-SS6BlockList -BlockListItem $BlockListItem
 } catch {
-    Write-Host ("Exception occured when calling Add-BlockList: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Add-SS6BlockList: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -211,9 +211,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Add-CRTToCSR"></a>
-# **Add-CRTToCSR**
-> ApiResponse Add-CRTToCSR<br>
+<a name="Add-SS6CRTToCSR"></a>
+# **Add-SS6CRTToCSR**
+> ApiResponse Add-SS6CRTToCSR<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Id] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-InlineObject7] <PSCustomObject><br>
 
@@ -232,9 +232,9 @@ $InlineObject7 = Initialize-InlineObject7 -Cert "MyCert" # InlineObject7 |
 
 # Takes an existing CSR and adds the CRT to it to create an actual certificate, and deletes the CSR
 try {
-    $Result = Add-CRTToCSR -Id $Id -InlineObject7 $InlineObject7
+    $Result = Add-SS6CRTToCSR -Id $Id -InlineObject7 $InlineObject7
 } catch {
-    Write-Host ("Exception occured when calling Add-CRTToCSR: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Add-SS6CRTToCSR: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -261,9 +261,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Add-Cert"></a>
-# **Add-Cert**
-> ApiResponse Add-Cert<br>
+<a name="Add-SS6Cert"></a>
+# **Add-SS6Cert**
+> ApiResponse Add-SS6Cert<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-TLSCertificate] <PSCustomObject><br>
 
 Adds a new certificate
@@ -281,9 +281,9 @@ $TLSCertificate = Initialize-TLSCertificate -Id "MyId" -Cert "MyCert" -Key "MyKe
 
 # Adds a new certificate
 try {
-    $Result = Add-Cert -TLSCertificate $TLSCertificate
+    $Result = Add-SS6Cert -TLSCertificate $TLSCertificate
 } catch {
-    Write-Host ("Exception occured when calling Add-Cert: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Add-SS6Cert: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -309,9 +309,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Add-LDAPConfig"></a>
-# **Add-LDAPConfig**
-> ApiResponse Add-LDAPConfig<br>
+<a name="Add-SS6LDAPConfig"></a>
+# **Add-SS6LDAPConfig**
+> ApiResponse Add-SS6LDAPConfig<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-LDAPConfig] <PSCustomObject><br>
 
 Adds a new LDAPConfig for the logged in admin
@@ -331,9 +331,9 @@ $LDAPConfig = Initialize-LDAPConfig -Id "MyId" -Port 0 -LdapProto "LDAP" -Userna
 
 # Adds a new LDAPConfig for the logged in admin
 try {
-    $Result = Add-LDAPConfig -LDAPConfig $LDAPConfig
+    $Result = Add-SS6LDAPConfig -LDAPConfig $LDAPConfig
 } catch {
-    Write-Host ("Exception occured when calling Add-LDAPConfig: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Add-SS6LDAPConfig: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -359,9 +359,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Add-SSHHostKey"></a>
-# **Add-SSHHostKey**
-> ApiResponse Add-SSHHostKey<br>
+<a name="Add-SS6SSHHostKey"></a>
+# **Add-SS6SSHHostKey**
+> ApiResponse Add-SS6SSHHostKey<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-SSHHostKey] <PSCustomObject><br>
 
 Adds a new ssh host key
@@ -378,9 +378,9 @@ $SSHHostKey = Initialize-SSHHostKey -Id "MyId" -Name "MyName" -Key "MyKey" -Type
 
 # Adds a new ssh host key
 try {
-    $Result = Add-SSHHostKey -SSHHostKey $SSHHostKey
+    $Result = Add-SS6SSHHostKey -SSHHostKey $SSHHostKey
 } catch {
-    Write-Host ("Exception occured when calling Add-SSHHostKey: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Add-SS6SSHHostKey: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -406,9 +406,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Add-Script"></a>
-# **Add-Script**
-> ApiResponse Add-Script<br>
+<a name="Add-SS6Script"></a>
+# **Add-SS6Script**
+> ApiResponse Add-SS6Script<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Script] <PSCustomObject><br>
 
 Adds a new script for the logged in admin
@@ -427,9 +427,9 @@ $Script = Initialize-Script -Id "MyId" -Name "MyName" -Description "MyDescriptio
 
 # Adds a new script for the logged in admin
 try {
-    $Result = Add-Script -Script $Script
+    $Result = Add-SS6Script -Script $Script
 } catch {
-    Write-Host ("Exception occured when calling Add-Script: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Add-SS6Script: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -455,9 +455,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Add-User"></a>
-# **Add-User**
-> ApiResponse Add-User<br>
+<a name="Add-SS6User"></a>
+# **Add-SS6User**
+> ApiResponse Add-SS6User<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-User] <PSCustomObject><br>
 
 Adds a new user for the logged in admin
@@ -485,9 +485,9 @@ $User = Initialize-User -Id "MyId" -Email "MyEmail" -Type "NormalUser" -AuthType
 
 # Adds a new user for the logged in admin
 try {
-    $Result = Add-User -User $User
+    $Result = Add-SS6User -User $User
 } catch {
-    Write-Host ("Exception occured when calling Add-User: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Add-SS6User: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -513,9 +513,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Add-UserPublicKey"></a>
-# **Add-UserPublicKey**
-> ApiResponse Add-UserPublicKey<br>
+<a name="Add-SS6UserPublicKey"></a>
+# **Add-SS6UserPublicKey**
+> ApiResponse Add-SS6UserPublicKey<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Id] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-SSHPubKey] <PSCustomObject><br>
 
@@ -534,9 +534,9 @@ $SSHPubKey = Initialize-SSHPubKey -Id "MyId" -Name "MyName" -Key "MyKey" -Finger
 
 # Add a public key for the user identified by id
 try {
-    $Result = Add-UserPublicKey -Id $Id -SSHPubKey $SSHPubKey
+    $Result = Add-SS6UserPublicKey -Id $Id -SSHPubKey $SSHPubKey
 } catch {
-    Write-Host ("Exception occured when calling Add-UserPublicKey: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Add-SS6UserPublicKey: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -563,9 +563,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Add-VFS"></a>
-# **Add-VFS**
-> ApiResponse Add-VFS<br>
+<a name="Add-SS6VFS"></a>
+# **Add-SS6VFS**
+> ApiResponse Add-SS6VFS<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-VirtualFileSystem] <PSCustomObject><br>
 
 Adds a new VFS for the logged in admin
@@ -586,9 +586,9 @@ $VirtualFileSystem = Initialize-VirtualFileSystem -Id "MyId" -Name "MyName" -Typ
 
 # Adds a new VFS for the logged in admin
 try {
-    $Result = Add-VFS -VirtualFileSystem $VirtualFileSystem
+    $Result = Add-SS6VFS -VirtualFileSystem $VirtualFileSystem
 } catch {
-    Write-Host ("Exception occured when calling Add-VFS: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Add-SS6VFS: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -614,9 +614,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Invoke-AdminLogin"></a>
-# **Invoke-AdminLogin**
-> TokenObj Invoke-AdminLogin<br>
+<a name="Invoke-SS6AdminLogin"></a>
+# **Invoke-SS6AdminLogin**
+> TokenObj Invoke-SS6AdminLogin<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-VsiteID] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-XOTP] <String><br>
 
@@ -637,9 +637,9 @@ $XOTP = "MyXOTP" # String |  (optional)
 
 # Login function for an Admin user
 try {
-    $Result = Invoke-AdminLogin -VsiteID $VsiteID -XOTP $XOTP
+    $Result = Invoke-SS6AdminLogin -VsiteID $VsiteID -XOTP $XOTP
 } catch {
-    Write-Host ("Exception occured when calling Invoke-AdminLogin: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Invoke-SS6AdminLogin: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -666,9 +666,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Invoke-AdminLogout"></a>
-# **Invoke-AdminLogout**
-> ApiResponse Invoke-AdminLogout<br>
+<a name="Invoke-SS6AdminLogout"></a>
+# **Invoke-SS6AdminLogout**
+> ApiResponse Invoke-SS6AdminLogout<br>
 
 Logout functions for an Admin user
 
@@ -683,9 +683,9 @@ $Configuration.Password = "YOUR_PASSWORD"
 
 # Logout functions for an Admin user
 try {
-    $Result = Invoke-AdminLogout
+    $Result = Invoke-SS6AdminLogout
 } catch {
-    Write-Host ("Exception occured when calling Invoke-AdminLogout: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Invoke-SS6AdminLogout: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -708,9 +708,9 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Clear-BlockList"></a>
-# **Clear-BlockList**
-> ApiResponse Clear-BlockList<br>
+<a name="Clear-SS6BlockList"></a>
+# **Clear-SS6BlockList**
+> ApiResponse Clear-SS6BlockList<br>
 
 Remove all the elements from the blocklist
 
@@ -727,9 +727,9 @@ $Configuration.Password = "YOUR_PASSWORD"
 
 # Remove all the elements from the blocklist
 try {
-    $Result = Clear-BlockList
+    $Result = Clear-SS6BlockList
 } catch {
-    Write-Host ("Exception occured when calling Clear-BlockList: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Clear-SS6BlockList: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -752,9 +752,9 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Close-SessionById"></a>
-# **Close-SessionById**
-> ApiResponse Close-SessionById<br>
+<a name="Close-SS6SessionById"></a>
+# **Close-SS6SessionById**
+> ApiResponse Close-SS6SessionById<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Id] <String><br>
 
 Close the active session with the specified id
@@ -771,9 +771,9 @@ $Id = "MyId" # String | ID of the session to terminate
 
 # Close the active session with the specified id
 try {
-    $Result = Close-SessionById -Id $Id
+    $Result = Close-SS6SessionById -Id $Id
 } catch {
-    Write-Host ("Exception occured when calling Close-SessionById: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Close-SS6SessionById: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -799,9 +799,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Close-Sessions"></a>
-# **Close-Sessions**
-> ApiResponse Close-Sessions<br>
+<a name="Close-SS6Sessions"></a>
+# **Close-SS6Sessions**
+> ApiResponse Close-SS6Sessions<br>
 
 Close all the active sessions
 
@@ -816,9 +816,9 @@ $Configuration.Password = "YOUR_PASSWORD"
 
 # Close all the active sessions
 try {
-    $Result = Close-Sessions
+    $Result = Close-SS6Sessions
 } catch {
-    Write-Host ("Exception occured when calling Close-Sessions: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Close-SS6Sessions: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -841,9 +841,9 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="New-CSR"></a>
-# **New-CSR**
-> ApiResponse New-CSR<br>
+<a name="New-SS6CSR"></a>
+# **New-SS6CSR**
+> ApiResponse New-SS6CSR<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-CSR] <PSCustomObject><br>
 
 Creates a brand new CSR and its associated private key
@@ -860,9 +860,9 @@ $CSR = Initialize-CSR -CommonName "MyCommonName" -Country "MyCountry" -Organizat
 
 # Creates a brand new CSR and its associated private key
 try {
-    $Result = New-CSR -CSR $CSR
+    $Result = New-SS6CSR -CSR $CSR
 } catch {
-    Write-Host ("Exception occured when calling New-CSR: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling New-SS6CSR: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -888,9 +888,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Invoke-DeleteBlockListConfig"></a>
-# **Invoke-DeleteBlockListConfig**
-> ApiResponse Invoke-DeleteBlockListConfig<br>
+<a name="Invoke-SS6DeleteBlockListConfig"></a>
+# **Invoke-SS6DeleteBlockListConfig**
+> ApiResponse Invoke-SS6DeleteBlockListConfig<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Id] <String><br>
 
 Deletes the BlockList configuration identified by id
@@ -907,9 +907,9 @@ $Id = "MyId" # String | ID of the BlockList configuration
 
 # Deletes the BlockList configuration identified by id
 try {
-    $Result = Invoke-DeleteBlockListConfig -Id $Id
+    $Result = Invoke-SS6DeleteBlockListConfig -Id $Id
 } catch {
-    Write-Host ("Exception occured when calling Invoke-DeleteBlockListConfig: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Invoke-SS6DeleteBlockListConfig: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -935,9 +935,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Invoke-DeleteCSR"></a>
-# **Invoke-DeleteCSR**
-> ApiResponse Invoke-DeleteCSR<br>
+<a name="Invoke-SS6DeleteCSR"></a>
+# **Invoke-SS6DeleteCSR**
+> ApiResponse Invoke-SS6DeleteCSR<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Id] <String><br>
 
 Deletes the CSR identified by id
@@ -954,9 +954,9 @@ $Id = "MyId" # String | ID of the certificate signing request
 
 # Deletes the CSR identified by id
 try {
-    $Result = Invoke-DeleteCSR -Id $Id
+    $Result = Invoke-SS6DeleteCSR -Id $Id
 } catch {
-    Write-Host ("Exception occured when calling Invoke-DeleteCSR: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Invoke-SS6DeleteCSR: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -982,9 +982,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Invoke-DeleteFTPCertByID"></a>
-# **Invoke-DeleteFTPCertByID**
-> ApiResponse Invoke-DeleteFTPCertByID<br>
+<a name="Invoke-SS6DeleteFTPCertByID"></a>
+# **Invoke-SS6DeleteFTPCertByID**
+> ApiResponse Invoke-SS6DeleteFTPCertByID<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Id] <String><br>
 
 Deletes the ftp certificate with the given ID
@@ -1001,9 +1001,9 @@ $Id = "MyId" # String | ID of the certificate
 
 # Deletes the ftp certificate with the given ID
 try {
-    $Result = Invoke-DeleteFTPCertByID -Id $Id
+    $Result = Invoke-SS6DeleteFTPCertByID -Id $Id
 } catch {
-    Write-Host ("Exception occured when calling Invoke-DeleteFTPCertByID: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Invoke-SS6DeleteFTPCertByID: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -1029,9 +1029,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Invoke-DeleteLDAPConfig"></a>
-# **Invoke-DeleteLDAPConfig**
-> ApiResponse Invoke-DeleteLDAPConfig<br>
+<a name="Invoke-SS6DeleteLDAPConfig"></a>
+# **Invoke-SS6DeleteLDAPConfig**
+> ApiResponse Invoke-SS6DeleteLDAPConfig<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Id] <String><br>
 
 Deletes the LDAP configuration identified by id
@@ -1048,9 +1048,9 @@ $Id = "MyId" # String | ID of the LDAP configuration
 
 # Deletes the LDAP configuration identified by id
 try {
-    $Result = Invoke-DeleteLDAPConfig -Id $Id
+    $Result = Invoke-SS6DeleteLDAPConfig -Id $Id
 } catch {
-    Write-Host ("Exception occured when calling Invoke-DeleteLDAPConfig: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Invoke-SS6DeleteLDAPConfig: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -1076,9 +1076,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Invoke-DeletePublicKey"></a>
-# **Invoke-DeletePublicKey**
-> ApiResponse Invoke-DeletePublicKey<br>
+<a name="Invoke-SS6DeletePublicKey"></a>
+# **Invoke-SS6DeletePublicKey**
+> ApiResponse Invoke-SS6DeletePublicKey<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Id] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-KeyID] <String><br>
 
@@ -1097,9 +1097,9 @@ $KeyID = "MyKeyID" # String | ID of the SSH public key
 
 # Deletes the public key identified by keyID
 try {
-    $Result = Invoke-DeletePublicKey -Id $Id -KeyID $KeyID
+    $Result = Invoke-SS6DeletePublicKey -Id $Id -KeyID $KeyID
 } catch {
-    Write-Host ("Exception occured when calling Invoke-DeletePublicKey: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Invoke-SS6DeletePublicKey: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -1126,9 +1126,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Invoke-DeleteSSHHostKeyByID"></a>
-# **Invoke-DeleteSSHHostKeyByID**
-> ApiResponse Invoke-DeleteSSHHostKeyByID<br>
+<a name="Invoke-SS6DeleteSSHHostKeyByID"></a>
+# **Invoke-SS6DeleteSSHHostKeyByID**
+> ApiResponse Invoke-SS6DeleteSSHHostKeyByID<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Id] <String><br>
 
 Deletes the ftp ssh host key with the given ID
@@ -1145,9 +1145,9 @@ $Id = "MyId" # String | ID of the host key
 
 # Deletes the ftp ssh host key with the given ID
 try {
-    $Result = Invoke-DeleteSSHHostKeyByID -Id $Id
+    $Result = Invoke-SS6DeleteSSHHostKeyByID -Id $Id
 } catch {
-    Write-Host ("Exception occured when calling Invoke-DeleteSSHHostKeyByID: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Invoke-SS6DeleteSSHHostKeyByID: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -1173,9 +1173,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Invoke-DeleteScript"></a>
-# **Invoke-DeleteScript**
-> ApiResponse Invoke-DeleteScript<br>
+<a name="Invoke-SS6DeleteScript"></a>
+# **Invoke-SS6DeleteScript**
+> ApiResponse Invoke-SS6DeleteScript<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Id] <String><br>
 
 Deletes the Script by id
@@ -1192,9 +1192,9 @@ $Id = "MyId" # String | ID of the Script
 
 # Deletes the Script by id
 try {
-    $Result = Invoke-DeleteScript -Id $Id
+    $Result = Invoke-SS6DeleteScript -Id $Id
 } catch {
-    Write-Host ("Exception occured when calling Invoke-DeleteScript: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Invoke-SS6DeleteScript: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -1220,9 +1220,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Invoke-DeleteUser"></a>
-# **Invoke-DeleteUser**
-> ApiResponse Invoke-DeleteUser<br>
+<a name="Invoke-SS6DeleteUser"></a>
+# **Invoke-SS6DeleteUser**
+> ApiResponse Invoke-SS6DeleteUser<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Id] <String><br>
 
 Deletes the admin user identified by id
@@ -1239,9 +1239,9 @@ $Id = "MyId" # String | ID of the user
 
 # Deletes the admin user identified by id
 try {
-    $Result = Invoke-DeleteUser -Id $Id
+    $Result = Invoke-SS6DeleteUser -Id $Id
 } catch {
-    Write-Host ("Exception occured when calling Invoke-DeleteUser: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Invoke-SS6DeleteUser: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -1267,9 +1267,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Invoke-DeleteVFS"></a>
-# **Invoke-DeleteVFS**
-> ApiResponse Invoke-DeleteVFS<br>
+<a name="Invoke-SS6DeleteVFS"></a>
+# **Invoke-SS6DeleteVFS**
+> ApiResponse Invoke-SS6DeleteVFS<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Id] <String><br>
 
 Deletes the Virtual File System identified by id
@@ -1286,9 +1286,9 @@ $Id = "MyId" # String | ID of the VFS
 
 # Deletes the Virtual File System identified by id
 try {
-    $Result = Invoke-DeleteVFS -Id $Id
+    $Result = Invoke-SS6DeleteVFS -Id $Id
 } catch {
-    Write-Host ("Exception occured when calling Invoke-DeleteVFS: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Invoke-SS6DeleteVFS: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -1314,9 +1314,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="New-Cert"></a>
-# **New-Cert**
-> ApiResponse New-Cert<br>
+<a name="New-SS6Cert"></a>
+# **New-SS6Cert**
+> ApiResponse New-SS6Cert<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-CertificateRequest] <PSCustomObject><br>
 
 Generates a new cert and adds it to server certificate collection
@@ -1333,9 +1333,9 @@ $CertificateRequest = Initialize-CertificateRequest -CommonName "MyCommonName" -
 
 # Generates a new cert and adds it to server certificate collection
 try {
-    $Result = New-Cert -CertificateRequest $CertificateRequest
+    $Result = New-SS6Cert -CertificateRequest $CertificateRequest
 } catch {
-    Write-Host ("Exception occured when calling New-Cert: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling New-SS6Cert: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -1361,9 +1361,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="New-SSHHostKey"></a>
-# **New-SSHHostKey**
-> ApiResponse New-SSHHostKey<br>
+<a name="New-SS6SSHHostKey"></a>
+# **New-SS6SSHHostKey**
+> ApiResponse New-SS6SSHHostKey<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-HostKeyRequestFields] <PSCustomObject><br>
 
 Generates a new ssh host key and adds it to server configuration
@@ -1380,9 +1380,9 @@ $HostKeyRequestFields = Initialize-HostKeyRequestFields -Name "MyName" -Type "RS
 
 # Generates a new ssh host key and adds it to server configuration
 try {
-    $Result = New-SSHHostKey -HostKeyRequestFields $HostKeyRequestFields
+    $Result = New-SS6SSHHostKey -HostKeyRequestFields $HostKeyRequestFields
 } catch {
-    Write-Host ("Exception occured when calling New-SSHHostKey: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling New-SS6SSHHostKey: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -1408,9 +1408,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="New-UserPublicKeys"></a>
-# **New-UserPublicKeys**
-> InlineResponse2002 New-UserPublicKeys<br>
+<a name="New-SS6UserPublicKeys"></a>
+# **New-SS6UserPublicKeys**
+> InlineResponse2002 New-SS6UserPublicKeys<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Id] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-HostKeyRequestFields] <PSCustomObject><br>
 
@@ -1430,9 +1430,9 @@ $Id = "MyId" # String | ID of the user
 $HostKeyRequestFields = Initialize-HostKeyRequestFields -Name "MyName" -Type "RSA" -Bits $OneOfSSHRSAKeyBitsSSHECDSAKeyBits # HostKeyRequestFields | 
 
 try {
-    $Result = New-UserPublicKeys -Id $Id -HostKeyRequestFields $HostKeyRequestFields
+    $Result = New-SS6UserPublicKeys -Id $Id -HostKeyRequestFields $HostKeyRequestFields
 } catch {
-    Write-Host ("Exception occured when calling New-UserPublicKeys: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling New-SS6UserPublicKeys: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -1459,9 +1459,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-ActiveSessions"></a>
-# **Get-ActiveSessions**
-> NodeSession[] Get-ActiveSessions<br>
+<a name="Get-SS6ActiveSessions"></a>
+# **Get-SS6ActiveSessions**
+> NodeSession[] Get-SS6ActiveSessions<br>
 
 Retrieves active sessions for all nodes
 
@@ -1476,9 +1476,9 @@ $Configuration.Password = "YOUR_PASSWORD"
 
 # Retrieves active sessions for all nodes
 try {
-    $Result = Get-ActiveSessions
+    $Result = Get-SS6ActiveSessions
 } catch {
-    Write-Host ("Exception occured when calling Get-ActiveSessions: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Get-SS6ActiveSessions: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -1501,9 +1501,9 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-AdminNotification"></a>
-# **Get-AdminNotification**
-> Notification[] Get-AdminNotification<br>
+<a name="Get-SS6AdminNotification"></a>
+# **Get-SS6AdminNotification**
+> Notification[] Get-SS6AdminNotification<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-From] <System.Nullable[System.DateTime]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-To] <System.Nullable[System.DateTime]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Limit] <System.Nullable[Int32]><br>
@@ -1524,9 +1524,9 @@ $Limit = 56 # Int32 | The maximum number of items to return. Max value is 500, d
 
 # Search notifications, the resulted are ordering based on the ""created"" fiels, the most recent first. Notifications that have already been read will be automatically excluded
 try {
-    $Result = Get-AdminNotification -From $From -To $To -Limit $Limit
+    $Result = Get-SS6AdminNotification -From $From -To $To -Limit $Limit
 } catch {
-    Write-Host ("Exception occured when calling Get-AdminNotification: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Get-SS6AdminNotification: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -1554,9 +1554,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-AdminNotificationByID"></a>
-# **Get-AdminNotificationByID**
-> Notification Get-AdminNotificationByID<br>
+<a name="Get-SS6AdminNotificationByID"></a>
+# **Get-SS6AdminNotificationByID**
+> Notification Get-SS6AdminNotificationByID<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Id] <String><br>
 
 Returns the notification with the specicied ID
@@ -1573,9 +1573,9 @@ $Id = "MyId" # String | ID of the notification
 
 # Returns the notification with the specicied ID
 try {
-    $Result = Get-AdminNotificationByID -Id $Id
+    $Result = Get-SS6AdminNotificationByID -Id $Id
 } catch {
-    Write-Host ("Exception occured when calling Get-AdminNotificationByID: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Get-SS6AdminNotificationByID: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -1601,9 +1601,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-AdminProfile"></a>
-# **Get-AdminProfile**
-> Admin Get-AdminProfile<br>
+<a name="Get-SS6AdminProfile"></a>
+# **Get-SS6AdminProfile**
+> Admin Get-SS6AdminProfile<br>
 
 Returns the profile for the logged in admin
 
@@ -1618,9 +1618,9 @@ $Configuration.Password = "YOUR_PASSWORD"
 
 # Returns the profile for the logged in admin
 try {
-    $Result = Get-AdminProfile
+    $Result = Get-SS6AdminProfile
 } catch {
-    Write-Host ("Exception occured when calling Get-AdminProfile: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Get-SS6AdminProfile: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -1643,9 +1643,9 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-BlockListConfig"></a>
-# **Get-BlockListConfig**
-> BlockListItem Get-BlockListConfig<br>
+<a name="Get-SS6BlockListConfig"></a>
+# **Get-SS6BlockListConfig**
+> BlockListItem Get-SS6BlockListConfig<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Id] <String><br>
 
 Retrieves the BlockList configuration identified by id for this admin
@@ -1662,9 +1662,9 @@ $Id = "MyId" # String | ID of the BlockList configuration
 
 # Retrieves the BlockList configuration identified by id for this admin
 try {
-    $Result = Get-BlockListConfig -Id $Id
+    $Result = Get-SS6BlockListConfig -Id $Id
 } catch {
-    Write-Host ("Exception occured when calling Get-BlockListConfig: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Get-SS6BlockListConfig: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -1690,9 +1690,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-BlockLists"></a>
-# **Get-BlockLists**
-> BlockListItem[] Get-BlockLists<br>
+<a name="Get-SS6BlockLists"></a>
+# **Get-SS6BlockLists**
+> BlockListItem[] Get-SS6BlockLists<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Offset] <System.Nullable[Int32]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Limit] <System.Nullable[Int32]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Order] <String><br>
@@ -1713,9 +1713,9 @@ $Order = "ASC" # String | Ordering by id. Default ASC (optional)
 
 # Retrieves blocklist objects for the logged in admin
 try {
-    $Result = Get-BlockLists -Offset $Offset -Limit $Limit -Order $Order
+    $Result = Get-SS6BlockLists -Offset $Offset -Limit $Limit -Order $Order
 } catch {
-    Write-Host ("Exception occured when calling Get-BlockLists: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Get-SS6BlockLists: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -1743,9 +1743,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-CSR"></a>
-# **Get-CSR**
-> CSR Get-CSR<br>
+<a name="Get-SS6CSR"></a>
+# **Get-SS6CSR**
+> CSR Get-SS6CSR<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Id] <String><br>
 
 Retrieves the CSR identified by id
@@ -1762,9 +1762,9 @@ $Id = "MyId" # String | ID of the certificate signing request
 
 # Retrieves the CSR identified by id
 try {
-    $Result = Get-CSR -Id $Id
+    $Result = Get-SS6CSR -Id $Id
 } catch {
-    Write-Host ("Exception occured when calling Get-CSR: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Get-SS6CSR: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -1790,9 +1790,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-CSRs"></a>
-# **Get-CSRs**
-> CSR[] Get-CSRs<br>
+<a name="Get-SS6CSRs"></a>
+# **Get-SS6CSRs**
+> CSR[] Get-SS6CSRs<br>
 
 Retrieves pre-generated certificate signing requests
 
@@ -1807,9 +1807,9 @@ $Configuration.Password = "YOUR_PASSWORD"
 
 # Retrieves pre-generated certificate signing requests
 try {
-    $Result = Get-CSRs
+    $Result = Get-SS6CSRs
 } catch {
-    Write-Host ("Exception occured when calling Get-CSRs: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Get-SS6CSRs: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -1832,9 +1832,9 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-CertByID"></a>
-# **Get-CertByID**
-> TLSCertificate Get-CertByID<br>
+<a name="Get-SS6CertByID"></a>
+# **Get-SS6CertByID**
+> TLSCertificate Get-SS6CertByID<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Id] <String><br>
 
 Retrieves the certificate with the given ID
@@ -1851,9 +1851,9 @@ $Id = "MyId" # String | ID of the certificate
 
 # Retrieves the certificate with the given ID
 try {
-    $Result = Get-CertByID -Id $Id
+    $Result = Get-SS6CertByID -Id $Id
 } catch {
-    Write-Host ("Exception occured when calling Get-CertByID: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Get-SS6CertByID: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -1879,9 +1879,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-Certs"></a>
-# **Get-Certs**
-> TLSCertificate[] Get-Certs<br>
+<a name="Get-SS6Certs"></a>
+# **Get-SS6Certs**
+> TLSCertificate[] Get-SS6Certs<br>
 
 Retrieves certificates for the logged in admin
 
@@ -1896,9 +1896,9 @@ $Configuration.Password = "YOUR_PASSWORD"
 
 # Retrieves certificates for the logged in admin
 try {
-    $Result = Get-Certs
+    $Result = Get-SS6Certs
 } catch {
-    Write-Host ("Exception occured when calling Get-Certs: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Get-SS6Certs: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -1921,9 +1921,9 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-GlobalStats"></a>
-# **Get-GlobalStats**
-> StatsContainer Get-GlobalStats<br>
+<a name="Get-SS6GlobalStats"></a>
+# **Get-SS6GlobalStats**
+> StatsContainer Get-SS6GlobalStats<br>
 
 Retrieves aggregate statistics for all nodes
 
@@ -1938,9 +1938,9 @@ $Configuration.Password = "YOUR_PASSWORD"
 
 # Retrieves aggregate statistics for all nodes
 try {
-    $Result = Get-GlobalStats
+    $Result = Get-SS6GlobalStats
 } catch {
-    Write-Host ("Exception occured when calling Get-GlobalStats: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Get-SS6GlobalStats: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -1963,9 +1963,9 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-LDAPConfig"></a>
-# **Get-LDAPConfig**
-> LDAPConfig Get-LDAPConfig<br>
+<a name="Get-SS6LDAPConfig"></a>
+# **Get-SS6LDAPConfig**
+> LDAPConfig Get-SS6LDAPConfig<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Id] <String><br>
 
 Retrieves the LDAP configuration identified by id for this admin
@@ -1982,9 +1982,9 @@ $Id = "MyId" # String | ID of the LDAP configuration
 
 # Retrieves the LDAP configuration identified by id for this admin
 try {
-    $Result = Get-LDAPConfig -Id $Id
+    $Result = Get-SS6LDAPConfig -Id $Id
 } catch {
-    Write-Host ("Exception occured when calling Get-LDAPConfig: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Get-SS6LDAPConfig: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -2010,9 +2010,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-LDAPConfigs"></a>
-# **Get-LDAPConfigs**
-> LDAPConfig[] Get-LDAPConfigs<br>
+<a name="Get-SS6LDAPConfigs"></a>
+# **Get-SS6LDAPConfigs**
+> LDAPConfig[] Get-SS6LDAPConfigs<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Offset] <System.Nullable[Int32]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Limit] <System.Nullable[Int32]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Order] <String><br>
@@ -2033,9 +2033,9 @@ $Order = "ASC" # String | Ordering by id. Default ASC (optional)
 
 # Retrieves LDAP configurations for the logged in admin
 try {
-    $Result = Get-LDAPConfigs -Offset $Offset -Limit $Limit -Order $Order
+    $Result = Get-SS6LDAPConfigs -Offset $Offset -Limit $Limit -Order $Order
 } catch {
-    Write-Host ("Exception occured when calling Get-LDAPConfigs: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Get-SS6LDAPConfigs: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -2063,9 +2063,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-SSHHostKeyByID"></a>
-# **Get-SSHHostKeyByID**
-> SSHHostKey Get-SSHHostKeyByID<br>
+<a name="Get-SS6SSHHostKeyByID"></a>
+# **Get-SS6SSHHostKeyByID**
+> SSHHostKey Get-SS6SSHHostKeyByID<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Id] <String><br>
 
 Retrieves the ssh host key with the given ID
@@ -2082,9 +2082,9 @@ $Id = "MyId" # String | ID of the host key
 
 # Retrieves the ssh host key with the given ID
 try {
-    $Result = Get-SSHHostKeyByID -Id $Id
+    $Result = Get-SS6SSHHostKeyByID -Id $Id
 } catch {
-    Write-Host ("Exception occured when calling Get-SSHHostKeyByID: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Get-SS6SSHHostKeyByID: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -2110,9 +2110,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-SSHHostKeys"></a>
-# **Get-SSHHostKeys**
-> SSHHostKey[] Get-SSHHostKeys<br>
+<a name="Get-SS6SSHHostKeys"></a>
+# **Get-SS6SSHHostKeys**
+> SSHHostKey[] Get-SS6SSHHostKeys<br>
 
 Retrieves SSH host keys for the virtual site of the logged in admin
 
@@ -2127,9 +2127,9 @@ $Configuration.Password = "YOUR_PASSWORD"
 
 # Retrieves SSH host keys for the virtual site of the logged in admin
 try {
-    $Result = Get-SSHHostKeys
+    $Result = Get-SS6SSHHostKeys
 } catch {
-    Write-Host ("Exception occured when calling Get-SSHHostKeys: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Get-SS6SSHHostKeys: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -2152,9 +2152,9 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-Scrips"></a>
-# **Get-Scrips**
-> Script Get-Scrips<br>
+<a name="Get-SS6Scrips"></a>
+# **Get-SS6Scrips**
+> Script Get-SS6Scrips<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Id] <String><br>
 
 Retrieves the Script identified by id for this admin
@@ -2171,9 +2171,9 @@ $Id = "MyId" # String | ID of the Script
 
 # Retrieves the Script identified by id for this admin
 try {
-    $Result = Get-Scrips -Id $Id
+    $Result = Get-SS6Scrips -Id $Id
 } catch {
-    Write-Host ("Exception occured when calling Get-Scrips: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Get-SS6Scrips: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -2199,9 +2199,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-Scripts"></a>
-# **Get-Scripts**
-> Script[] Get-Scripts<br>
+<a name="Get-SS6Scripts"></a>
+# **Get-SS6Scripts**
+> Script[] Get-SS6Scripts<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Offset] <System.Nullable[Int32]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Limit] <System.Nullable[Int32]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Order] <String><br>
@@ -2222,9 +2222,9 @@ $Order = "ASC" # String | Ordering by id. Default ASC (optional)
 
 # Retrieves scripts for the logged in admin
 try {
-    $Result = Get-Scripts -Offset $Offset -Limit $Limit -Order $Order
+    $Result = Get-SS6Scripts -Offset $Offset -Limit $Limit -Order $Order
 } catch {
-    Write-Host ("Exception occured when calling Get-Scripts: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Get-SS6Scripts: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -2252,9 +2252,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-StatsSinceLastStart"></a>
-# **Get-StatsSinceLastStart**
-> StatsContainer Get-StatsSinceLastStart<br>
+<a name="Get-SS6StatsSinceLastStart"></a>
+# **Get-SS6StatsSinceLastStart**
+> StatsContainer Get-SS6StatsSinceLastStart<br>
 
 Retrieves aggregate statistics for all nodes since last start
 
@@ -2269,9 +2269,9 @@ $Configuration.Password = "YOUR_PASSWORD"
 
 # Retrieves aggregate statistics for all nodes since last start
 try {
-    $Result = Get-StatsSinceLastStart
+    $Result = Get-SS6StatsSinceLastStart
 } catch {
-    Write-Host ("Exception occured when calling Get-StatsSinceLastStart: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Get-SS6StatsSinceLastStart: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -2294,9 +2294,9 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-SystemProperties"></a>
-# **Get-SystemProperties**
-> SystemProps[] Get-SystemProperties<br>
+<a name="Get-SS6SystemProperties"></a>
+# **Get-SS6SystemProperties**
+> SystemProps[] Get-SS6SystemProperties<br>
 
 Retrieves system properties for each node
 
@@ -2311,9 +2311,9 @@ $Configuration.Password = "YOUR_PASSWORD"
 
 # Retrieves system properties for each node
 try {
-    $Result = Get-SystemProperties
+    $Result = Get-SS6SystemProperties
 } catch {
-    Write-Host ("Exception occured when calling Get-SystemProperties: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Get-SS6SystemProperties: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -2336,9 +2336,9 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-User"></a>
-# **Get-User**
-> User Get-User<br>
+<a name="Get-SS6User"></a>
+# **Get-SS6User**
+> User Get-SS6User<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Id] <String><br>
 
 Retrieves the user identified by id for this admin
@@ -2355,9 +2355,9 @@ $Id = "MyId" # String | ID of the user
 
 # Retrieves the user identified by id for this admin
 try {
-    $Result = Get-User -Id $Id
+    $Result = Get-SS6User -Id $Id
 } catch {
-    Write-Host ("Exception occured when calling Get-User: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Get-SS6User: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -2383,9 +2383,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-UserPublicKeyByID"></a>
-# **Get-UserPublicKeyByID**
-> SSHPubKey Get-UserPublicKeyByID<br>
+<a name="Get-SS6UserPublicKeyByID"></a>
+# **Get-SS6UserPublicKeyByID**
+> SSHPubKey Get-SS6UserPublicKeyByID<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Id] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-KeyID] <String><br>
 
@@ -2404,9 +2404,9 @@ $KeyID = "MyKeyID" # String | ID of the SSH public key
 
 # Retrieves the public keys with the specified keyID
 try {
-    $Result = Get-UserPublicKeyByID -Id $Id -KeyID $KeyID
+    $Result = Get-SS6UserPublicKeyByID -Id $Id -KeyID $KeyID
 } catch {
-    Write-Host ("Exception occured when calling Get-UserPublicKeyByID: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Get-SS6UserPublicKeyByID: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -2433,9 +2433,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-UserPublicKeys"></a>
-# **Get-UserPublicKeys**
-> SSHPubKey[] Get-UserPublicKeys<br>
+<a name="Get-SS6UserPublicKeys"></a>
+# **Get-SS6UserPublicKeys**
+> SSHPubKey[] Get-SS6UserPublicKeys<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Id] <String><br>
 
 Retrieves the public keys for the user identified by id
@@ -2452,9 +2452,9 @@ $Id = "MyId" # String | ID of the user
 
 # Retrieves the public keys for the user identified by id
 try {
-    $Result = Get-UserPublicKeys -Id $Id
+    $Result = Get-SS6UserPublicKeys -Id $Id
 } catch {
-    Write-Host ("Exception occured when calling Get-UserPublicKeys: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Get-SS6UserPublicKeys: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -2480,9 +2480,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-Users"></a>
-# **Get-Users**
-> User[] Get-Users<br>
+<a name="Get-SS6Users"></a>
+# **Get-SS6Users**
+> User[] Get-SS6Users<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Offset] <System.Nullable[Int32]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Limit] <System.Nullable[Int32]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Order] <String><br>
@@ -2503,9 +2503,9 @@ $Order = "ASC" # String | Ordering by id. Default ASC (optional)
 
 # Retrieves users for the logged in admin
 try {
-    $Result = Get-Users -Offset $Offset -Limit $Limit -Order $Order
+    $Result = Get-SS6Users -Offset $Offset -Limit $Limit -Order $Order
 } catch {
-    Write-Host ("Exception occured when calling Get-Users: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Get-SS6Users: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -2533,9 +2533,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-VFS"></a>
-# **Get-VFS**
-> VirtualFileSystem Get-VFS<br>
+<a name="Get-SS6VFS"></a>
+# **Get-SS6VFS**
+> VirtualFileSystem Get-SS6VFS<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Id] <String><br>
 
 Retrieves the Virtual File System identified by id for this admin
@@ -2552,9 +2552,9 @@ $Id = "MyId" # String | ID of the VFS
 
 # Retrieves the Virtual File System identified by id for this admin
 try {
-    $Result = Get-VFS -Id $Id
+    $Result = Get-SS6VFS -Id $Id
 } catch {
-    Write-Host ("Exception occured when calling Get-VFS: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Get-SS6VFS: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -2580,9 +2580,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-VFSs"></a>
-# **Get-VFSs**
-> VirtualFileSystem[] Get-VFSs<br>
+<a name="Get-SS6VFSs"></a>
+# **Get-SS6VFSs**
+> VirtualFileSystem[] Get-SS6VFSs<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Offset] <System.Nullable[Int32]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Limit] <System.Nullable[Int32]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Order] <String><br>
@@ -2603,9 +2603,9 @@ $Order = "ASC" # String | Ordering by id. Default ASC (optional)
 
 # Retrieves virtual file systems for the logged in admin
 try {
-    $Result = Get-VFSs -Offset $Offset -Limit $Limit -Order $Order
+    $Result = Get-SS6VFSs -Offset $Offset -Limit $Limit -Order $Order
 } catch {
-    Write-Host ("Exception occured when calling Get-VFSs: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Get-SS6VFSs: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -2633,9 +2633,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-VsiteConfig"></a>
-# **Get-VsiteConfig**
-> SrvConfig Get-VsiteConfig<br>
+<a name="Get-SS6VsiteConfig"></a>
+# **Get-SS6VsiteConfig**
+> SrvConfig Get-SS6VsiteConfig<br>
 
 Retrieves the configuration for the virtual site that belongs to the logged in admin
 
@@ -2650,9 +2650,9 @@ $Configuration.Password = "YOUR_PASSWORD"
 
 # Retrieves the configuration for the virtual site that belongs to the logged in admin
 try {
-    $Result = Get-VsiteConfig
+    $Result = Get-SS6VsiteConfig
 } catch {
-    Write-Host ("Exception occured when calling Get-VsiteConfig: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Get-SS6VsiteConfig: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -2675,9 +2675,9 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Invoke-ParchVsiteConfig"></a>
-# **Invoke-ParchVsiteConfig**
-> ApiResponse Invoke-ParchVsiteConfig<br>
+<a name="Invoke-SS6ParchVsiteConfig"></a>
+# **Invoke-SS6ParchVsiteConfig**
+> ApiResponse Invoke-SS6ParchVsiteConfig<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-SrvConfig] <PSCustomObject><br>
 
 Partial update the configuration for the virtual site that belongs to the logged in admin. Partial update is not supported for sub-structs such as SSHConfig, FTPConfig etc. You have to pass the whole sub-struct
@@ -2717,9 +2717,9 @@ $SrvConfig = Initialize-SrvConfig -Id "MyId" -MaxConn 0 -MaxConnPerClient 0 -Max
 
 # Partial update the configuration for the virtual site that belongs to the logged in admin. Partial update is not supported for sub-structs such as SSHConfig, FTPConfig etc. You have to pass the whole sub-struct
 try {
-    $Result = Invoke-ParchVsiteConfig -SrvConfig $SrvConfig
+    $Result = Invoke-SS6ParchVsiteConfig -SrvConfig $SrvConfig
 } catch {
-    Write-Host ("Exception occured when calling Invoke-ParchVsiteConfig: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Invoke-SS6ParchVsiteConfig: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -2745,9 +2745,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Invoke-PatchLDAPConfig"></a>
-# **Invoke-PatchLDAPConfig**
-> ApiResponse Invoke-PatchLDAPConfig<br>
+<a name="Invoke-SS6PatchLDAPConfig"></a>
+# **Invoke-SS6PatchLDAPConfig**
+> ApiResponse Invoke-SS6PatchLDAPConfig<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Id] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-LDAPConfig] <PSCustomObject><br>
 
@@ -2767,9 +2767,9 @@ $LDAPConfig = Initialize-LDAPConfig -Id "MyId" -Port 0 -LdapProto "LDAP" -Userna
 
 # Partial updates for the LDAP configuration identified by id
 try {
-    $Result = Invoke-PatchLDAPConfig -Id $Id -LDAPConfig $LDAPConfig
+    $Result = Invoke-SS6PatchLDAPConfig -Id $Id -LDAPConfig $LDAPConfig
 } catch {
-    Write-Host ("Exception occured when calling Invoke-PatchLDAPConfig: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Invoke-SS6PatchLDAPConfig: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -2796,9 +2796,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Invoke-PatchScript"></a>
-# **Invoke-PatchScript**
-> ApiResponse Invoke-PatchScript<br>
+<a name="Invoke-SS6PatchScript"></a>
+# **Invoke-SS6PatchScript**
+> ApiResponse Invoke-SS6PatchScript<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Id] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Script] <PSCustomObject><br>
 
@@ -2817,9 +2817,9 @@ $Script = Initialize-Script -Id "MyId" -Name "MyName" -Description "MyDescriptio
 
 # Partial update for the script identified by id
 try {
-    $Result = Invoke-PatchScript -Id $Id -Script $Script
+    $Result = Invoke-SS6PatchScript -Id $Id -Script $Script
 } catch {
-    Write-Host ("Exception occured when calling Invoke-PatchScript: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Invoke-SS6PatchScript: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -2846,9 +2846,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Invoke-PatchUser"></a>
-# **Invoke-PatchUser**
-> ApiResponse Invoke-PatchUser<br>
+<a name="Invoke-SS6PatchUser"></a>
+# **Invoke-SS6PatchUser**
+> ApiResponse Invoke-SS6PatchUser<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Id] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-User] <PSCustomObject><br>
 
@@ -2876,9 +2876,9 @@ $User = Initialize-User -Id "MyId" -Email "MyEmail" -Type "NormalUser" -AuthType
 
 # Partial update for the user identified by id
 try {
-    $Result = Invoke-PatchUser -Id $Id -User $User
+    $Result = Invoke-SS6PatchUser -Id $Id -User $User
 } catch {
-    Write-Host ("Exception occured when calling Invoke-PatchUser: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Invoke-SS6PatchUser: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -2905,9 +2905,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Invoke-PatchVFS"></a>
-# **Invoke-PatchVFS**
-> ApiResponse Invoke-PatchVFS<br>
+<a name="Invoke-SS6PatchVFS"></a>
+# **Invoke-SS6PatchVFS**
+> ApiResponse Invoke-SS6PatchVFS<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Id] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-VirtualFileSystem] <PSCustomObject><br>
 
@@ -2928,9 +2928,9 @@ $VirtualFileSystem = Initialize-VirtualFileSystem -Id "MyId" -Name "MyName" -Typ
 
 # Partial update for the Virtual File System identified by id
 try {
-    $Result = Invoke-PatchVFS -Id $Id -VirtualFileSystem $VirtualFileSystem
+    $Result = Invoke-SS6PatchVFS -Id $Id -VirtualFileSystem $VirtualFileSystem
 } catch {
-    Write-Host ("Exception occured when calling Invoke-PatchVFS: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Invoke-SS6PatchVFS: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -2957,9 +2957,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Update-AdminPassword"></a>
-# **Update-AdminPassword**
-> ApiResponse Update-AdminPassword<br>
+<a name="Update-SS6AdminPassword"></a>
+# **Update-SS6AdminPassword**
+> ApiResponse Update-SS6AdminPassword<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PasswordType] <PSCustomObject><br>
 
 Updates the password for the logged in admin
@@ -2976,9 +2976,9 @@ $PasswordType = Initialize-PasswordType -Version "Legacy" -Salt "MySalt" -Payloa
 
 # Updates the password for the logged in admin
 try {
-    $Result = Update-AdminPassword -PasswordType $PasswordType
+    $Result = Update-SS6AdminPassword -PasswordType $PasswordType
 } catch {
-    Write-Host ("Exception occured when calling Update-AdminPassword: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Update-SS6AdminPassword: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -3004,9 +3004,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Update-LDAPConfig"></a>
-# **Update-LDAPConfig**
-> ApiResponse Update-LDAPConfig<br>
+<a name="Update-SS6LDAPConfig"></a>
+# **Update-SS6LDAPConfig**
+> ApiResponse Update-SS6LDAPConfig<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Id] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-LDAPConfig] <PSCustomObject><br>
 
@@ -3026,9 +3026,9 @@ $LDAPConfig = Initialize-LDAPConfig -Id "MyId" -Port 0 -LdapProto "LDAP" -Userna
 
 # Updates the LDAP configuration identified by id
 try {
-    $Result = Update-LDAPConfig -Id $Id -LDAPConfig $LDAPConfig
+    $Result = Update-SS6LDAPConfig -Id $Id -LDAPConfig $LDAPConfig
 } catch {
-    Write-Host ("Exception occured when calling Update-LDAPConfig: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Update-SS6LDAPConfig: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -3055,9 +3055,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Update-Script"></a>
-# **Update-Script**
-> ApiResponse Update-Script<br>
+<a name="Update-SS6Script"></a>
+# **Update-SS6Script**
+> ApiResponse Update-SS6Script<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Id] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Script] <PSCustomObject><br>
 
@@ -3076,9 +3076,9 @@ $Script = Initialize-Script -Id "MyId" -Name "MyName" -Description "MyDescriptio
 
 # Updates the Script identified by id
 try {
-    $Result = Update-Script -Id $Id -Script $Script
+    $Result = Update-SS6Script -Id $Id -Script $Script
 } catch {
-    Write-Host ("Exception occured when calling Update-Script: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Update-SS6Script: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -3105,9 +3105,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Update-User"></a>
-# **Update-User**
-> ApiResponse Update-User<br>
+<a name="Update-SS6User"></a>
+# **Update-SS6User**
+> ApiResponse Update-SS6User<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Id] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-User] <PSCustomObject><br>
 
@@ -3135,9 +3135,9 @@ $User = Initialize-User -Id "MyId" -Email "MyEmail" -Type "NormalUser" -AuthType
 
 # Updates the user identified by id
 try {
-    $Result = Update-User -Id $Id -User $User
+    $Result = Update-SS6User -Id $Id -User $User
 } catch {
-    Write-Host ("Exception occured when calling Update-User: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Update-SS6User: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -3164,9 +3164,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Update-VFS"></a>
-# **Update-VFS**
-> ApiResponse Update-VFS<br>
+<a name="Update-SS6VFS"></a>
+# **Update-SS6VFS**
+> ApiResponse Update-SS6VFS<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Id] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-VirtualFileSystem] <PSCustomObject><br>
 
@@ -3187,9 +3187,9 @@ $VirtualFileSystem = Initialize-VirtualFileSystem -Id "MyId" -Name "MyName" -Typ
 
 # Updates the Virtual File System identified by id
 try {
-    $Result = Update-VFS -Id $Id -VirtualFileSystem $VirtualFileSystem
+    $Result = Update-SS6VFS -Id $Id -VirtualFileSystem $VirtualFileSystem
 } catch {
-    Write-Host ("Exception occured when calling Update-VFS: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Update-SS6VFS: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -3216,9 +3216,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Update-VsiteConfig"></a>
-# **Update-VsiteConfig**
-> ApiResponse Update-VsiteConfig<br>
+<a name="Update-SS6VsiteConfig"></a>
+# **Update-SS6VsiteConfig**
+> ApiResponse Update-SS6VsiteConfig<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-SrvConfig] <PSCustomObject><br>
 
 Updates the configuration for the virtual site that belongs to the logged in admin
@@ -3258,9 +3258,9 @@ $SrvConfig = Initialize-SrvConfig -Id "MyId" -MaxConn 0 -MaxConnPerClient 0 -Max
 
 # Updates the configuration for the virtual site that belongs to the logged in admin
 try {
-    $Result = Update-VsiteConfig -SrvConfig $SrvConfig
+    $Result = Update-SS6VsiteConfig -SrvConfig $SrvConfig
 } catch {
-    Write-Host ("Exception occured when calling Update-VsiteConfig: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Update-SS6VsiteConfig: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -3286,9 +3286,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Update-VsiteConfigMode"></a>
-# **Update-VsiteConfigMode**
-> ApiResponse Update-VsiteConfigMode<br>
+<a name="Update-SS6VsiteConfigMode"></a>
+# **Update-SS6VsiteConfigMode**
+> ApiResponse Update-SS6VsiteConfigMode<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Mode] <String><br>
 
 Updates the configuration mode for the virtual site that belongs to the logged in admin
@@ -3305,9 +3305,9 @@ $Mode = "hipaa" # String | Mode to set
 
 # Updates the configuration mode for the virtual site that belongs to the logged in admin
 try {
-    $Result = Update-VsiteConfigMode -Mode $Mode
+    $Result = Update-SS6VsiteConfigMode -Mode $Mode
 } catch {
-    Write-Host ("Exception occured when calling Update-VsiteConfigMode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Update-SS6VsiteConfigMode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```

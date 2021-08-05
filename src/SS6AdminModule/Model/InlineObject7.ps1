@@ -21,7 +21,7 @@ PEM encoded certificate generated for the signing request
 InlineObject7<PSCustomObject>
 #>
 
-function Initialize-InlineObject7 {
+function Initialize-SS6InlineObject7 {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -30,7 +30,7 @@ function Initialize-InlineObject7 {
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => InlineObject7' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6InlineObject7' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -60,19 +60,19 @@ Json object
 
 InlineObject7<PSCustomObject>
 #>
-function ConvertFrom-JsonToInlineObject7 {
+function ConvertFrom-SS6JsonToInlineObject7 {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => InlineObject7' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6InlineObject7' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in InlineObject7
+        # check if Json contains properties not defined in SS6InlineObject7
         $AllProperties = ("cert")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

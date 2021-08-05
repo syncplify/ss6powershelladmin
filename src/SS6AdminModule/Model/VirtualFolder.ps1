@@ -25,7 +25,7 @@ Is this virtual folder visible in the parent's directory list?
 VirtualFolder<PSCustomObject>
 #>
 
-function Initialize-VirtualFolder {
+function Initialize-SS6VirtualFolder {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -40,7 +40,7 @@ function Initialize-VirtualFolder {
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => VirtualFolder' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6VirtualFolder' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if (!$Permissions -and $Permissions.length -lt 1) {
@@ -76,19 +76,19 @@ Json object
 
 VirtualFolder<PSCustomObject>
 #>
-function ConvertFrom-JsonToVirtualFolder {
+function ConvertFrom-SS6JsonToVirtualFolder {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => VirtualFolder' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6VirtualFolder' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in VirtualFolder
+        # check if Json contains properties not defined in SS6VirtualFolder
         $AllProperties = ("vfsId", "permissions", "visible")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

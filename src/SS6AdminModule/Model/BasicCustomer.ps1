@@ -27,7 +27,7 @@ No description available.
 BasicCustomer<PSCustomObject>
 #>
 
-function Initialize-BasicCustomer {
+function Initialize-SS6BasicCustomer {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -45,7 +45,7 @@ function Initialize-BasicCustomer {
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => BasicCustomer' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6BasicCustomer' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -78,19 +78,19 @@ Json object
 
 BasicCustomer<PSCustomObject>
 #>
-function ConvertFrom-JsonToBasicCustomer {
+function ConvertFrom-SS6JsonToBasicCustomer {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => BasicCustomer' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6BasicCustomer' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in BasicCustomer
+        # check if Json contains properties not defined in SS6BasicCustomer
         $AllProperties = ("username", "fullName", "companyName", "email")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

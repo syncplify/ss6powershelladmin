@@ -19,13 +19,13 @@ No description available.
 SFTPVersions<PSCustomObject>
 #>
 
-function Initialize-SFTPVersions {
+function Initialize-SS6SFTPVersions {
     [CmdletBinding()]
     Param (
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => SFTPVersions' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6SFTPVersions' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -54,19 +54,19 @@ Json object
 
 SFTPVersions<PSCustomObject>
 #>
-function ConvertFrom-JsonToSFTPVersions {
+function ConvertFrom-SS6JsonToSFTPVersions {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => SFTPVersions' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6SFTPVersions' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in SFTPVersions
+        # check if Json contains properties not defined in SS6SFTPVersions
         $AllProperties = @()
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

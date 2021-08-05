@@ -19,13 +19,13 @@ No description available.
 AccountStatus<PSCustomObject>
 #>
 
-function Initialize-AccountStatus {
+function Initialize-SS6AccountStatus {
     [CmdletBinding()]
     Param (
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => AccountStatus' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6AccountStatus' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -54,19 +54,19 @@ Json object
 
 AccountStatus<PSCustomObject>
 #>
-function ConvertFrom-JsonToAccountStatus {
+function ConvertFrom-SS6JsonToAccountStatus {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => AccountStatus' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6AccountStatus' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in AccountStatus
+        # check if Json contains properties not defined in SS6AccountStatus
         $AllProperties = @()
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

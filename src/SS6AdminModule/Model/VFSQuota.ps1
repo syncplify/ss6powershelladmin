@@ -23,7 +23,7 @@ bytes. If broken the current upload is forcefully interrupted. 0 means unlimited
 VFSQuota<PSCustomObject>
 #>
 
-function Initialize-VFSQuota {
+function Initialize-SS6VFSQuota {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -35,7 +35,7 @@ function Initialize-VFSQuota {
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => VFSQuota' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6VFSQuota' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -66,19 +66,19 @@ Json object
 
 VFSQuota<PSCustomObject>
 #>
-function ConvertFrom-JsonToVFSQuota {
+function ConvertFrom-SS6JsonToVFSQuota {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => VFSQuota' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6VFSQuota' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in VFSQuota
+        # check if Json contains properties not defined in SS6VFSQuota
         $AllProperties = ("soft", "hard")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

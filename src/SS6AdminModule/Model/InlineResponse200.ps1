@@ -21,7 +21,7 @@ Time based password. It is required for the others setup steps and must be passe
 InlineResponse200<PSCustomObject>
 #>
 
-function Initialize-InlineResponse200 {
+function Initialize-SS6InlineResponse200 {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -30,7 +30,7 @@ function Initialize-InlineResponse200 {
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => InlineResponse200' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6InlineResponse200' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -60,19 +60,19 @@ Json object
 
 InlineResponse200<PSCustomObject>
 #>
-function ConvertFrom-JsonToInlineResponse200 {
+function ConvertFrom-SS6JsonToInlineResponse200 {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => InlineResponse200' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6InlineResponse200' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in InlineResponse200
+        # check if Json contains properties not defined in SS6InlineResponse200
         $AllProperties = ("totp")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

@@ -23,7 +23,7 @@ The actual secret
 Secret<PSCustomObject>
 #>
 
-function Initialize-Secret {
+function Initialize-SS6Secret {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -35,7 +35,7 @@ function Initialize-Secret {
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => Secret' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6Secret' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -66,19 +66,19 @@ Json object
 
 Secret<PSCustomObject>
 #>
-function ConvertFrom-JsonToSecret {
+function ConvertFrom-SS6JsonToSecret {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => Secret' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6Secret' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in Secret
+        # check if Json contains properties not defined in SS6Secret
         $AllProperties = ("status", "payload")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

@@ -41,7 +41,7 @@ if nil `now` will be assumed
 CertificateRequest<PSCustomObject>
 #>
 
-function Initialize-CertificateRequest {
+function Initialize-SS6CertificateRequest {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -82,7 +82,7 @@ function Initialize-CertificateRequest {
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => CertificateRequest' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6CertificateRequest' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($CommonName -eq $null) {
@@ -130,19 +130,19 @@ Json object
 
 CertificateRequest<PSCustomObject>
 #>
-function ConvertFrom-JsonToCertificateRequest {
+function ConvertFrom-SS6JsonToCertificateRequest {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => CertificateRequest' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6CertificateRequest' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in CertificateRequest
+        # check if Json contains properties not defined in SS6CertificateRequest
         $AllProperties = ("commonName", "country", "organization", "organizationalUnit", "locality", "province", "bits", "algo", "hosts", "validForDays", "validFrom")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

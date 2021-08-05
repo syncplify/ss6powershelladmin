@@ -19,13 +19,13 @@ No description available.
 LogToType<PSCustomObject>
 #>
 
-function Initialize-LogToType {
+function Initialize-SS6LogToType {
     [CmdletBinding()]
     Param (
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => LogToType' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6LogToType' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -54,19 +54,19 @@ Json object
 
 LogToType<PSCustomObject>
 #>
-function ConvertFrom-JsonToLogToType {
+function ConvertFrom-SS6JsonToLogToType {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => LogToType' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6LogToType' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LogToType
+        # check if Json contains properties not defined in SS6LogToType
         $AllProperties = @()
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

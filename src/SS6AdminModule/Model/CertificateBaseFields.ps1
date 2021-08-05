@@ -37,7 +37,7 @@ No description available.
 CertificateBaseFields<PSCustomObject>
 #>
 
-function Initialize-CertificateBaseFields {
+function Initialize-SS6CertificateBaseFields {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -72,7 +72,7 @@ function Initialize-CertificateBaseFields {
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => CertificateBaseFields' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6CertificateBaseFields' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -110,19 +110,19 @@ Json object
 
 CertificateBaseFields<PSCustomObject>
 #>
-function ConvertFrom-JsonToCertificateBaseFields {
+function ConvertFrom-SS6JsonToCertificateBaseFields {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => CertificateBaseFields' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6CertificateBaseFields' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in CertificateBaseFields
+        # check if Json contains properties not defined in SS6CertificateBaseFields
         $AllProperties = ("commonName", "country", "organization", "organizationalUnit", "locality", "province", "bits", "algo", "hosts")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

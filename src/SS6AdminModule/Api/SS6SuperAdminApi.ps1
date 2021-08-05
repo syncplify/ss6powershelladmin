@@ -8,7 +8,7 @@
 <#
 .SYNOPSIS
 
-Mark as read the notification with the specicied ID for the logged in admin
+Mark as read the notification with the specicied ID for the logged in super admin
 
 .DESCRIPTION
 
@@ -25,7 +25,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 ApiResponse
 #>
-function Invoke-AckAdminNotificationByID {
+function Invoke-SS6AckSaNotificationByID {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
@@ -36,7 +36,7 @@ function Invoke-AckAdminNotificationByID {
     )
 
     Process {
-        'Calling method: Invoke-AckAdminNotificationByID' | Write-Debug
+        'Calling method: Invoke-SS6AckSaNotificationByID' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $LocalVarAccepts = @()
@@ -48,13 +48,13 @@ function Invoke-AckAdminNotificationByID {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $Configuration = Get-Configuration
+        $Configuration = Get-SS6Configuration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
-        $LocalVarUri = '/adm/notifications/{id}/ack'
+        $LocalVarUri = '/sa/notifications/{id}/ack'
         if (!$Id) {
-            throw "Error! The required parameter `Id` missing when calling ackAdminNotificationByID."
+            throw "Error! The required parameter `Id` missing when calling ackSaNotificationByID."
         }
         $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
 
@@ -65,7 +65,7 @@ function Invoke-AckAdminNotificationByID {
             Write-Verbose ("Using HTTP basic authentication in {0}" -f $MyInvocation.MyCommand)
         }
 
-        $LocalVarResult = Invoke-ApiClient -Method 'PATCH' `
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'PATCH' `
                                 -Uri $LocalVarUri `
                                 -Accepts $LocalVarAccepts `
                                 -ContentTypes $LocalVarContentTypes `
@@ -88,7 +88,7 @@ function Invoke-AckAdminNotificationByID {
 <#
 .SYNOPSIS
 
-Mark as read all the unread notification for the logged in admin
+Mark as read all the unread notification for the logged in super admin
 
 .DESCRIPTION
 
@@ -102,7 +102,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 ApiResponse
 #>
-function Invoke-AckAdminNotifications {
+function Invoke-SS6AckSaNotifications {
     [CmdletBinding()]
     Param (
         [Switch]
@@ -110,7 +110,7 @@ function Invoke-AckAdminNotifications {
     )
 
     Process {
-        'Calling method: Invoke-AckAdminNotifications' | Write-Debug
+        'Calling method: Invoke-SS6AckSaNotifications' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $LocalVarAccepts = @()
@@ -122,11 +122,11 @@ function Invoke-AckAdminNotifications {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $Configuration = Get-Configuration
+        $Configuration = Get-SS6Configuration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
-        $LocalVarUri = '/adm/notifications/ack'
+        $LocalVarUri = '/sa/notifications/ack'
 
         if ($Configuration["Username"] -and $Configuration["Password"]) {
             $LocalVarBytes = [System.Text.Encoding]::UTF8.GetBytes($Configuration["Username"] + ":" + $Configuration["Password"])
@@ -135,7 +135,7 @@ function Invoke-AckAdminNotifications {
             Write-Verbose ("Using HTTP basic authentication in {0}" -f $MyInvocation.MyCommand)
         }
 
-        $LocalVarResult = Invoke-ApiClient -Method 'PATCH' `
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'PATCH' `
                                 -Uri $LocalVarUri `
                                 -Accepts $LocalVarAccepts `
                                 -ContentTypes $LocalVarContentTypes `
@@ -158,13 +158,13 @@ function Invoke-AckAdminNotifications {
 <#
 .SYNOPSIS
 
-Adds a new BlockList for the logged in admin
+Activate a license in offline mode
 
 .DESCRIPTION
 
 No description available.
 
-.PARAMETER BlockListItem
+.PARAMETER InlineObject5
 No description available.
 
 .PARAMETER WithHttpInfo
@@ -175,18 +175,18 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 ApiResponse
 #>
-function Add-BlockList {
+function Invoke-SS6ActivateLicenseOffline {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
-        ${BlockListItem},
+        ${InlineObject5},
         [Switch]
         $WithHttpInfo
     )
 
     Process {
-        'Calling method: Add-BlockList' | Write-Debug
+        'Calling method: Invoke-SS6ActivateLicenseOffline' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $LocalVarAccepts = @()
@@ -198,27 +198,203 @@ function Add-BlockList {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $Configuration = Get-Configuration
+        $Configuration = Get-SS6Configuration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
         # HTTP header 'Content-Type'
         $LocalVarContentTypes = @('application/json')
 
-        $LocalVarUri = '/adm/blocklist'
+        $LocalVarUri = '/sa/license/activaction/offline'
 
-        if (!$BlockListItem) {
-            throw "Error! The required parameter `BlockListItem` missing when calling addBlockList."
+        if (!$InlineObject5) {
+            throw "Error! The required parameter `InlineObject5` missing when calling activateLicenseOffline."
         }
 
-        $LocalVarBodyParameter = $BlockListItem | ConvertTo-Json -Depth 100
+        $LocalVarBodyParameter = $InlineObject5 | ConvertTo-Json -Depth 100
 
         if ($Configuration["AccessToken"]) {
             $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
             Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
         }
 
-        $LocalVarResult = Invoke-ApiClient -Method 'POST' `
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'POST' `
+                                -Uri $LocalVarUri `
+                                -Accepts $LocalVarAccepts `
+                                -ContentTypes $LocalVarContentTypes `
+                                -Body $LocalVarBodyParameter `
+                                -HeaderParameters $LocalVarHeaderParameters `
+                                -QueryParameters $LocalVarQueryParameters `
+                                -FormParameters $LocalVarFormParameters `
+                                -CookieParameters $LocalVarCookieParameters `
+                                -ReturnType "ApiResponse" `
+                                -IsBodyNullable $false
+
+        if ($WithHttpInfo.IsPresent) {
+            return $LocalVarResult
+        } else {
+            return $LocalVarResult["Response"]
+        }
+    }
+}
+
+<#
+.SYNOPSIS
+
+Activate the given license code
+
+.DESCRIPTION
+
+No description available.
+
+.PARAMETER InlineObject4
+No description available.
+
+.PARAMETER WithHttpInfo
+
+A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
+
+.OUTPUTS
+
+ApiResponse
+#>
+function Invoke-SS6ActivateLicenseOnline {
+    [CmdletBinding()]
+    Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${InlineObject4},
+        [Switch]
+        $WithHttpInfo
+    )
+
+    Process {
+        'Calling method: Invoke-SS6ActivateLicenseOnline' | Write-Debug
+        $PSBoundParameters | Out-DebugParameter | Write-Debug
+
+        $LocalVarAccepts = @()
+        $LocalVarContentTypes = @()
+        $LocalVarQueryParameters = @{}
+        $LocalVarHeaderParameters = @{}
+        $LocalVarFormParameters = @{}
+        $LocalVarPathParameters = @{}
+        $LocalVarCookieParameters = @{}
+        $LocalVarBodyParameter = $null
+
+        $Configuration = Get-SS6Configuration
+        # HTTP header 'Accept' (if needed)
+        $LocalVarAccepts = @('application/json')
+
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
+        $LocalVarUri = '/sa/license/activaction/online'
+
+        if (!$InlineObject4) {
+            throw "Error! The required parameter `InlineObject4` missing when calling activateLicenseOnline."
+        }
+
+        $LocalVarBodyParameter = $InlineObject4 | ConvertTo-Json -Depth 100
+
+        if ($Configuration["AccessToken"]) {
+            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
+            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
+        }
+
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'POST' `
+                                -Uri $LocalVarUri `
+                                -Accepts $LocalVarAccepts `
+                                -ContentTypes $LocalVarContentTypes `
+                                -Body $LocalVarBodyParameter `
+                                -HeaderParameters $LocalVarHeaderParameters `
+                                -QueryParameters $LocalVarQueryParameters `
+                                -FormParameters $LocalVarFormParameters `
+                                -CookieParameters $LocalVarCookieParameters `
+                                -ReturnType "ApiResponse" `
+                                -IsBodyNullable $false
+
+        if ($WithHttpInfo.IsPresent) {
+            return $LocalVarResult
+        } else {
+            return $LocalVarResult["Response"]
+        }
+    }
+}
+
+<#
+.SYNOPSIS
+
+Adds a new admin for the specified virtual site
+
+.DESCRIPTION
+
+No description available.
+
+.PARAMETER Id
+ID of the virtual site
+
+.PARAMETER Admin
+No description available.
+
+.PARAMETER WithHttpInfo
+
+A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
+
+.OUTPUTS
+
+ApiResponse
+#>
+function Add-SS6Admin {
+    [CmdletBinding()]
+    Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Id},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${Admin},
+        [Switch]
+        $WithHttpInfo
+    )
+
+    Process {
+        'Calling method: Add-SS6Admin' | Write-Debug
+        $PSBoundParameters | Out-DebugParameter | Write-Debug
+
+        $LocalVarAccepts = @()
+        $LocalVarContentTypes = @()
+        $LocalVarQueryParameters = @{}
+        $LocalVarHeaderParameters = @{}
+        $LocalVarFormParameters = @{}
+        $LocalVarPathParameters = @{}
+        $LocalVarCookieParameters = @{}
+        $LocalVarBodyParameter = $null
+
+        $Configuration = Get-SS6Configuration
+        # HTTP header 'Accept' (if needed)
+        $LocalVarAccepts = @('application/json')
+
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
+        $LocalVarUri = '/sa/vsites/{id}/adm'
+        if (!$Id) {
+            throw "Error! The required parameter `Id` missing when calling addAdmin."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
+
+        if (!$Admin) {
+            throw "Error! The required parameter `Admin` missing when calling addAdmin."
+        }
+
+        $LocalVarBodyParameter = $Admin | ConvertTo-Json -Depth 100
+
+        if ($Configuration["AccessToken"]) {
+            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
+            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
+        }
+
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
                                 -Accepts $LocalVarAccepts `
                                 -ContentTypes $LocalVarContentTypes `
@@ -250,7 +426,7 @@ No description available.
 .PARAMETER Id
 ID of the certificate signing request
 
-.PARAMETER InlineObject7
+.PARAMETER InlineObject6
 No description available.
 
 .PARAMETER WithHttpInfo
@@ -261,7 +437,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 ApiResponse
 #>
-function Add-CRTToCSR {
+function Add-SS6NodeCRTToCSR {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
@@ -269,13 +445,13 @@ function Add-CRTToCSR {
         ${Id},
         [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
-        ${InlineObject7},
+        ${InlineObject6},
         [Switch]
         $WithHttpInfo
     )
 
     Process {
-        'Calling method: Add-CRTToCSR' | Write-Debug
+        'Calling method: Add-SS6NodeCRTToCSR' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $LocalVarAccepts = @()
@@ -287,31 +463,31 @@ function Add-CRTToCSR {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $Configuration = Get-Configuration
+        $Configuration = Get-SS6Configuration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
         # HTTP header 'Content-Type'
         $LocalVarContentTypes = @('application/json')
 
-        $LocalVarUri = '/adm/csr/{id}'
+        $LocalVarUri = '/sa/nodecsr/{id}'
         if (!$Id) {
-            throw "Error! The required parameter `Id` missing when calling addCRTToCSR."
+            throw "Error! The required parameter `Id` missing when calling addNodeCRTToCSR."
         }
         $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
 
-        if (!$InlineObject7) {
-            throw "Error! The required parameter `InlineObject7` missing when calling addCRTToCSR."
+        if (!$InlineObject6) {
+            throw "Error! The required parameter `InlineObject6` missing when calling addNodeCRTToCSR."
         }
 
-        $LocalVarBodyParameter = $InlineObject7 | ConvertTo-Json -Depth 100
+        $LocalVarBodyParameter = $InlineObject6 | ConvertTo-Json -Depth 100
 
         if ($Configuration["AccessToken"]) {
             $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
             Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
         }
 
-        $LocalVarResult = Invoke-ApiClient -Method 'POST' `
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
                                 -Accepts $LocalVarAccepts `
                                 -ContentTypes $LocalVarContentTypes `
@@ -334,7 +510,7 @@ function Add-CRTToCSR {
 <#
 .SYNOPSIS
 
-Adds a new certificate
+Adds a new node certificate, a restart is required to load it
 
 .DESCRIPTION
 
@@ -351,7 +527,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 ApiResponse
 #>
-function Add-Cert {
+function Add-SS6NodeCertificate {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
@@ -362,7 +538,7 @@ function Add-Cert {
     )
 
     Process {
-        'Calling method: Add-Cert' | Write-Debug
+        'Calling method: Add-SS6NodeCertificate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $LocalVarAccepts = @()
@@ -374,17 +550,17 @@ function Add-Cert {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $Configuration = Get-Configuration
+        $Configuration = Get-SS6Configuration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
         # HTTP header 'Content-Type'
         $LocalVarContentTypes = @('application/json')
 
-        $LocalVarUri = '/adm/certs'
+        $LocalVarUri = '/sa/nodecerts'
 
         if (!$TLSCertificate) {
-            throw "Error! The required parameter `TLSCertificate` missing when calling addCert."
+            throw "Error! The required parameter `TLSCertificate` missing when calling addNodeCertificate."
         }
 
         $LocalVarBodyParameter = $TLSCertificate | ConvertTo-Json -Depth 100
@@ -394,7 +570,7 @@ function Add-Cert {
             Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
         }
 
-        $LocalVarResult = Invoke-ApiClient -Method 'POST' `
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
                                 -Accepts $LocalVarAccepts `
                                 -ContentTypes $LocalVarContentTypes `
@@ -417,13 +593,13 @@ function Add-Cert {
 <#
 .SYNOPSIS
 
-Adds a new LDAPConfig for the logged in admin
+Adds a new SuperAdmin
 
 .DESCRIPTION
 
 No description available.
 
-.PARAMETER LDAPConfig
+.PARAMETER SuperAdmin
 No description available.
 
 .PARAMETER WithHttpInfo
@@ -434,18 +610,18 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 ApiResponse
 #>
-function Add-LDAPConfig {
+function Add-SS6SuperAdmin {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
-        ${LDAPConfig},
+        ${SuperAdmin},
         [Switch]
         $WithHttpInfo
     )
 
     Process {
-        'Calling method: Add-LDAPConfig' | Write-Debug
+        'Calling method: Add-SS6SuperAdmin' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $LocalVarAccepts = @()
@@ -457,27 +633,27 @@ function Add-LDAPConfig {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $Configuration = Get-Configuration
+        $Configuration = Get-SS6Configuration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
         # HTTP header 'Content-Type'
         $LocalVarContentTypes = @('application/json')
 
-        $LocalVarUri = '/adm/ldapconfig'
+        $LocalVarUri = '/sa/superadmin'
 
-        if (!$LDAPConfig) {
-            throw "Error! The required parameter `LDAPConfig` missing when calling addLDAPConfig."
+        if (!$SuperAdmin) {
+            throw "Error! The required parameter `SuperAdmin` missing when calling addSuperAdmin."
         }
 
-        $LocalVarBodyParameter = $LDAPConfig | ConvertTo-Json -Depth 100
+        $LocalVarBodyParameter = $SuperAdmin | ConvertTo-Json -Depth 100
 
         if ($Configuration["AccessToken"]) {
             $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
             Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
         }
 
-        $LocalVarResult = Invoke-ApiClient -Method 'POST' `
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
                                 -Accepts $LocalVarAccepts `
                                 -ContentTypes $LocalVarContentTypes `
@@ -500,13 +676,13 @@ function Add-LDAPConfig {
 <#
 .SYNOPSIS
 
-Adds a new ssh host key
+Adds a new virtual site
 
 .DESCRIPTION
 
 No description available.
 
-.PARAMETER SSHHostKey
+.PARAMETER VirtualSite
 No description available.
 
 .PARAMETER WithHttpInfo
@@ -517,18 +693,18 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 ApiResponse
 #>
-function Add-SSHHostKey {
+function Add-SS6Vsite {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
-        ${SSHHostKey},
+        ${VirtualSite},
         [Switch]
         $WithHttpInfo
     )
 
     Process {
-        'Calling method: Add-SSHHostKey' | Write-Debug
+        'Calling method: Add-SS6Vsite' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $LocalVarAccepts = @()
@@ -540,741 +716,27 @@ function Add-SSHHostKey {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $Configuration = Get-Configuration
+        $Configuration = Get-SS6Configuration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
         # HTTP header 'Content-Type'
         $LocalVarContentTypes = @('application/json')
 
-        $LocalVarUri = '/adm/sshhostkeys'
+        $LocalVarUri = '/sa/vsites'
 
-        if (!$SSHHostKey) {
-            throw "Error! The required parameter `SSHHostKey` missing when calling addSSHHostKey."
+        if (!$VirtualSite) {
+            throw "Error! The required parameter `VirtualSite` missing when calling addVsite."
         }
 
-        $LocalVarBodyParameter = $SSHHostKey | ConvertTo-Json -Depth 100
+        $LocalVarBodyParameter = $VirtualSite | ConvertTo-Json -Depth 100
 
         if ($Configuration["AccessToken"]) {
             $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
             Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
         }
 
-        $LocalVarResult = Invoke-ApiClient -Method 'POST' `
-                                -Uri $LocalVarUri `
-                                -Accepts $LocalVarAccepts `
-                                -ContentTypes $LocalVarContentTypes `
-                                -Body $LocalVarBodyParameter `
-                                -HeaderParameters $LocalVarHeaderParameters `
-                                -QueryParameters $LocalVarQueryParameters `
-                                -FormParameters $LocalVarFormParameters `
-                                -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "ApiResponse" `
-                                -IsBodyNullable $false
-
-        if ($WithHttpInfo.IsPresent) {
-            return $LocalVarResult
-        } else {
-            return $LocalVarResult["Response"]
-        }
-    }
-}
-
-<#
-.SYNOPSIS
-
-Adds a new script for the logged in admin
-
-.DESCRIPTION
-
-No description available.
-
-.PARAMETER Script
-No description available.
-
-.PARAMETER WithHttpInfo
-
-A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
-
-.OUTPUTS
-
-ApiResponse
-#>
-function Add-Script {
-    [CmdletBinding()]
-    Param (
-        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [PSCustomObject]
-        ${Script},
-        [Switch]
-        $WithHttpInfo
-    )
-
-    Process {
-        'Calling method: Add-Script' | Write-Debug
-        $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        $LocalVarAccepts = @()
-        $LocalVarContentTypes = @()
-        $LocalVarQueryParameters = @{}
-        $LocalVarHeaderParameters = @{}
-        $LocalVarFormParameters = @{}
-        $LocalVarPathParameters = @{}
-        $LocalVarCookieParameters = @{}
-        $LocalVarBodyParameter = $null
-
-        $Configuration = Get-Configuration
-        # HTTP header 'Accept' (if needed)
-        $LocalVarAccepts = @('application/json')
-
-        # HTTP header 'Content-Type'
-        $LocalVarContentTypes = @('application/json')
-
-        $LocalVarUri = '/adm/script'
-
-        if (!$Script) {
-            throw "Error! The required parameter `Script` missing when calling addScript."
-        }
-
-        $LocalVarBodyParameter = $Script | ConvertTo-Json -Depth 100
-
-        if ($Configuration["AccessToken"]) {
-            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
-            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
-        }
-
-        $LocalVarResult = Invoke-ApiClient -Method 'POST' `
-                                -Uri $LocalVarUri `
-                                -Accepts $LocalVarAccepts `
-                                -ContentTypes $LocalVarContentTypes `
-                                -Body $LocalVarBodyParameter `
-                                -HeaderParameters $LocalVarHeaderParameters `
-                                -QueryParameters $LocalVarQueryParameters `
-                                -FormParameters $LocalVarFormParameters `
-                                -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "ApiResponse" `
-                                -IsBodyNullable $false
-
-        if ($WithHttpInfo.IsPresent) {
-            return $LocalVarResult
-        } else {
-            return $LocalVarResult["Response"]
-        }
-    }
-}
-
-<#
-.SYNOPSIS
-
-Adds a new user for the logged in admin
-
-.DESCRIPTION
-
-No description available.
-
-.PARAMETER User
-No description available.
-
-.PARAMETER WithHttpInfo
-
-A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
-
-.OUTPUTS
-
-ApiResponse
-#>
-function Add-User {
-    [CmdletBinding()]
-    Param (
-        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [PSCustomObject]
-        ${User},
-        [Switch]
-        $WithHttpInfo
-    )
-
-    Process {
-        'Calling method: Add-User' | Write-Debug
-        $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        $LocalVarAccepts = @()
-        $LocalVarContentTypes = @()
-        $LocalVarQueryParameters = @{}
-        $LocalVarHeaderParameters = @{}
-        $LocalVarFormParameters = @{}
-        $LocalVarPathParameters = @{}
-        $LocalVarCookieParameters = @{}
-        $LocalVarBodyParameter = $null
-
-        $Configuration = Get-Configuration
-        # HTTP header 'Accept' (if needed)
-        $LocalVarAccepts = @('application/json')
-
-        # HTTP header 'Content-Type'
-        $LocalVarContentTypes = @('application/json')
-
-        $LocalVarUri = '/adm/users'
-
-        if (!$User) {
-            throw "Error! The required parameter `User` missing when calling addUser."
-        }
-
-        $LocalVarBodyParameter = $User | ConvertTo-Json -Depth 100
-
-        if ($Configuration["AccessToken"]) {
-            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
-            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
-        }
-
-        $LocalVarResult = Invoke-ApiClient -Method 'POST' `
-                                -Uri $LocalVarUri `
-                                -Accepts $LocalVarAccepts `
-                                -ContentTypes $LocalVarContentTypes `
-                                -Body $LocalVarBodyParameter `
-                                -HeaderParameters $LocalVarHeaderParameters `
-                                -QueryParameters $LocalVarQueryParameters `
-                                -FormParameters $LocalVarFormParameters `
-                                -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "ApiResponse" `
-                                -IsBodyNullable $false
-
-        if ($WithHttpInfo.IsPresent) {
-            return $LocalVarResult
-        } else {
-            return $LocalVarResult["Response"]
-        }
-    }
-}
-
-<#
-.SYNOPSIS
-
-Add a public key for the user identified by id
-
-.DESCRIPTION
-
-No description available.
-
-.PARAMETER Id
-ID of the user
-
-.PARAMETER SSHPubKey
-No description available.
-
-.PARAMETER WithHttpInfo
-
-A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
-
-.OUTPUTS
-
-ApiResponse
-#>
-function Add-UserPublicKey {
-    [CmdletBinding()]
-    Param (
-        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [String]
-        ${Id},
-        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [PSCustomObject]
-        ${SSHPubKey},
-        [Switch]
-        $WithHttpInfo
-    )
-
-    Process {
-        'Calling method: Add-UserPublicKey' | Write-Debug
-        $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        $LocalVarAccepts = @()
-        $LocalVarContentTypes = @()
-        $LocalVarQueryParameters = @{}
-        $LocalVarHeaderParameters = @{}
-        $LocalVarFormParameters = @{}
-        $LocalVarPathParameters = @{}
-        $LocalVarCookieParameters = @{}
-        $LocalVarBodyParameter = $null
-
-        $Configuration = Get-Configuration
-        # HTTP header 'Accept' (if needed)
-        $LocalVarAccepts = @('application/json')
-
-        # HTTP header 'Content-Type'
-        $LocalVarContentTypes = @('application/json')
-
-        $LocalVarUri = '/adm/users/{id}/pubkeys'
-        if (!$Id) {
-            throw "Error! The required parameter `Id` missing when calling addUserPublicKey."
-        }
-        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
-
-        if (!$SSHPubKey) {
-            throw "Error! The required parameter `SSHPubKey` missing when calling addUserPublicKey."
-        }
-
-        $LocalVarBodyParameter = $SSHPubKey | ConvertTo-Json -Depth 100
-
-        if ($Configuration["AccessToken"]) {
-            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
-            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
-        }
-
-        $LocalVarResult = Invoke-ApiClient -Method 'POST' `
-                                -Uri $LocalVarUri `
-                                -Accepts $LocalVarAccepts `
-                                -ContentTypes $LocalVarContentTypes `
-                                -Body $LocalVarBodyParameter `
-                                -HeaderParameters $LocalVarHeaderParameters `
-                                -QueryParameters $LocalVarQueryParameters `
-                                -FormParameters $LocalVarFormParameters `
-                                -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "ApiResponse" `
-                                -IsBodyNullable $false
-
-        if ($WithHttpInfo.IsPresent) {
-            return $LocalVarResult
-        } else {
-            return $LocalVarResult["Response"]
-        }
-    }
-}
-
-<#
-.SYNOPSIS
-
-Adds a new VFS for the logged in admin
-
-.DESCRIPTION
-
-No description available.
-
-.PARAMETER VirtualFileSystem
-No description available.
-
-.PARAMETER WithHttpInfo
-
-A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
-
-.OUTPUTS
-
-ApiResponse
-#>
-function Add-VFS {
-    [CmdletBinding()]
-    Param (
-        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [PSCustomObject]
-        ${VirtualFileSystem},
-        [Switch]
-        $WithHttpInfo
-    )
-
-    Process {
-        'Calling method: Add-VFS' | Write-Debug
-        $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        $LocalVarAccepts = @()
-        $LocalVarContentTypes = @()
-        $LocalVarQueryParameters = @{}
-        $LocalVarHeaderParameters = @{}
-        $LocalVarFormParameters = @{}
-        $LocalVarPathParameters = @{}
-        $LocalVarCookieParameters = @{}
-        $LocalVarBodyParameter = $null
-
-        $Configuration = Get-Configuration
-        # HTTP header 'Accept' (if needed)
-        $LocalVarAccepts = @('application/json')
-
-        # HTTP header 'Content-Type'
-        $LocalVarContentTypes = @('application/json')
-
-        $LocalVarUri = '/adm/vfs'
-
-        if (!$VirtualFileSystem) {
-            throw "Error! The required parameter `VirtualFileSystem` missing when calling addVFS."
-        }
-
-        $LocalVarBodyParameter = $VirtualFileSystem | ConvertTo-Json -Depth 100
-
-        if ($Configuration["AccessToken"]) {
-            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
-            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
-        }
-
-        $LocalVarResult = Invoke-ApiClient -Method 'POST' `
-                                -Uri $LocalVarUri `
-                                -Accepts $LocalVarAccepts `
-                                -ContentTypes $LocalVarContentTypes `
-                                -Body $LocalVarBodyParameter `
-                                -HeaderParameters $LocalVarHeaderParameters `
-                                -QueryParameters $LocalVarQueryParameters `
-                                -FormParameters $LocalVarFormParameters `
-                                -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "ApiResponse" `
-                                -IsBodyNullable $false
-
-        if ($WithHttpInfo.IsPresent) {
-            return $LocalVarResult
-        } else {
-            return $LocalVarResult["Response"]
-        }
-    }
-}
-
-<#
-.SYNOPSIS
-
-Login function for an Admin user
-
-.DESCRIPTION
-
-No description available.
-
-.PARAMETER VsiteID
-ID of the virtual site
-
-.PARAMETER XOTP
-No description available.
-
-.PARAMETER WithHttpInfo
-
-A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
-
-.OUTPUTS
-
-TokenObj
-#>
-function Invoke-AdminLogin {
-    [CmdletBinding()]
-    Param (
-        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [String]
-        ${VsiteID},
-        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [String]
-        ${XOTP},
-        [Switch]
-        $WithHttpInfo
-    )
-
-    Process {
-        'Calling method: Invoke-AdminLogin' | Write-Debug
-        $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        $LocalVarAccepts = @()
-        $LocalVarContentTypes = @()
-        $LocalVarQueryParameters = @{}
-        $LocalVarHeaderParameters = @{}
-        $LocalVarFormParameters = @{}
-        $LocalVarPathParameters = @{}
-        $LocalVarCookieParameters = @{}
-        $LocalVarBodyParameter = $null
-
-        $Configuration = Get-Configuration
-        # HTTP header 'Accept' (if needed)
-        $LocalVarAccepts = @('application/json')
-
-        $LocalVarUri = '/adm/login/{vsiteID}'
-        if (!$VsiteID) {
-            throw "Error! The required parameter `VsiteID` missing when calling adminLogin."
-        }
-        $LocalVarUri = $LocalVarUri.replace('{vsiteID}', [System.Web.HTTPUtility]::UrlEncode($VsiteID))
-
-        if ($XOTP) {
-            $LocalVarHeaderParameters['X-OTP'] = $XOTP
-        }
-
-        if ($Configuration["Username"] -and $Configuration["Password"]) {
-            $LocalVarBytes = [System.Text.Encoding]::UTF8.GetBytes($Configuration["Username"] + ":" + $Configuration["Password"])
-            $LocalVarBase64Text =[Convert]::ToBase64String($LocalVarBytes)
-            $LocalVarHeaderParameters['Authorization'] = "Basic " + $LocalVarBase64Text
-            Write-Verbose ("Using HTTP basic authentication in {0}" -f $MyInvocation.MyCommand)
-        }
-
-        $LocalVarResult = Invoke-ApiClient -Method 'GET' `
-                                -Uri $LocalVarUri `
-                                -Accepts $LocalVarAccepts `
-                                -ContentTypes $LocalVarContentTypes `
-                                -Body $LocalVarBodyParameter `
-                                -HeaderParameters $LocalVarHeaderParameters `
-                                -QueryParameters $LocalVarQueryParameters `
-                                -FormParameters $LocalVarFormParameters `
-                                -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "TokenObj" `
-                                -IsBodyNullable $false
-
-        if ($WithHttpInfo.IsPresent) {
-            return $LocalVarResult
-        } else {
-            return $LocalVarResult["Response"]
-        }
-    }
-}
-
-<#
-.SYNOPSIS
-
-Logout functions for an Admin user
-
-.DESCRIPTION
-
-No description available.
-
-.PARAMETER WithHttpInfo
-
-A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
-
-.OUTPUTS
-
-ApiResponse
-#>
-function Invoke-AdminLogout {
-    [CmdletBinding()]
-    Param (
-        [Switch]
-        $WithHttpInfo
-    )
-
-    Process {
-        'Calling method: Invoke-AdminLogout' | Write-Debug
-        $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        $LocalVarAccepts = @()
-        $LocalVarContentTypes = @()
-        $LocalVarQueryParameters = @{}
-        $LocalVarHeaderParameters = @{}
-        $LocalVarFormParameters = @{}
-        $LocalVarPathParameters = @{}
-        $LocalVarCookieParameters = @{}
-        $LocalVarBodyParameter = $null
-
-        $Configuration = Get-Configuration
-        # HTTP header 'Accept' (if needed)
-        $LocalVarAccepts = @('application/json')
-
-        $LocalVarUri = '/adm/logout'
-
-        if ($Configuration["AccessToken"]) {
-            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
-            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
-        }
-
-        $LocalVarResult = Invoke-ApiClient -Method 'GET' `
-                                -Uri $LocalVarUri `
-                                -Accepts $LocalVarAccepts `
-                                -ContentTypes $LocalVarContentTypes `
-                                -Body $LocalVarBodyParameter `
-                                -HeaderParameters $LocalVarHeaderParameters `
-                                -QueryParameters $LocalVarQueryParameters `
-                                -FormParameters $LocalVarFormParameters `
-                                -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "ApiResponse" `
-                                -IsBodyNullable $false
-
-        if ($WithHttpInfo.IsPresent) {
-            return $LocalVarResult
-        } else {
-            return $LocalVarResult["Response"]
-        }
-    }
-}
-
-<#
-.SYNOPSIS
-
-Remove all the elements from the blocklist
-
-.DESCRIPTION
-
-No description available.
-
-.PARAMETER WithHttpInfo
-
-A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
-
-.OUTPUTS
-
-ApiResponse
-#>
-function Clear-BlockList {
-    [CmdletBinding()]
-    Param (
-        [Switch]
-        $WithHttpInfo
-    )
-
-    Process {
-        'Calling method: Clear-BlockList' | Write-Debug
-        $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        $LocalVarAccepts = @()
-        $LocalVarContentTypes = @()
-        $LocalVarQueryParameters = @{}
-        $LocalVarHeaderParameters = @{}
-        $LocalVarFormParameters = @{}
-        $LocalVarPathParameters = @{}
-        $LocalVarCookieParameters = @{}
-        $LocalVarBodyParameter = $null
-
-        $Configuration = Get-Configuration
-        # HTTP header 'Accept' (if needed)
-        $LocalVarAccepts = @('application/json')
-
-        $LocalVarUri = '/adm/blocklist'
-
-        if ($Configuration["AccessToken"]) {
-            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
-            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
-        }
-
-        $LocalVarResult = Invoke-ApiClient -Method 'DELETE' `
-                                -Uri $LocalVarUri `
-                                -Accepts $LocalVarAccepts `
-                                -ContentTypes $LocalVarContentTypes `
-                                -Body $LocalVarBodyParameter `
-                                -HeaderParameters $LocalVarHeaderParameters `
-                                -QueryParameters $LocalVarQueryParameters `
-                                -FormParameters $LocalVarFormParameters `
-                                -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "ApiResponse" `
-                                -IsBodyNullable $false
-
-        if ($WithHttpInfo.IsPresent) {
-            return $LocalVarResult
-        } else {
-            return $LocalVarResult["Response"]
-        }
-    }
-}
-
-<#
-.SYNOPSIS
-
-Close the active session with the specified id
-
-.DESCRIPTION
-
-No description available.
-
-.PARAMETER Id
-ID of the session to terminate
-
-.PARAMETER WithHttpInfo
-
-A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
-
-.OUTPUTS
-
-ApiResponse
-#>
-function Close-SessionById {
-    [CmdletBinding()]
-    Param (
-        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [String]
-        ${Id},
-        [Switch]
-        $WithHttpInfo
-    )
-
-    Process {
-        'Calling method: Close-SessionById' | Write-Debug
-        $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        $LocalVarAccepts = @()
-        $LocalVarContentTypes = @()
-        $LocalVarQueryParameters = @{}
-        $LocalVarHeaderParameters = @{}
-        $LocalVarFormParameters = @{}
-        $LocalVarPathParameters = @{}
-        $LocalVarCookieParameters = @{}
-        $LocalVarBodyParameter = $null
-
-        $Configuration = Get-Configuration
-        # HTTP header 'Accept' (if needed)
-        $LocalVarAccepts = @('application/json')
-
-        $LocalVarUri = '/adm/sessions/{id}'
-        if (!$Id) {
-            throw "Error! The required parameter `Id` missing when calling closeSessionById."
-        }
-        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
-
-        if ($Configuration["AccessToken"]) {
-            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
-            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
-        }
-
-        $LocalVarResult = Invoke-ApiClient -Method 'DELETE' `
-                                -Uri $LocalVarUri `
-                                -Accepts $LocalVarAccepts `
-                                -ContentTypes $LocalVarContentTypes `
-                                -Body $LocalVarBodyParameter `
-                                -HeaderParameters $LocalVarHeaderParameters `
-                                -QueryParameters $LocalVarQueryParameters `
-                                -FormParameters $LocalVarFormParameters `
-                                -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "ApiResponse" `
-                                -IsBodyNullable $false
-
-        if ($WithHttpInfo.IsPresent) {
-            return $LocalVarResult
-        } else {
-            return $LocalVarResult["Response"]
-        }
-    }
-}
-
-<#
-.SYNOPSIS
-
-Close all the active sessions
-
-.DESCRIPTION
-
-No description available.
-
-.PARAMETER WithHttpInfo
-
-A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
-
-.OUTPUTS
-
-ApiResponse
-#>
-function Close-Sessions {
-    [CmdletBinding()]
-    Param (
-        [Switch]
-        $WithHttpInfo
-    )
-
-    Process {
-        'Calling method: Close-Sessions' | Write-Debug
-        $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        $LocalVarAccepts = @()
-        $LocalVarContentTypes = @()
-        $LocalVarQueryParameters = @{}
-        $LocalVarHeaderParameters = @{}
-        $LocalVarFormParameters = @{}
-        $LocalVarPathParameters = @{}
-        $LocalVarCookieParameters = @{}
-        $LocalVarBodyParameter = $null
-
-        $Configuration = Get-Configuration
-        # HTTP header 'Accept' (if needed)
-        $LocalVarAccepts = @('application/json')
-
-        $LocalVarUri = '/adm/sessions'
-
-        if ($Configuration["AccessToken"]) {
-            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
-            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
-        }
-
-        $LocalVarResult = Invoke-ApiClient -Method 'DELETE' `
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
                                 -Accepts $LocalVarAccepts `
                                 -ContentTypes $LocalVarContentTypes `
@@ -1314,7 +776,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 ApiResponse
 #>
-function New-CSR {
+function New-SS6NodeCSR {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
@@ -1325,7 +787,7 @@ function New-CSR {
     )
 
     Process {
-        'Calling method: New-CSR' | Write-Debug
+        'Calling method: New-SS6NodeCSR' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $LocalVarAccepts = @()
@@ -1337,17 +799,17 @@ function New-CSR {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $Configuration = Get-Configuration
+        $Configuration = Get-SS6Configuration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
         # HTTP header 'Content-Type'
         $LocalVarContentTypes = @('application/json')
 
-        $LocalVarUri = '/adm/csr'
+        $LocalVarUri = '/sa/nodecsr'
 
         if (!$CSR) {
-            throw "Error! The required parameter `CSR` missing when calling createCSR."
+            throw "Error! The required parameter `CSR` missing when calling createNodeCSR."
         }
 
         $LocalVarBodyParameter = $CSR | ConvertTo-Json -Depth 100
@@ -1357,7 +819,7 @@ function New-CSR {
             Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
         }
 
-        $LocalVarResult = Invoke-ApiClient -Method 'POST' `
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
                                 -Accepts $LocalVarAccepts `
                                 -ContentTypes $LocalVarContentTypes `
@@ -1380,14 +842,11 @@ function New-CSR {
 <#
 .SYNOPSIS
 
-Deletes the BlockList configuration identified by id
+Deactivate a license
 
 .DESCRIPTION
 
 No description available.
-
-.PARAMETER Id
-ID of the BlockList configuration
 
 .PARAMETER WithHttpInfo
 
@@ -1397,18 +856,15 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 ApiResponse
 #>
-function Invoke-DeleteBlockListConfig {
+function Invoke-SS6DeactivateLicense {
     [CmdletBinding()]
     Param (
-        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [String]
-        ${Id},
         [Switch]
         $WithHttpInfo
     )
 
     Process {
-        'Calling method: Invoke-DeleteBlockListConfig' | Write-Debug
+        'Calling method: Invoke-SS6DeactivateLicense' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $LocalVarAccepts = @()
@@ -1420,22 +876,18 @@ function Invoke-DeleteBlockListConfig {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $Configuration = Get-Configuration
+        $Configuration = Get-SS6Configuration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
-        $LocalVarUri = '/adm/blocklist/{id}'
-        if (!$Id) {
-            throw "Error! The required parameter `Id` missing when calling deleteBlockListConfig."
-        }
-        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
+        $LocalVarUri = '/sa/license/deactivaction'
 
         if ($Configuration["AccessToken"]) {
             $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
             Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
         }
 
-        $LocalVarResult = Invoke-ApiClient -Method 'DELETE' `
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
                                 -Accepts $LocalVarAccepts `
                                 -ContentTypes $LocalVarContentTypes `
@@ -1458,7 +910,95 @@ function Invoke-DeleteBlockListConfig {
 <#
 .SYNOPSIS
 
-Deletes the CSR identified by id
+Deletes the admin identified by adminID for this virtual site
+
+.DESCRIPTION
+
+No description available.
+
+.PARAMETER Id
+ID of the virtual site
+
+.PARAMETER AdminID
+ID of the admin
+
+.PARAMETER WithHttpInfo
+
+A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
+
+.OUTPUTS
+
+ApiResponse
+#>
+function Invoke-SS6DeleteAdmin {
+    [CmdletBinding()]
+    Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Id},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${AdminID},
+        [Switch]
+        $WithHttpInfo
+    )
+
+    Process {
+        'Calling method: Invoke-SS6DeleteAdmin' | Write-Debug
+        $PSBoundParameters | Out-DebugParameter | Write-Debug
+
+        $LocalVarAccepts = @()
+        $LocalVarContentTypes = @()
+        $LocalVarQueryParameters = @{}
+        $LocalVarHeaderParameters = @{}
+        $LocalVarFormParameters = @{}
+        $LocalVarPathParameters = @{}
+        $LocalVarCookieParameters = @{}
+        $LocalVarBodyParameter = $null
+
+        $Configuration = Get-SS6Configuration
+        # HTTP header 'Accept' (if needed)
+        $LocalVarAccepts = @('application/json')
+
+        $LocalVarUri = '/sa/vsites/{id}/adm/{adminID}'
+        if (!$Id) {
+            throw "Error! The required parameter `Id` missing when calling deleteAdmin."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
+        if (!$AdminID) {
+            throw "Error! The required parameter `AdminID` missing when calling deleteAdmin."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{adminID}', [System.Web.HTTPUtility]::UrlEncode($AdminID))
+
+        if ($Configuration["AccessToken"]) {
+            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
+            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
+        }
+
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'DELETE' `
+                                -Uri $LocalVarUri `
+                                -Accepts $LocalVarAccepts `
+                                -ContentTypes $LocalVarContentTypes `
+                                -Body $LocalVarBodyParameter `
+                                -HeaderParameters $LocalVarHeaderParameters `
+                                -QueryParameters $LocalVarQueryParameters `
+                                -FormParameters $LocalVarFormParameters `
+                                -CookieParameters $LocalVarCookieParameters `
+                                -ReturnType "ApiResponse" `
+                                -IsBodyNullable $false
+
+        if ($WithHttpInfo.IsPresent) {
+            return $LocalVarResult
+        } else {
+            return $LocalVarResult["Response"]
+        }
+    }
+}
+
+<#
+.SYNOPSIS
+
+Deletes the node CSR identified by id
 
 .DESCRIPTION
 
@@ -1475,7 +1015,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 ApiResponse
 #>
-function Invoke-DeleteCSR {
+function Invoke-SS6DeleteNodeCSR {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
@@ -1486,7 +1026,7 @@ function Invoke-DeleteCSR {
     )
 
     Process {
-        'Calling method: Invoke-DeleteCSR' | Write-Debug
+        'Calling method: Invoke-SS6DeleteNodeCSR' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $LocalVarAccepts = @()
@@ -1498,13 +1038,13 @@ function Invoke-DeleteCSR {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $Configuration = Get-Configuration
+        $Configuration = Get-SS6Configuration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
-        $LocalVarUri = '/adm/csr/{id}'
+        $LocalVarUri = '/sa/nodecsr/{id}'
         if (!$Id) {
-            throw "Error! The required parameter `Id` missing when calling deleteCSR."
+            throw "Error! The required parameter `Id` missing when calling deleteNodeCSR."
         }
         $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
 
@@ -1513,7 +1053,7 @@ function Invoke-DeleteCSR {
             Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
         }
 
-        $LocalVarResult = Invoke-ApiClient -Method 'DELETE' `
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
                                 -Accepts $LocalVarAccepts `
                                 -ContentTypes $LocalVarContentTypes `
@@ -1536,14 +1076,14 @@ function Invoke-DeleteCSR {
 <#
 .SYNOPSIS
 
-Deletes the ftp certificate with the given ID
+Deletes the node identified by id, a restart is required to apply the change
 
 .DESCRIPTION
 
 No description available.
 
 .PARAMETER Id
-ID of the certificate
+ID of the node certificate
 
 .PARAMETER WithHttpInfo
 
@@ -1553,7 +1093,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 ApiResponse
 #>
-function Invoke-DeleteFTPCertByID {
+function Invoke-SS6DeleteNodeCertificate {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
@@ -1564,7 +1104,7 @@ function Invoke-DeleteFTPCertByID {
     )
 
     Process {
-        'Calling method: Invoke-DeleteFTPCertByID' | Write-Debug
+        'Calling method: Invoke-SS6DeleteNodeCertificate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $LocalVarAccepts = @()
@@ -1576,13 +1116,13 @@ function Invoke-DeleteFTPCertByID {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $Configuration = Get-Configuration
+        $Configuration = Get-SS6Configuration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
-        $LocalVarUri = '/adm/certs/{id}'
+        $LocalVarUri = '/sa/nodecerts/{id}'
         if (!$Id) {
-            throw "Error! The required parameter `Id` missing when calling deleteFTPCertByID."
+            throw "Error! The required parameter `Id` missing when calling deleteNodeCertificate."
         }
         $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
 
@@ -1591,7 +1131,7 @@ function Invoke-DeleteFTPCertByID {
             Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
         }
 
-        $LocalVarResult = Invoke-ApiClient -Method 'DELETE' `
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
                                 -Accepts $LocalVarAccepts `
                                 -ContentTypes $LocalVarContentTypes `
@@ -1614,14 +1154,14 @@ function Invoke-DeleteFTPCertByID {
 <#
 .SYNOPSIS
 
-Deletes the LDAP configuration identified by id
+Deletes the SuperAdmin user identified by id
 
 .DESCRIPTION
 
 No description available.
 
 .PARAMETER Id
-ID of the LDAP configuration
+ID of the SuperAdmin
 
 .PARAMETER WithHttpInfo
 
@@ -1631,7 +1171,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 ApiResponse
 #>
-function Invoke-DeleteLDAPConfig {
+function Invoke-SS6DeleteSuperAdminByID {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
@@ -1642,7 +1182,7 @@ function Invoke-DeleteLDAPConfig {
     )
 
     Process {
-        'Calling method: Invoke-DeleteLDAPConfig' | Write-Debug
+        'Calling method: Invoke-SS6DeleteSuperAdminByID' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $LocalVarAccepts = @()
@@ -1654,13 +1194,13 @@ function Invoke-DeleteLDAPConfig {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $Configuration = Get-Configuration
+        $Configuration = Get-SS6Configuration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
-        $LocalVarUri = '/adm/ldapconfig/{id}'
+        $LocalVarUri = '/sa/superadmin/{id}'
         if (!$Id) {
-            throw "Error! The required parameter `Id` missing when calling deleteLDAPConfig."
+            throw "Error! The required parameter `Id` missing when calling deleteSuperAdminByID."
         }
         $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
 
@@ -1669,7 +1209,7 @@ function Invoke-DeleteLDAPConfig {
             Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
         }
 
-        $LocalVarResult = Invoke-ApiClient -Method 'DELETE' `
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
                                 -Accepts $LocalVarAccepts `
                                 -ContentTypes $LocalVarContentTypes `
@@ -1692,17 +1232,14 @@ function Invoke-DeleteLDAPConfig {
 <#
 .SYNOPSIS
 
-Deletes the public key identified by keyID
+Deletes the virtual site identified by id
 
 .DESCRIPTION
 
 No description available.
 
 .PARAMETER Id
-ID of the user
-
-.PARAMETER KeyID
-ID of the SSH public key
+ID of the virtual site
 
 .PARAMETER WithHttpInfo
 
@@ -1712,21 +1249,18 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 ApiResponse
 #>
-function Invoke-DeletePublicKey {
+function Invoke-SS6DeleteVsite {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [String]
         ${Id},
-        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [String]
-        ${KeyID},
         [Switch]
         $WithHttpInfo
     )
 
     Process {
-        'Calling method: Invoke-DeletePublicKey' | Write-Debug
+        'Calling method: Invoke-SS6DeleteVsite' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $LocalVarAccepts = @()
@@ -1738,26 +1272,22 @@ function Invoke-DeletePublicKey {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $Configuration = Get-Configuration
+        $Configuration = Get-SS6Configuration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
-        $LocalVarUri = '/adm/users/{id}/pubkeys/{keyID}'
+        $LocalVarUri = '/sa/vsites/{id}'
         if (!$Id) {
-            throw "Error! The required parameter `Id` missing when calling deletePublicKey."
+            throw "Error! The required parameter `Id` missing when calling deleteVsite."
         }
         $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
-        if (!$KeyID) {
-            throw "Error! The required parameter `KeyID` missing when calling deletePublicKey."
-        }
-        $LocalVarUri = $LocalVarUri.replace('{keyID}', [System.Web.HTTPUtility]::UrlEncode($KeyID))
 
         if ($Configuration["AccessToken"]) {
             $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
             Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
         }
 
-        $LocalVarResult = Invoke-ApiClient -Method 'DELETE' `
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
                                 -Accepts $LocalVarAccepts `
                                 -ContentTypes $LocalVarContentTypes `
@@ -1780,319 +1310,7 @@ function Invoke-DeletePublicKey {
 <#
 .SYNOPSIS
 
-Deletes the ftp ssh host key with the given ID
-
-.DESCRIPTION
-
-No description available.
-
-.PARAMETER Id
-ID of the host key
-
-.PARAMETER WithHttpInfo
-
-A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
-
-.OUTPUTS
-
-ApiResponse
-#>
-function Invoke-DeleteSSHHostKeyByID {
-    [CmdletBinding()]
-    Param (
-        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [String]
-        ${Id},
-        [Switch]
-        $WithHttpInfo
-    )
-
-    Process {
-        'Calling method: Invoke-DeleteSSHHostKeyByID' | Write-Debug
-        $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        $LocalVarAccepts = @()
-        $LocalVarContentTypes = @()
-        $LocalVarQueryParameters = @{}
-        $LocalVarHeaderParameters = @{}
-        $LocalVarFormParameters = @{}
-        $LocalVarPathParameters = @{}
-        $LocalVarCookieParameters = @{}
-        $LocalVarBodyParameter = $null
-
-        $Configuration = Get-Configuration
-        # HTTP header 'Accept' (if needed)
-        $LocalVarAccepts = @('application/json')
-
-        $LocalVarUri = '/adm/sshhostkeys/{id}'
-        if (!$Id) {
-            throw "Error! The required parameter `Id` missing when calling deleteSSHHostKeyByID."
-        }
-        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
-
-        if ($Configuration["AccessToken"]) {
-            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
-            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
-        }
-
-        $LocalVarResult = Invoke-ApiClient -Method 'DELETE' `
-                                -Uri $LocalVarUri `
-                                -Accepts $LocalVarAccepts `
-                                -ContentTypes $LocalVarContentTypes `
-                                -Body $LocalVarBodyParameter `
-                                -HeaderParameters $LocalVarHeaderParameters `
-                                -QueryParameters $LocalVarQueryParameters `
-                                -FormParameters $LocalVarFormParameters `
-                                -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "ApiResponse" `
-                                -IsBodyNullable $false
-
-        if ($WithHttpInfo.IsPresent) {
-            return $LocalVarResult
-        } else {
-            return $LocalVarResult["Response"]
-        }
-    }
-}
-
-<#
-.SYNOPSIS
-
-Deletes the Script by id
-
-.DESCRIPTION
-
-No description available.
-
-.PARAMETER Id
-ID of the Script
-
-.PARAMETER WithHttpInfo
-
-A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
-
-.OUTPUTS
-
-ApiResponse
-#>
-function Invoke-DeleteScript {
-    [CmdletBinding()]
-    Param (
-        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [String]
-        ${Id},
-        [Switch]
-        $WithHttpInfo
-    )
-
-    Process {
-        'Calling method: Invoke-DeleteScript' | Write-Debug
-        $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        $LocalVarAccepts = @()
-        $LocalVarContentTypes = @()
-        $LocalVarQueryParameters = @{}
-        $LocalVarHeaderParameters = @{}
-        $LocalVarFormParameters = @{}
-        $LocalVarPathParameters = @{}
-        $LocalVarCookieParameters = @{}
-        $LocalVarBodyParameter = $null
-
-        $Configuration = Get-Configuration
-        # HTTP header 'Accept' (if needed)
-        $LocalVarAccepts = @('application/json')
-
-        $LocalVarUri = '/adm/script/{id}'
-        if (!$Id) {
-            throw "Error! The required parameter `Id` missing when calling deleteScript."
-        }
-        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
-
-        if ($Configuration["AccessToken"]) {
-            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
-            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
-        }
-
-        $LocalVarResult = Invoke-ApiClient -Method 'DELETE' `
-                                -Uri $LocalVarUri `
-                                -Accepts $LocalVarAccepts `
-                                -ContentTypes $LocalVarContentTypes `
-                                -Body $LocalVarBodyParameter `
-                                -HeaderParameters $LocalVarHeaderParameters `
-                                -QueryParameters $LocalVarQueryParameters `
-                                -FormParameters $LocalVarFormParameters `
-                                -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "ApiResponse" `
-                                -IsBodyNullable $false
-
-        if ($WithHttpInfo.IsPresent) {
-            return $LocalVarResult
-        } else {
-            return $LocalVarResult["Response"]
-        }
-    }
-}
-
-<#
-.SYNOPSIS
-
-Deletes the admin user identified by id
-
-.DESCRIPTION
-
-No description available.
-
-.PARAMETER Id
-ID of the user
-
-.PARAMETER WithHttpInfo
-
-A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
-
-.OUTPUTS
-
-ApiResponse
-#>
-function Invoke-DeleteUser {
-    [CmdletBinding()]
-    Param (
-        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [String]
-        ${Id},
-        [Switch]
-        $WithHttpInfo
-    )
-
-    Process {
-        'Calling method: Invoke-DeleteUser' | Write-Debug
-        $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        $LocalVarAccepts = @()
-        $LocalVarContentTypes = @()
-        $LocalVarQueryParameters = @{}
-        $LocalVarHeaderParameters = @{}
-        $LocalVarFormParameters = @{}
-        $LocalVarPathParameters = @{}
-        $LocalVarCookieParameters = @{}
-        $LocalVarBodyParameter = $null
-
-        $Configuration = Get-Configuration
-        # HTTP header 'Accept' (if needed)
-        $LocalVarAccepts = @('application/json')
-
-        $LocalVarUri = '/adm/users/{id}'
-        if (!$Id) {
-            throw "Error! The required parameter `Id` missing when calling deleteUser."
-        }
-        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
-
-        if ($Configuration["AccessToken"]) {
-            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
-            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
-        }
-
-        $LocalVarResult = Invoke-ApiClient -Method 'DELETE' `
-                                -Uri $LocalVarUri `
-                                -Accepts $LocalVarAccepts `
-                                -ContentTypes $LocalVarContentTypes `
-                                -Body $LocalVarBodyParameter `
-                                -HeaderParameters $LocalVarHeaderParameters `
-                                -QueryParameters $LocalVarQueryParameters `
-                                -FormParameters $LocalVarFormParameters `
-                                -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "ApiResponse" `
-                                -IsBodyNullable $false
-
-        if ($WithHttpInfo.IsPresent) {
-            return $LocalVarResult
-        } else {
-            return $LocalVarResult["Response"]
-        }
-    }
-}
-
-<#
-.SYNOPSIS
-
-Deletes the Virtual File System identified by id
-
-.DESCRIPTION
-
-No description available.
-
-.PARAMETER Id
-ID of the VFS
-
-.PARAMETER WithHttpInfo
-
-A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
-
-.OUTPUTS
-
-ApiResponse
-#>
-function Invoke-DeleteVFS {
-    [CmdletBinding()]
-    Param (
-        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [String]
-        ${Id},
-        [Switch]
-        $WithHttpInfo
-    )
-
-    Process {
-        'Calling method: Invoke-DeleteVFS' | Write-Debug
-        $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        $LocalVarAccepts = @()
-        $LocalVarContentTypes = @()
-        $LocalVarQueryParameters = @{}
-        $LocalVarHeaderParameters = @{}
-        $LocalVarFormParameters = @{}
-        $LocalVarPathParameters = @{}
-        $LocalVarCookieParameters = @{}
-        $LocalVarBodyParameter = $null
-
-        $Configuration = Get-Configuration
-        # HTTP header 'Accept' (if needed)
-        $LocalVarAccepts = @('application/json')
-
-        $LocalVarUri = '/adm/vfs/{id}'
-        if (!$Id) {
-            throw "Error! The required parameter `Id` missing when calling deleteVFS."
-        }
-        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
-
-        if ($Configuration["AccessToken"]) {
-            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
-            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
-        }
-
-        $LocalVarResult = Invoke-ApiClient -Method 'DELETE' `
-                                -Uri $LocalVarUri `
-                                -Accepts $LocalVarAccepts `
-                                -ContentTypes $LocalVarContentTypes `
-                                -Body $LocalVarBodyParameter `
-                                -HeaderParameters $LocalVarHeaderParameters `
-                                -QueryParameters $LocalVarQueryParameters `
-                                -FormParameters $LocalVarFormParameters `
-                                -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "ApiResponse" `
-                                -IsBodyNullable $false
-
-        if ($WithHttpInfo.IsPresent) {
-            return $LocalVarResult
-        } else {
-            return $LocalVarResult["Response"]
-        }
-    }
-}
-
-<#
-.SYNOPSIS
-
-Generates a new cert and adds it to server certificate collection
+creates a brand new CERTIFICATE and its associated private key
 
 .DESCRIPTION
 
@@ -2109,7 +1327,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 ApiResponse
 #>
-function New-Cert {
+function New-SS6NodeCert {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
@@ -2120,7 +1338,7 @@ function New-Cert {
     )
 
     Process {
-        'Calling method: New-Cert' | Write-Debug
+        'Calling method: New-SS6NodeCert' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $LocalVarAccepts = @()
@@ -2132,17 +1350,17 @@ function New-Cert {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $Configuration = Get-Configuration
+        $Configuration = Get-SS6Configuration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
         # HTTP header 'Content-Type'
         $LocalVarContentTypes = @('application/json')
 
-        $LocalVarUri = '/adm/certs/generator'
+        $LocalVarUri = '/sa/nodecerts/generator'
 
         if (!$CertificateRequest) {
-            throw "Error! The required parameter `CertificateRequest` missing when calling generateCert."
+            throw "Error! The required parameter `CertificateRequest` missing when calling generateNodeCert."
         }
 
         $LocalVarBodyParameter = $CertificateRequest | ConvertTo-Json -Depth 100
@@ -2152,7 +1370,7 @@ function New-Cert {
             Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
         }
 
-        $LocalVarResult = Invoke-ApiClient -Method 'POST' `
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
                                 -Accepts $LocalVarAccepts `
                                 -ContentTypes $LocalVarContentTypes `
@@ -2175,100 +1393,17 @@ function New-Cert {
 <#
 .SYNOPSIS
 
-Generates a new ssh host key and adds it to server configuration
-
-.DESCRIPTION
-
-No description available.
-
-.PARAMETER HostKeyRequestFields
-No description available.
-
-.PARAMETER WithHttpInfo
-
-A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
-
-.OUTPUTS
-
-ApiResponse
-#>
-function New-SSHHostKey {
-    [CmdletBinding()]
-    Param (
-        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [PSCustomObject]
-        ${HostKeyRequestFields},
-        [Switch]
-        $WithHttpInfo
-    )
-
-    Process {
-        'Calling method: New-SSHHostKey' | Write-Debug
-        $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        $LocalVarAccepts = @()
-        $LocalVarContentTypes = @()
-        $LocalVarQueryParameters = @{}
-        $LocalVarHeaderParameters = @{}
-        $LocalVarFormParameters = @{}
-        $LocalVarPathParameters = @{}
-        $LocalVarCookieParameters = @{}
-        $LocalVarBodyParameter = $null
-
-        $Configuration = Get-Configuration
-        # HTTP header 'Accept' (if needed)
-        $LocalVarAccepts = @('application/json')
-
-        # HTTP header 'Content-Type'
-        $LocalVarContentTypes = @('application/json')
-
-        $LocalVarUri = '/adm/sshhostkeys/generator'
-
-        if (!$HostKeyRequestFields) {
-            throw "Error! The required parameter `HostKeyRequestFields` missing when calling generateSSHHostKey."
-        }
-
-        $LocalVarBodyParameter = $HostKeyRequestFields | ConvertTo-Json -Depth 100
-
-        if ($Configuration["AccessToken"]) {
-            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
-            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
-        }
-
-        $LocalVarResult = Invoke-ApiClient -Method 'POST' `
-                                -Uri $LocalVarUri `
-                                -Accepts $LocalVarAccepts `
-                                -ContentTypes $LocalVarContentTypes `
-                                -Body $LocalVarBodyParameter `
-                                -HeaderParameters $LocalVarHeaderParameters `
-                                -QueryParameters $LocalVarQueryParameters `
-                                -FormParameters $LocalVarFormParameters `
-                                -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "ApiResponse" `
-                                -IsBodyNullable $false
-
-        if ($WithHttpInfo.IsPresent) {
-            return $LocalVarResult
-        } else {
-            return $LocalVarResult["Response"]
-        }
-    }
-}
-
-<#
-.SYNOPSIS
-
-No summary available.
+Retrieves the admin identified by adminID for this virtual site
 
 .DESCRIPTION
 
 No description available.
 
 .PARAMETER Id
-ID of the user
+ID of the virtual site
 
-.PARAMETER HostKeyRequestFields
-No description available.
+.PARAMETER AdminID
+ID of the admin
 
 .PARAMETER WithHttpInfo
 
@@ -2276,23 +1411,23 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-InlineResponse2002
+Admin
 #>
-function New-UserPublicKeys {
+function Get-SS6Admin {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [String]
         ${Id},
         [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [PSCustomObject]
-        ${HostKeyRequestFields},
+        [String]
+        ${AdminID},
         [Switch]
         $WithHttpInfo
     )
 
     Process {
-        'Calling method: New-UserPublicKeys' | Write-Debug
+        'Calling method: Get-SS6Admin' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $LocalVarAccepts = @()
@@ -2304,31 +1439,26 @@ function New-UserPublicKeys {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $Configuration = Get-Configuration
+        $Configuration = Get-SS6Configuration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
-        # HTTP header 'Content-Type'
-        $LocalVarContentTypes = @('application/json')
-
-        $LocalVarUri = '/adm/users/{id}/pubkeys/generator'
+        $LocalVarUri = '/sa/vsites/{id}/adm/{adminID}'
         if (!$Id) {
-            throw "Error! The required parameter `Id` missing when calling generateUserPublicKeys."
+            throw "Error! The required parameter `Id` missing when calling getAdmin."
         }
         $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
-
-        if (!$HostKeyRequestFields) {
-            throw "Error! The required parameter `HostKeyRequestFields` missing when calling generateUserPublicKeys."
+        if (!$AdminID) {
+            throw "Error! The required parameter `AdminID` missing when calling getAdmin."
         }
-
-        $LocalVarBodyParameter = $HostKeyRequestFields | ConvertTo-Json -Depth 100
+        $LocalVarUri = $LocalVarUri.replace('{adminID}', [System.Web.HTTPUtility]::UrlEncode($AdminID))
 
         if ($Configuration["AccessToken"]) {
             $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
             Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
         }
 
-        $LocalVarResult = Invoke-ApiClient -Method 'POST' `
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
                                 -Accepts $LocalVarAccepts `
                                 -ContentTypes $LocalVarContentTypes `
@@ -2337,7 +1467,7 @@ function New-UserPublicKeys {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "InlineResponse2002" `
+                                -ReturnType "Admin" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -2351,11 +1481,23 @@ function New-UserPublicKeys {
 <#
 .SYNOPSIS
 
-Retrieves active sessions for all nodes
+Retrieves the admins for the specified virtual site
 
 .DESCRIPTION
 
 No description available.
+
+.PARAMETER Id
+ID of the virtual site
+
+.PARAMETER Offset
+No description available.
+
+.PARAMETER Limit
+The maximum number of items to return. Max value is 500, default is 100
+
+.PARAMETER Order
+Ordering by id. Default ASC
 
 .PARAMETER WithHttpInfo
 
@@ -2363,17 +1505,30 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-NodeSession[]
+Admin[]
 #>
-function Get-ActiveSessions {
+function Get-SS6Admins {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Id},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [System.Nullable[Int32]]
+        ${Offset},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [System.Nullable[Int32]]
+        ${Limit},
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [ValidateSet("ASC", "DESC")]
+        [String]
+        ${Order},
         [Switch]
         $WithHttpInfo
     )
 
     Process {
-        'Calling method: Get-ActiveSessions' | Write-Debug
+        'Calling method: Get-SS6Admins' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $LocalVarAccepts = @()
@@ -2385,18 +1540,34 @@ function Get-ActiveSessions {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $Configuration = Get-Configuration
+        $Configuration = Get-SS6Configuration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
-        $LocalVarUri = '/adm/sessions'
+        $LocalVarUri = '/sa/vsites/{id}/adm'
+        if (!$Id) {
+            throw "Error! The required parameter `Id` missing when calling getAdmins."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
+
+        if ($Offset) {
+            $LocalVarQueryParameters['offset'] = $Offset
+        }
+
+        if ($Limit) {
+            $LocalVarQueryParameters['limit'] = $Limit
+        }
+
+        if ($Order) {
+            $LocalVarQueryParameters['order'] = $Order
+        }
 
         if ($Configuration["AccessToken"]) {
             $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
             Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
         }
 
-        $LocalVarResult = Invoke-ApiClient -Method 'GET' `
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
                                 -Accepts $LocalVarAccepts `
                                 -ContentTypes $LocalVarContentTypes `
@@ -2405,7 +1576,966 @@ function Get-ActiveSessions {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodeSession[]" `
+                                -ReturnType "Admin[]" `
+                                -IsBodyNullable $false
+
+        if ($WithHttpInfo.IsPresent) {
+            return $LocalVarResult
+        } else {
+            return $LocalVarResult["Response"]
+        }
+    }
+}
+
+<#
+.SYNOPSIS
+
+Retrieves the available bindings
+
+.DESCRIPTION
+
+No description available.
+
+.PARAMETER WithHttpInfo
+
+A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
+
+.OUTPUTS
+
+Binding[]
+#>
+function Get-SS6AvailableBindings {
+    [CmdletBinding()]
+    Param (
+        [Switch]
+        $WithHttpInfo
+    )
+
+    Process {
+        'Calling method: Get-SS6AvailableBindings' | Write-Debug
+        $PSBoundParameters | Out-DebugParameter | Write-Debug
+
+        $LocalVarAccepts = @()
+        $LocalVarContentTypes = @()
+        $LocalVarQueryParameters = @{}
+        $LocalVarHeaderParameters = @{}
+        $LocalVarFormParameters = @{}
+        $LocalVarPathParameters = @{}
+        $LocalVarCookieParameters = @{}
+        $LocalVarBodyParameter = $null
+
+        $Configuration = Get-SS6Configuration
+        # HTTP header 'Accept' (if needed)
+        $LocalVarAccepts = @('application/json')
+
+        $LocalVarUri = '/sa/bindinghelper'
+
+        if ($Configuration["AccessToken"]) {
+            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
+            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
+        }
+
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'GET' `
+                                -Uri $LocalVarUri `
+                                -Accepts $LocalVarAccepts `
+                                -ContentTypes $LocalVarContentTypes `
+                                -Body $LocalVarBodyParameter `
+                                -HeaderParameters $LocalVarHeaderParameters `
+                                -QueryParameters $LocalVarQueryParameters `
+                                -FormParameters $LocalVarFormParameters `
+                                -CookieParameters $LocalVarCookieParameters `
+                                -ReturnType "Binding[]" `
+                                -IsBodyNullable $false
+
+        if ($WithHttpInfo.IsPresent) {
+            return $LocalVarResult
+        } else {
+            return $LocalVarResult["Response"]
+        }
+    }
+}
+
+<#
+.SYNOPSIS
+
+Retrieves the global configuration
+
+.DESCRIPTION
+
+No description available.
+
+.PARAMETER WithHttpInfo
+
+A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
+
+.OUTPUTS
+
+GlobalConfig
+#>
+function Get-SS6GlobalConfig {
+    [CmdletBinding()]
+    Param (
+        [Switch]
+        $WithHttpInfo
+    )
+
+    Process {
+        'Calling method: Get-SS6GlobalConfig' | Write-Debug
+        $PSBoundParameters | Out-DebugParameter | Write-Debug
+
+        $LocalVarAccepts = @()
+        $LocalVarContentTypes = @()
+        $LocalVarQueryParameters = @{}
+        $LocalVarHeaderParameters = @{}
+        $LocalVarFormParameters = @{}
+        $LocalVarPathParameters = @{}
+        $LocalVarCookieParameters = @{}
+        $LocalVarBodyParameter = $null
+
+        $Configuration = Get-SS6Configuration
+        # HTTP header 'Accept' (if needed)
+        $LocalVarAccepts = @('application/json')
+
+        $LocalVarUri = '/sa/globalconfig'
+
+        if ($Configuration["AccessToken"]) {
+            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
+            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
+        }
+
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'GET' `
+                                -Uri $LocalVarUri `
+                                -Accepts $LocalVarAccepts `
+                                -ContentTypes $LocalVarContentTypes `
+                                -Body $LocalVarBodyParameter `
+                                -HeaderParameters $LocalVarHeaderParameters `
+                                -QueryParameters $LocalVarQueryParameters `
+                                -FormParameters $LocalVarFormParameters `
+                                -CookieParameters $LocalVarCookieParameters `
+                                -ReturnType "GlobalConfig" `
+                                -IsBodyNullable $false
+
+        if ($WithHttpInfo.IsPresent) {
+            return $LocalVarResult
+        } else {
+            return $LocalVarResult["Response"]
+        }
+    }
+}
+
+<#
+.SYNOPSIS
+
+Return the details about the activated license, if any. If not license is activated this API will return a NotFound (404) error
+
+.DESCRIPTION
+
+No description available.
+
+.PARAMETER WithHttpInfo
+
+A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
+
+.OUTPUTS
+
+License
+#>
+function Get-SS6License {
+    [CmdletBinding()]
+    Param (
+        [Switch]
+        $WithHttpInfo
+    )
+
+    Process {
+        'Calling method: Get-SS6License' | Write-Debug
+        $PSBoundParameters | Out-DebugParameter | Write-Debug
+
+        $LocalVarAccepts = @()
+        $LocalVarContentTypes = @()
+        $LocalVarQueryParameters = @{}
+        $LocalVarHeaderParameters = @{}
+        $LocalVarFormParameters = @{}
+        $LocalVarPathParameters = @{}
+        $LocalVarCookieParameters = @{}
+        $LocalVarBodyParameter = $null
+
+        $Configuration = Get-SS6Configuration
+        # HTTP header 'Accept' (if needed)
+        $LocalVarAccepts = @('application/json')
+
+        $LocalVarUri = '/sa/license'
+
+        if ($Configuration["AccessToken"]) {
+            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
+            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
+        }
+
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'GET' `
+                                -Uri $LocalVarUri `
+                                -Accepts $LocalVarAccepts `
+                                -ContentTypes $LocalVarContentTypes `
+                                -Body $LocalVarBodyParameter `
+                                -HeaderParameters $LocalVarHeaderParameters `
+                                -QueryParameters $LocalVarQueryParameters `
+                                -FormParameters $LocalVarFormParameters `
+                                -CookieParameters $LocalVarCookieParameters `
+                                -ReturnType "License" `
+                                -IsBodyNullable $false
+
+        if ($WithHttpInfo.IsPresent) {
+            return $LocalVarResult
+        } else {
+            return $LocalVarResult["Response"]
+        }
+    }
+}
+
+<#
+.SYNOPSIS
+
+Return the details about the activate maintenance for this license, if any. If not maintenance is active this API will return a NotFound (404) error
+
+.DESCRIPTION
+
+No description available.
+
+.PARAMETER WithHttpInfo
+
+A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
+
+.OUTPUTS
+
+Maintenance
+#>
+function Get-SS6LicenseMaintenance {
+    [CmdletBinding()]
+    Param (
+        [Switch]
+        $WithHttpInfo
+    )
+
+    Process {
+        'Calling method: Get-SS6LicenseMaintenance' | Write-Debug
+        $PSBoundParameters | Out-DebugParameter | Write-Debug
+
+        $LocalVarAccepts = @()
+        $LocalVarContentTypes = @()
+        $LocalVarQueryParameters = @{}
+        $LocalVarHeaderParameters = @{}
+        $LocalVarFormParameters = @{}
+        $LocalVarPathParameters = @{}
+        $LocalVarCookieParameters = @{}
+        $LocalVarBodyParameter = $null
+
+        $Configuration = Get-SS6Configuration
+        # HTTP header 'Accept' (if needed)
+        $LocalVarAccepts = @('application/json')
+
+        $LocalVarUri = '/sa/license/maintenance'
+
+        if ($Configuration["AccessToken"]) {
+            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
+            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
+        }
+
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'GET' `
+                                -Uri $LocalVarUri `
+                                -Accepts $LocalVarAccepts `
+                                -ContentTypes $LocalVarContentTypes `
+                                -Body $LocalVarBodyParameter `
+                                -HeaderParameters $LocalVarHeaderParameters `
+                                -QueryParameters $LocalVarQueryParameters `
+                                -FormParameters $LocalVarFormParameters `
+                                -CookieParameters $LocalVarCookieParameters `
+                                -ReturnType "Maintenance" `
+                                -IsBodyNullable $false
+
+        if ($WithHttpInfo.IsPresent) {
+            return $LocalVarResult
+        } else {
+            return $LocalVarResult["Response"]
+        }
+    }
+}
+
+<#
+.SYNOPSIS
+
+Retrieves the node
+
+.DESCRIPTION
+
+No description available.
+
+.PARAMETER WithHttpInfo
+
+A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
+
+.OUTPUTS
+
+Node
+#>
+function Get-SS6Node {
+    [CmdletBinding()]
+    Param (
+        [Switch]
+        $WithHttpInfo
+    )
+
+    Process {
+        'Calling method: Get-SS6Node' | Write-Debug
+        $PSBoundParameters | Out-DebugParameter | Write-Debug
+
+        $LocalVarAccepts = @()
+        $LocalVarContentTypes = @()
+        $LocalVarQueryParameters = @{}
+        $LocalVarHeaderParameters = @{}
+        $LocalVarFormParameters = @{}
+        $LocalVarPathParameters = @{}
+        $LocalVarCookieParameters = @{}
+        $LocalVarBodyParameter = $null
+
+        $Configuration = Get-SS6Configuration
+        # HTTP header 'Accept' (if needed)
+        $LocalVarAccepts = @('application/json')
+
+        $LocalVarUri = '/sa/node'
+
+        if ($Configuration["AccessToken"]) {
+            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
+            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
+        }
+
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'GET' `
+                                -Uri $LocalVarUri `
+                                -Accepts $LocalVarAccepts `
+                                -ContentTypes $LocalVarContentTypes `
+                                -Body $LocalVarBodyParameter `
+                                -HeaderParameters $LocalVarHeaderParameters `
+                                -QueryParameters $LocalVarQueryParameters `
+                                -FormParameters $LocalVarFormParameters `
+                                -CookieParameters $LocalVarCookieParameters `
+                                -ReturnType "Node" `
+                                -IsBodyNullable $false
+
+        if ($WithHttpInfo.IsPresent) {
+            return $LocalVarResult
+        } else {
+            return $LocalVarResult["Response"]
+        }
+    }
+}
+
+<#
+.SYNOPSIS
+
+Retrieves the node CSR identified by id
+
+.DESCRIPTION
+
+No description available.
+
+.PARAMETER Id
+ID of the certificate signing request
+
+.PARAMETER WithHttpInfo
+
+A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
+
+.OUTPUTS
+
+CSR
+#>
+function Get-SS6NodeCSR {
+    [CmdletBinding()]
+    Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Id},
+        [Switch]
+        $WithHttpInfo
+    )
+
+    Process {
+        'Calling method: Get-SS6NodeCSR' | Write-Debug
+        $PSBoundParameters | Out-DebugParameter | Write-Debug
+
+        $LocalVarAccepts = @()
+        $LocalVarContentTypes = @()
+        $LocalVarQueryParameters = @{}
+        $LocalVarHeaderParameters = @{}
+        $LocalVarFormParameters = @{}
+        $LocalVarPathParameters = @{}
+        $LocalVarCookieParameters = @{}
+        $LocalVarBodyParameter = $null
+
+        $Configuration = Get-SS6Configuration
+        # HTTP header 'Accept' (if needed)
+        $LocalVarAccepts = @('application/json')
+
+        $LocalVarUri = '/sa/nodecsr/{id}'
+        if (!$Id) {
+            throw "Error! The required parameter `Id` missing when calling getNodeCSR."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
+
+        if ($Configuration["AccessToken"]) {
+            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
+            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
+        }
+
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'GET' `
+                                -Uri $LocalVarUri `
+                                -Accepts $LocalVarAccepts `
+                                -ContentTypes $LocalVarContentTypes `
+                                -Body $LocalVarBodyParameter `
+                                -HeaderParameters $LocalVarHeaderParameters `
+                                -QueryParameters $LocalVarQueryParameters `
+                                -FormParameters $LocalVarFormParameters `
+                                -CookieParameters $LocalVarCookieParameters `
+                                -ReturnType "CSR" `
+                                -IsBodyNullable $false
+
+        if ($WithHttpInfo.IsPresent) {
+            return $LocalVarResult
+        } else {
+            return $LocalVarResult["Response"]
+        }
+    }
+}
+
+<#
+.SYNOPSIS
+
+Retrieves node pre-generated certificate signing requests
+
+.DESCRIPTION
+
+No description available.
+
+.PARAMETER WithHttpInfo
+
+A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
+
+.OUTPUTS
+
+CSR[]
+#>
+function Get-SS6NodeCSRs {
+    [CmdletBinding()]
+    Param (
+        [Switch]
+        $WithHttpInfo
+    )
+
+    Process {
+        'Calling method: Get-SS6NodeCSRs' | Write-Debug
+        $PSBoundParameters | Out-DebugParameter | Write-Debug
+
+        $LocalVarAccepts = @()
+        $LocalVarContentTypes = @()
+        $LocalVarQueryParameters = @{}
+        $LocalVarHeaderParameters = @{}
+        $LocalVarFormParameters = @{}
+        $LocalVarPathParameters = @{}
+        $LocalVarCookieParameters = @{}
+        $LocalVarBodyParameter = $null
+
+        $Configuration = Get-SS6Configuration
+        # HTTP header 'Accept' (if needed)
+        $LocalVarAccepts = @('application/json')
+
+        $LocalVarUri = '/sa/nodecsr'
+
+        if ($Configuration["AccessToken"]) {
+            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
+            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
+        }
+
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'GET' `
+                                -Uri $LocalVarUri `
+                                -Accepts $LocalVarAccepts `
+                                -ContentTypes $LocalVarContentTypes `
+                                -Body $LocalVarBodyParameter `
+                                -HeaderParameters $LocalVarHeaderParameters `
+                                -QueryParameters $LocalVarQueryParameters `
+                                -FormParameters $LocalVarFormParameters `
+                                -CookieParameters $LocalVarCookieParameters `
+                                -ReturnType "CSR[]" `
+                                -IsBodyNullable $false
+
+        if ($WithHttpInfo.IsPresent) {
+            return $LocalVarResult
+        } else {
+            return $LocalVarResult["Response"]
+        }
+    }
+}
+
+<#
+.SYNOPSIS
+
+Retrieves node certificates
+
+.DESCRIPTION
+
+No description available.
+
+.PARAMETER WithHttpInfo
+
+A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
+
+.OUTPUTS
+
+TLSCertificate[]
+#>
+function Get-SS6NodeCertifcates {
+    [CmdletBinding()]
+    Param (
+        [Switch]
+        $WithHttpInfo
+    )
+
+    Process {
+        'Calling method: Get-SS6NodeCertifcates' | Write-Debug
+        $PSBoundParameters | Out-DebugParameter | Write-Debug
+
+        $LocalVarAccepts = @()
+        $LocalVarContentTypes = @()
+        $LocalVarQueryParameters = @{}
+        $LocalVarHeaderParameters = @{}
+        $LocalVarFormParameters = @{}
+        $LocalVarPathParameters = @{}
+        $LocalVarCookieParameters = @{}
+        $LocalVarBodyParameter = $null
+
+        $Configuration = Get-SS6Configuration
+        # HTTP header 'Accept' (if needed)
+        $LocalVarAccepts = @('application/json')
+
+        $LocalVarUri = '/sa/nodecerts'
+
+        if ($Configuration["AccessToken"]) {
+            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
+            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
+        }
+
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'GET' `
+                                -Uri $LocalVarUri `
+                                -Accepts $LocalVarAccepts `
+                                -ContentTypes $LocalVarContentTypes `
+                                -Body $LocalVarBodyParameter `
+                                -HeaderParameters $LocalVarHeaderParameters `
+                                -QueryParameters $LocalVarQueryParameters `
+                                -FormParameters $LocalVarFormParameters `
+                                -CookieParameters $LocalVarCookieParameters `
+                                -ReturnType "TLSCertificate[]" `
+                                -IsBodyNullable $false
+
+        if ($WithHttpInfo.IsPresent) {
+            return $LocalVarResult
+        } else {
+            return $LocalVarResult["Response"]
+        }
+    }
+}
+
+<#
+.SYNOPSIS
+
+Retrieves the node certificate identified by id
+
+.DESCRIPTION
+
+No description available.
+
+.PARAMETER Id
+ID of the node certificate
+
+.PARAMETER WithHttpInfo
+
+A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
+
+.OUTPUTS
+
+TLSCertificate
+#>
+function Get-SS6NodeCertificate {
+    [CmdletBinding()]
+    Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Id},
+        [Switch]
+        $WithHttpInfo
+    )
+
+    Process {
+        'Calling method: Get-SS6NodeCertificate' | Write-Debug
+        $PSBoundParameters | Out-DebugParameter | Write-Debug
+
+        $LocalVarAccepts = @()
+        $LocalVarContentTypes = @()
+        $LocalVarQueryParameters = @{}
+        $LocalVarHeaderParameters = @{}
+        $LocalVarFormParameters = @{}
+        $LocalVarPathParameters = @{}
+        $LocalVarCookieParameters = @{}
+        $LocalVarBodyParameter = $null
+
+        $Configuration = Get-SS6Configuration
+        # HTTP header 'Accept' (if needed)
+        $LocalVarAccepts = @('application/json')
+
+        $LocalVarUri = '/sa/nodecerts/{id}'
+        if (!$Id) {
+            throw "Error! The required parameter `Id` missing when calling getNodeCertificate."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
+
+        if ($Configuration["AccessToken"]) {
+            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
+            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
+        }
+
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'GET' `
+                                -Uri $LocalVarUri `
+                                -Accepts $LocalVarAccepts `
+                                -ContentTypes $LocalVarContentTypes `
+                                -Body $LocalVarBodyParameter `
+                                -HeaderParameters $LocalVarHeaderParameters `
+                                -QueryParameters $LocalVarQueryParameters `
+                                -FormParameters $LocalVarFormParameters `
+                                -CookieParameters $LocalVarCookieParameters `
+                                -ReturnType "TLSCertificate" `
+                                -IsBodyNullable $false
+
+        if ($WithHttpInfo.IsPresent) {
+            return $LocalVarResult
+        } else {
+            return $LocalVarResult["Response"]
+        }
+    }
+}
+
+<#
+.SYNOPSIS
+
+Retrieves nodes, empty if this is not an HA installation
+
+.DESCRIPTION
+
+No description available.
+
+.PARAMETER WithHttpInfo
+
+A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
+
+.OUTPUTS
+
+HAVsiteStatus[]
+#>
+function Get-SS6Nodes {
+    [CmdletBinding()]
+    Param (
+        [Switch]
+        $WithHttpInfo
+    )
+
+    Process {
+        'Calling method: Get-SS6Nodes' | Write-Debug
+        $PSBoundParameters | Out-DebugParameter | Write-Debug
+
+        $LocalVarAccepts = @()
+        $LocalVarContentTypes = @()
+        $LocalVarQueryParameters = @{}
+        $LocalVarHeaderParameters = @{}
+        $LocalVarFormParameters = @{}
+        $LocalVarPathParameters = @{}
+        $LocalVarCookieParameters = @{}
+        $LocalVarBodyParameter = $null
+
+        $Configuration = Get-SS6Configuration
+        # HTTP header 'Accept' (if needed)
+        $LocalVarAccepts = @('application/json')
+
+        $LocalVarUri = '/sa/hanodes'
+
+        if ($Configuration["AccessToken"]) {
+            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
+            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
+        }
+
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'GET' `
+                                -Uri $LocalVarUri `
+                                -Accepts $LocalVarAccepts `
+                                -ContentTypes $LocalVarContentTypes `
+                                -Body $LocalVarBodyParameter `
+                                -HeaderParameters $LocalVarHeaderParameters `
+                                -QueryParameters $LocalVarQueryParameters `
+                                -FormParameters $LocalVarFormParameters `
+                                -CookieParameters $LocalVarCookieParameters `
+                                -ReturnType "HAVsiteStatus[]" `
+                                -IsBodyNullable $false
+
+        if ($WithHttpInfo.IsPresent) {
+            return $LocalVarResult
+        } else {
+            return $LocalVarResult["Response"]
+        }
+    }
+}
+
+<#
+.SYNOPSIS
+
+Get the QR code png
+
+.DESCRIPTION
+
+No description available.
+
+.PARAMETER Issuer
+No description available.
+
+.PARAMETER Email
+No description available.
+
+.PARAMETER Secret
+No description available.
+
+.PARAMETER ReturnType
+
+Select the return type (optional): image/png, application/json
+
+.PARAMETER WithHttpInfo
+
+A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
+
+.OUTPUTS
+
+System.IO.FileInfo
+#>
+function Get-SS6QRCodePng {
+    [CmdletBinding()]
+    Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Issuer},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Email},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Secret},
+        [String]
+        [ValidateSet("image/png", "application/json")]
+        $ReturnType,
+        [Switch]
+        $WithHttpInfo
+    )
+
+    Process {
+        'Calling method: Get-SS6QRCodePng' | Write-Debug
+        $PSBoundParameters | Out-DebugParameter | Write-Debug
+
+        $LocalVarAccepts = @()
+        $LocalVarContentTypes = @()
+        $LocalVarQueryParameters = @{}
+        $LocalVarHeaderParameters = @{}
+        $LocalVarFormParameters = @{}
+        $LocalVarPathParameters = @{}
+        $LocalVarCookieParameters = @{}
+        $LocalVarBodyParameter = $null
+
+        $Configuration = Get-SS6Configuration
+        # HTTP header 'Accept' (if needed)
+        $LocalVarAccepts = @('image/png', 'application/json')
+
+        if ($ReturnType) {
+            # use the return type (MIME) provided by the user
+            $LocalVarAccepts = @($ReturnType)
+        }
+
+        $LocalVarUri = '/sa/qr.png'
+
+        if (!$Issuer) {
+            throw "Error! The required parameter `Issuer` missing when calling getQRCodePng."
+        }
+        $LocalVarQueryParameters['issuer'] = $Issuer
+
+        if (!$Email) {
+            throw "Error! The required parameter `Email` missing when calling getQRCodePng."
+        }
+        $LocalVarQueryParameters['email'] = $Email
+
+        if (!$Secret) {
+            throw "Error! The required parameter `Secret` missing when calling getQRCodePng."
+        }
+        $LocalVarQueryParameters['secret'] = $Secret
+
+        if ($Configuration["AccessToken"]) {
+            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
+            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
+        }
+
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'GET' `
+                                -Uri $LocalVarUri `
+                                -Accepts $LocalVarAccepts `
+                                -ContentTypes $LocalVarContentTypes `
+                                -Body $LocalVarBodyParameter `
+                                -HeaderParameters $LocalVarHeaderParameters `
+                                -QueryParameters $LocalVarQueryParameters `
+                                -FormParameters $LocalVarFormParameters `
+                                -CookieParameters $LocalVarCookieParameters `
+                                -ReturnType "System.IO.FileInfo" `
+                                -IsBodyNullable $false
+
+        if ($WithHttpInfo.IsPresent) {
+            return $LocalVarResult
+        } else {
+            return $LocalVarResult["Response"]
+        }
+    }
+}
+
+<#
+.SYNOPSIS
+
+Get a random base32 string
+
+.DESCRIPTION
+
+No description available.
+
+.PARAMETER Length
+length of the random string
+
+.PARAMETER WithHttpInfo
+
+A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
+
+.OUTPUTS
+
+InlineObject
+#>
+function Get-SS6RandomBase32 {
+    [CmdletBinding()]
+    Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Length},
+        [Switch]
+        $WithHttpInfo
+    )
+
+    Process {
+        'Calling method: Get-SS6RandomBase32' | Write-Debug
+        $PSBoundParameters | Out-DebugParameter | Write-Debug
+
+        $LocalVarAccepts = @()
+        $LocalVarContentTypes = @()
+        $LocalVarQueryParameters = @{}
+        $LocalVarHeaderParameters = @{}
+        $LocalVarFormParameters = @{}
+        $LocalVarPathParameters = @{}
+        $LocalVarCookieParameters = @{}
+        $LocalVarBodyParameter = $null
+
+        $Configuration = Get-SS6Configuration
+        # HTTP header 'Accept' (if needed)
+        $LocalVarAccepts = @('application/json')
+
+        $LocalVarUri = '/sa/randombase32/{length}'
+        if (!$Length) {
+            throw "Error! The required parameter `Length` missing when calling getRandomBase32."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{length}', [System.Web.HTTPUtility]::UrlEncode($Length))
+
+        if ($Configuration["AccessToken"]) {
+            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
+            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
+        }
+
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'GET' `
+                                -Uri $LocalVarUri `
+                                -Accepts $LocalVarAccepts `
+                                -ContentTypes $LocalVarContentTypes `
+                                -Body $LocalVarBodyParameter `
+                                -HeaderParameters $LocalVarHeaderParameters `
+                                -QueryParameters $LocalVarQueryParameters `
+                                -FormParameters $LocalVarFormParameters `
+                                -CookieParameters $LocalVarCookieParameters `
+                                -ReturnType "InlineObject" `
+                                -IsBodyNullable $false
+
+        if ($WithHttpInfo.IsPresent) {
+            return $LocalVarResult
+        } else {
+            return $LocalVarResult["Response"]
+        }
+    }
+}
+
+<#
+.SYNOPSIS
+
+Get a random name
+
+.DESCRIPTION
+
+No description available.
+
+.PARAMETER WithHttpInfo
+
+A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
+
+.OUTPUTS
+
+InlineResponse2001
+#>
+function Get-SS6RandomName {
+    [CmdletBinding()]
+    Param (
+        [Switch]
+        $WithHttpInfo
+    )
+
+    Process {
+        'Calling method: Get-SS6RandomName' | Write-Debug
+        $PSBoundParameters | Out-DebugParameter | Write-Debug
+
+        $LocalVarAccepts = @()
+        $LocalVarContentTypes = @()
+        $LocalVarQueryParameters = @{}
+        $LocalVarHeaderParameters = @{}
+        $LocalVarFormParameters = @{}
+        $LocalVarPathParameters = @{}
+        $LocalVarCookieParameters = @{}
+        $LocalVarBodyParameter = $null
+
+        $Configuration = Get-SS6Configuration
+        # HTTP header 'Accept' (if needed)
+        $LocalVarAccepts = @('application/json')
+
+        $LocalVarUri = '/sa/randomname'
+
+        if ($Configuration["AccessToken"]) {
+            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
+            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
+        }
+
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'GET' `
+                                -Uri $LocalVarUri `
+                                -Accepts $LocalVarAccepts `
+                                -ContentTypes $LocalVarContentTypes `
+                                -Body $LocalVarBodyParameter `
+                                -HeaderParameters $LocalVarHeaderParameters `
+                                -QueryParameters $LocalVarQueryParameters `
+                                -FormParameters $LocalVarFormParameters `
+                                -CookieParameters $LocalVarCookieParameters `
+                                -ReturnType "InlineResponse2001" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -2442,7 +2572,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 Notification[]
 #>
-function Get-AdminNotification {
+function Get-SS6SaNotification {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
@@ -2459,7 +2589,7 @@ function Get-AdminNotification {
     )
 
     Process {
-        'Calling method: Get-AdminNotification' | Write-Debug
+        'Calling method: Get-SS6SaNotification' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $LocalVarAccepts = @()
@@ -2471,11 +2601,11 @@ function Get-AdminNotification {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $Configuration = Get-Configuration
+        $Configuration = Get-SS6Configuration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
-        $LocalVarUri = '/adm/notifications'
+        $LocalVarUri = '/sa/notifications'
 
         if ($From) {
             $LocalVarQueryParameters['from'] = $From
@@ -2496,7 +2626,7 @@ function Get-AdminNotification {
             Write-Verbose ("Using HTTP basic authentication in {0}" -f $MyInvocation.MyCommand)
         }
 
-        $LocalVarResult = Invoke-ApiClient -Method 'GET' `
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
                                 -Accepts $LocalVarAccepts `
                                 -ContentTypes $LocalVarContentTypes `
@@ -2536,7 +2666,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 Notification
 #>
-function Get-AdminNotificationByID {
+function Get-SS6SaNotificationByID {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
@@ -2547,7 +2677,7 @@ function Get-AdminNotificationByID {
     )
 
     Process {
-        'Calling method: Get-AdminNotificationByID' | Write-Debug
+        'Calling method: Get-SS6SaNotificationByID' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $LocalVarAccepts = @()
@@ -2559,13 +2689,13 @@ function Get-AdminNotificationByID {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $Configuration = Get-Configuration
+        $Configuration = Get-SS6Configuration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
-        $LocalVarUri = '/adm/notifications/{id}'
+        $LocalVarUri = '/sa/notifications/{id}'
         if (!$Id) {
-            throw "Error! The required parameter `Id` missing when calling getAdminNotificationByID."
+            throw "Error! The required parameter `Id` missing when calling getSaNotificationByID."
         }
         $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
 
@@ -2576,7 +2706,7 @@ function Get-AdminNotificationByID {
             Write-Verbose ("Using HTTP basic authentication in {0}" -f $MyInvocation.MyCommand)
         }
 
-        $LocalVarResult = Invoke-ApiClient -Method 'GET' `
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
                                 -Accepts $LocalVarAccepts `
                                 -ContentTypes $LocalVarContentTypes `
@@ -2599,82 +2729,14 @@ function Get-AdminNotificationByID {
 <#
 .SYNOPSIS
 
-Returns the profile for the logged in admin
-
-.DESCRIPTION
-
-No description available.
-
-.PARAMETER WithHttpInfo
-
-A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
-
-.OUTPUTS
-
-Admin
-#>
-function Get-AdminProfile {
-    [CmdletBinding()]
-    Param (
-        [Switch]
-        $WithHttpInfo
-    )
-
-    Process {
-        'Calling method: Get-AdminProfile' | Write-Debug
-        $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        $LocalVarAccepts = @()
-        $LocalVarContentTypes = @()
-        $LocalVarQueryParameters = @{}
-        $LocalVarHeaderParameters = @{}
-        $LocalVarFormParameters = @{}
-        $LocalVarPathParameters = @{}
-        $LocalVarCookieParameters = @{}
-        $LocalVarBodyParameter = $null
-
-        $Configuration = Get-Configuration
-        # HTTP header 'Accept' (if needed)
-        $LocalVarAccepts = @('application/json')
-
-        $LocalVarUri = '/adm/profile'
-
-        if ($Configuration["AccessToken"]) {
-            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
-            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
-        }
-
-        $LocalVarResult = Invoke-ApiClient -Method 'GET' `
-                                -Uri $LocalVarUri `
-                                -Accepts $LocalVarAccepts `
-                                -ContentTypes $LocalVarContentTypes `
-                                -Body $LocalVarBodyParameter `
-                                -HeaderParameters $LocalVarHeaderParameters `
-                                -QueryParameters $LocalVarQueryParameters `
-                                -FormParameters $LocalVarFormParameters `
-                                -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "Admin" `
-                                -IsBodyNullable $false
-
-        if ($WithHttpInfo.IsPresent) {
-            return $LocalVarResult
-        } else {
-            return $LocalVarResult["Response"]
-        }
-    }
-}
-
-<#
-.SYNOPSIS
-
-Retrieves the BlockList configuration identified by id for this admin
+Retrieves the SuperAdmin configuration identified by id
 
 .DESCRIPTION
 
 No description available.
 
 .PARAMETER Id
-ID of the BlockList configuration
+ID of the SuperAdmin
 
 .PARAMETER WithHttpInfo
 
@@ -2682,9 +2744,9 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-BlockListItem
+SuperAdmin
 #>
-function Get-BlockListConfig {
+function Get-SS6SuperAdminByID {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
@@ -2695,7 +2757,7 @@ function Get-BlockListConfig {
     )
 
     Process {
-        'Calling method: Get-BlockListConfig' | Write-Debug
+        'Calling method: Get-SS6SuperAdminByID' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $LocalVarAccepts = @()
@@ -2707,13 +2769,13 @@ function Get-BlockListConfig {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $Configuration = Get-Configuration
+        $Configuration = Get-SS6Configuration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
-        $LocalVarUri = '/adm/blocklist/{id}'
+        $LocalVarUri = '/sa/superadmin/{id}'
         if (!$Id) {
-            throw "Error! The required parameter `Id` missing when calling getBlockListConfig."
+            throw "Error! The required parameter `Id` missing when calling getSuperAdminByID."
         }
         $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
 
@@ -2722,7 +2784,7 @@ function Get-BlockListConfig {
             Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
         }
 
-        $LocalVarResult = Invoke-ApiClient -Method 'GET' `
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
                                 -Accepts $LocalVarAccepts `
                                 -ContentTypes $LocalVarContentTypes `
@@ -2731,7 +2793,7 @@ function Get-BlockListConfig {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "BlockListItem" `
+                                -ReturnType "SuperAdmin" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -2745,7 +2807,7 @@ function Get-BlockListConfig {
 <#
 .SYNOPSIS
 
-Retrieves blocklist objects for the logged in admin
+Retrieves the SuperAdmin users
 
 .DESCRIPTION
 
@@ -2766,9 +2828,9 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-BlockListItem[]
+SuperAdmin[]
 #>
-function Get-BlockLists {
+function Get-SS6SuperAdmins {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
@@ -2786,7 +2848,7 @@ function Get-BlockLists {
     )
 
     Process {
-        'Calling method: Get-BlockLists' | Write-Debug
+        'Calling method: Get-SS6SuperAdmins' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $LocalVarAccepts = @()
@@ -2798,11 +2860,11 @@ function Get-BlockLists {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $Configuration = Get-Configuration
+        $Configuration = Get-SS6Configuration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
-        $LocalVarUri = '/adm/blocklist'
+        $LocalVarUri = '/sa/superadmin'
 
         if ($Offset) {
             $LocalVarQueryParameters['offset'] = $Offset
@@ -2821,7 +2883,7 @@ function Get-BlockLists {
             Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
         }
 
-        $LocalVarResult = Invoke-ApiClient -Method 'GET' `
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
                                 -Accepts $LocalVarAccepts `
                                 -ContentTypes $LocalVarContentTypes `
@@ -2830,7 +2892,7 @@ function Get-BlockLists {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "BlockListItem[]" `
+                                -ReturnType "SuperAdmin[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -2844,14 +2906,14 @@ function Get-BlockLists {
 <#
 .SYNOPSIS
 
-Retrieves the CSR identified by id
+Retrieves the virtual site identified by id
 
 .DESCRIPTION
 
 No description available.
 
 .PARAMETER Id
-ID of the certificate signing request
+ID of the virtual site
 
 .PARAMETER WithHttpInfo
 
@@ -2859,9 +2921,9 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-CSR
+VirtualSite
 #>
-function Get-CSR {
+function Get-SS6Vsite {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
@@ -2872,7 +2934,7 @@ function Get-CSR {
     )
 
     Process {
-        'Calling method: Get-CSR' | Write-Debug
+        'Calling method: Get-SS6Vsite' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $LocalVarAccepts = @()
@@ -2884,13 +2946,13 @@ function Get-CSR {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $Configuration = Get-Configuration
+        $Configuration = Get-SS6Configuration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
-        $LocalVarUri = '/adm/csr/{id}'
+        $LocalVarUri = '/sa/vsites/{id}'
         if (!$Id) {
-            throw "Error! The required parameter `Id` missing when calling getCSR."
+            throw "Error! The required parameter `Id` missing when calling getVsite."
         }
         $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
 
@@ -2899,7 +2961,7 @@ function Get-CSR {
             Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
         }
 
-        $LocalVarResult = Invoke-ApiClient -Method 'GET' `
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
                                 -Accepts $LocalVarAccepts `
                                 -ContentTypes $LocalVarContentTypes `
@@ -2908,7 +2970,7 @@ function Get-CSR {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "CSR" `
+                                -ReturnType "VirtualSite" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -2922,367 +2984,7 @@ function Get-CSR {
 <#
 .SYNOPSIS
 
-Retrieves pre-generated certificate signing requests
-
-.DESCRIPTION
-
-No description available.
-
-.PARAMETER WithHttpInfo
-
-A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
-
-.OUTPUTS
-
-CSR[]
-#>
-function Get-CSRs {
-    [CmdletBinding()]
-    Param (
-        [Switch]
-        $WithHttpInfo
-    )
-
-    Process {
-        'Calling method: Get-CSRs' | Write-Debug
-        $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        $LocalVarAccepts = @()
-        $LocalVarContentTypes = @()
-        $LocalVarQueryParameters = @{}
-        $LocalVarHeaderParameters = @{}
-        $LocalVarFormParameters = @{}
-        $LocalVarPathParameters = @{}
-        $LocalVarCookieParameters = @{}
-        $LocalVarBodyParameter = $null
-
-        $Configuration = Get-Configuration
-        # HTTP header 'Accept' (if needed)
-        $LocalVarAccepts = @('application/json')
-
-        $LocalVarUri = '/adm/csr'
-
-        if ($Configuration["AccessToken"]) {
-            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
-            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
-        }
-
-        $LocalVarResult = Invoke-ApiClient -Method 'GET' `
-                                -Uri $LocalVarUri `
-                                -Accepts $LocalVarAccepts `
-                                -ContentTypes $LocalVarContentTypes `
-                                -Body $LocalVarBodyParameter `
-                                -HeaderParameters $LocalVarHeaderParameters `
-                                -QueryParameters $LocalVarQueryParameters `
-                                -FormParameters $LocalVarFormParameters `
-                                -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "CSR[]" `
-                                -IsBodyNullable $false
-
-        if ($WithHttpInfo.IsPresent) {
-            return $LocalVarResult
-        } else {
-            return $LocalVarResult["Response"]
-        }
-    }
-}
-
-<#
-.SYNOPSIS
-
-Retrieves the certificate with the given ID
-
-.DESCRIPTION
-
-No description available.
-
-.PARAMETER Id
-ID of the certificate
-
-.PARAMETER WithHttpInfo
-
-A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
-
-.OUTPUTS
-
-TLSCertificate
-#>
-function Get-CertByID {
-    [CmdletBinding()]
-    Param (
-        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [String]
-        ${Id},
-        [Switch]
-        $WithHttpInfo
-    )
-
-    Process {
-        'Calling method: Get-CertByID' | Write-Debug
-        $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        $LocalVarAccepts = @()
-        $LocalVarContentTypes = @()
-        $LocalVarQueryParameters = @{}
-        $LocalVarHeaderParameters = @{}
-        $LocalVarFormParameters = @{}
-        $LocalVarPathParameters = @{}
-        $LocalVarCookieParameters = @{}
-        $LocalVarBodyParameter = $null
-
-        $Configuration = Get-Configuration
-        # HTTP header 'Accept' (if needed)
-        $LocalVarAccepts = @('application/json')
-
-        $LocalVarUri = '/adm/certs/{id}'
-        if (!$Id) {
-            throw "Error! The required parameter `Id` missing when calling getCertByID."
-        }
-        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
-
-        if ($Configuration["AccessToken"]) {
-            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
-            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
-        }
-
-        $LocalVarResult = Invoke-ApiClient -Method 'GET' `
-                                -Uri $LocalVarUri `
-                                -Accepts $LocalVarAccepts `
-                                -ContentTypes $LocalVarContentTypes `
-                                -Body $LocalVarBodyParameter `
-                                -HeaderParameters $LocalVarHeaderParameters `
-                                -QueryParameters $LocalVarQueryParameters `
-                                -FormParameters $LocalVarFormParameters `
-                                -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "TLSCertificate" `
-                                -IsBodyNullable $false
-
-        if ($WithHttpInfo.IsPresent) {
-            return $LocalVarResult
-        } else {
-            return $LocalVarResult["Response"]
-        }
-    }
-}
-
-<#
-.SYNOPSIS
-
-Retrieves certificates for the logged in admin
-
-.DESCRIPTION
-
-No description available.
-
-.PARAMETER WithHttpInfo
-
-A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
-
-.OUTPUTS
-
-TLSCertificate[]
-#>
-function Get-Certs {
-    [CmdletBinding()]
-    Param (
-        [Switch]
-        $WithHttpInfo
-    )
-
-    Process {
-        'Calling method: Get-Certs' | Write-Debug
-        $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        $LocalVarAccepts = @()
-        $LocalVarContentTypes = @()
-        $LocalVarQueryParameters = @{}
-        $LocalVarHeaderParameters = @{}
-        $LocalVarFormParameters = @{}
-        $LocalVarPathParameters = @{}
-        $LocalVarCookieParameters = @{}
-        $LocalVarBodyParameter = $null
-
-        $Configuration = Get-Configuration
-        # HTTP header 'Accept' (if needed)
-        $LocalVarAccepts = @('application/json')
-
-        $LocalVarUri = '/adm/certs'
-
-        if ($Configuration["AccessToken"]) {
-            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
-            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
-        }
-
-        $LocalVarResult = Invoke-ApiClient -Method 'GET' `
-                                -Uri $LocalVarUri `
-                                -Accepts $LocalVarAccepts `
-                                -ContentTypes $LocalVarContentTypes `
-                                -Body $LocalVarBodyParameter `
-                                -HeaderParameters $LocalVarHeaderParameters `
-                                -QueryParameters $LocalVarQueryParameters `
-                                -FormParameters $LocalVarFormParameters `
-                                -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "TLSCertificate[]" `
-                                -IsBodyNullable $false
-
-        if ($WithHttpInfo.IsPresent) {
-            return $LocalVarResult
-        } else {
-            return $LocalVarResult["Response"]
-        }
-    }
-}
-
-<#
-.SYNOPSIS
-
-Retrieves aggregate statistics for all nodes
-
-.DESCRIPTION
-
-No description available.
-
-.PARAMETER WithHttpInfo
-
-A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
-
-.OUTPUTS
-
-StatsContainer
-#>
-function Get-GlobalStats {
-    [CmdletBinding()]
-    Param (
-        [Switch]
-        $WithHttpInfo
-    )
-
-    Process {
-        'Calling method: Get-GlobalStats' | Write-Debug
-        $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        $LocalVarAccepts = @()
-        $LocalVarContentTypes = @()
-        $LocalVarQueryParameters = @{}
-        $LocalVarHeaderParameters = @{}
-        $LocalVarFormParameters = @{}
-        $LocalVarPathParameters = @{}
-        $LocalVarCookieParameters = @{}
-        $LocalVarBodyParameter = $null
-
-        $Configuration = Get-Configuration
-        # HTTP header 'Accept' (if needed)
-        $LocalVarAccepts = @('application/json')
-
-        $LocalVarUri = '/adm/stats/global'
-
-        if ($Configuration["AccessToken"]) {
-            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
-            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
-        }
-
-        $LocalVarResult = Invoke-ApiClient -Method 'GET' `
-                                -Uri $LocalVarUri `
-                                -Accepts $LocalVarAccepts `
-                                -ContentTypes $LocalVarContentTypes `
-                                -Body $LocalVarBodyParameter `
-                                -HeaderParameters $LocalVarHeaderParameters `
-                                -QueryParameters $LocalVarQueryParameters `
-                                -FormParameters $LocalVarFormParameters `
-                                -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "StatsContainer" `
-                                -IsBodyNullable $false
-
-        if ($WithHttpInfo.IsPresent) {
-            return $LocalVarResult
-        } else {
-            return $LocalVarResult["Response"]
-        }
-    }
-}
-
-<#
-.SYNOPSIS
-
-Retrieves the LDAP configuration identified by id for this admin
-
-.DESCRIPTION
-
-No description available.
-
-.PARAMETER Id
-ID of the LDAP configuration
-
-.PARAMETER WithHttpInfo
-
-A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
-
-.OUTPUTS
-
-LDAPConfig
-#>
-function Get-LDAPConfig {
-    [CmdletBinding()]
-    Param (
-        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [String]
-        ${Id},
-        [Switch]
-        $WithHttpInfo
-    )
-
-    Process {
-        'Calling method: Get-LDAPConfig' | Write-Debug
-        $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        $LocalVarAccepts = @()
-        $LocalVarContentTypes = @()
-        $LocalVarQueryParameters = @{}
-        $LocalVarHeaderParameters = @{}
-        $LocalVarFormParameters = @{}
-        $LocalVarPathParameters = @{}
-        $LocalVarCookieParameters = @{}
-        $LocalVarBodyParameter = $null
-
-        $Configuration = Get-Configuration
-        # HTTP header 'Accept' (if needed)
-        $LocalVarAccepts = @('application/json')
-
-        $LocalVarUri = '/adm/ldapconfig/{id}'
-        if (!$Id) {
-            throw "Error! The required parameter `Id` missing when calling getLDAPConfig."
-        }
-        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
-
-        if ($Configuration["AccessToken"]) {
-            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
-            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
-        }
-
-        $LocalVarResult = Invoke-ApiClient -Method 'GET' `
-                                -Uri $LocalVarUri `
-                                -Accepts $LocalVarAccepts `
-                                -ContentTypes $LocalVarContentTypes `
-                                -Body $LocalVarBodyParameter `
-                                -HeaderParameters $LocalVarHeaderParameters `
-                                -QueryParameters $LocalVarQueryParameters `
-                                -FormParameters $LocalVarFormParameters `
-                                -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "LDAPConfig" `
-                                -IsBodyNullable $false
-
-        if ($WithHttpInfo.IsPresent) {
-            return $LocalVarResult
-        } else {
-            return $LocalVarResult["Response"]
-        }
-    }
-}
-
-<#
-.SYNOPSIS
-
-Retrieves LDAP configurations for the logged in admin
+Retrieves virtual sites
 
 .DESCRIPTION
 
@@ -3303,9 +3005,9 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-LDAPConfig[]
+VirtualSite[]
 #>
-function Get-LDAPConfigs {
+function Get-SS6Vsites {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
@@ -3323,7 +3025,7 @@ function Get-LDAPConfigs {
     )
 
     Process {
-        'Calling method: Get-LDAPConfigs' | Write-Debug
+        'Calling method: Get-SS6Vsites' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $LocalVarAccepts = @()
@@ -3335,11 +3037,11 @@ function Get-LDAPConfigs {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $Configuration = Get-Configuration
+        $Configuration = Get-SS6Configuration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
-        $LocalVarUri = '/adm/ldapconfig'
+        $LocalVarUri = '/sa/vsites'
 
         if ($Offset) {
             $LocalVarQueryParameters['offset'] = $Offset
@@ -3358,7 +3060,7 @@ function Get-LDAPConfigs {
             Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
         }
 
-        $LocalVarResult = Invoke-ApiClient -Method 'GET' `
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
                                 -Accepts $LocalVarAccepts `
                                 -ContentTypes $LocalVarContentTypes `
@@ -3367,7 +3069,7 @@ function Get-LDAPConfigs {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "LDAPConfig[]" `
+                                -ReturnType "VirtualSite[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -3381,1061 +3083,17 @@ function Get-LDAPConfigs {
 <#
 .SYNOPSIS
 
-Retrieves the ssh host key with the given ID
+Test a google Authenticator token with explicit secret
 
 .DESCRIPTION
 
 No description available.
 
-.PARAMETER Id
-ID of the host key
-
-.PARAMETER WithHttpInfo
-
-A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
-
-.OUTPUTS
-
-SSHHostKey
-#>
-function Get-SSHHostKeyByID {
-    [CmdletBinding()]
-    Param (
-        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [String]
-        ${Id},
-        [Switch]
-        $WithHttpInfo
-    )
-
-    Process {
-        'Calling method: Get-SSHHostKeyByID' | Write-Debug
-        $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        $LocalVarAccepts = @()
-        $LocalVarContentTypes = @()
-        $LocalVarQueryParameters = @{}
-        $LocalVarHeaderParameters = @{}
-        $LocalVarFormParameters = @{}
-        $LocalVarPathParameters = @{}
-        $LocalVarCookieParameters = @{}
-        $LocalVarBodyParameter = $null
-
-        $Configuration = Get-Configuration
-        # HTTP header 'Accept' (if needed)
-        $LocalVarAccepts = @('application/json')
-
-        $LocalVarUri = '/adm/sshhostkeys/{id}'
-        if (!$Id) {
-            throw "Error! The required parameter `Id` missing when calling getSSHHostKeyByID."
-        }
-        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
-
-        if ($Configuration["AccessToken"]) {
-            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
-            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
-        }
-
-        $LocalVarResult = Invoke-ApiClient -Method 'GET' `
-                                -Uri $LocalVarUri `
-                                -Accepts $LocalVarAccepts `
-                                -ContentTypes $LocalVarContentTypes `
-                                -Body $LocalVarBodyParameter `
-                                -HeaderParameters $LocalVarHeaderParameters `
-                                -QueryParameters $LocalVarQueryParameters `
-                                -FormParameters $LocalVarFormParameters `
-                                -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "SSHHostKey" `
-                                -IsBodyNullable $false
-
-        if ($WithHttpInfo.IsPresent) {
-            return $LocalVarResult
-        } else {
-            return $LocalVarResult["Response"]
-        }
-    }
-}
-
-<#
-.SYNOPSIS
-
-Retrieves SSH host keys for the virtual site of the logged in admin
-
-.DESCRIPTION
-
-No description available.
-
-.PARAMETER WithHttpInfo
-
-A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
-
-.OUTPUTS
-
-SSHHostKey[]
-#>
-function Get-SSHHostKeys {
-    [CmdletBinding()]
-    Param (
-        [Switch]
-        $WithHttpInfo
-    )
-
-    Process {
-        'Calling method: Get-SSHHostKeys' | Write-Debug
-        $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        $LocalVarAccepts = @()
-        $LocalVarContentTypes = @()
-        $LocalVarQueryParameters = @{}
-        $LocalVarHeaderParameters = @{}
-        $LocalVarFormParameters = @{}
-        $LocalVarPathParameters = @{}
-        $LocalVarCookieParameters = @{}
-        $LocalVarBodyParameter = $null
-
-        $Configuration = Get-Configuration
-        # HTTP header 'Accept' (if needed)
-        $LocalVarAccepts = @('application/json')
-
-        $LocalVarUri = '/adm/sshhostkeys'
-
-        if ($Configuration["AccessToken"]) {
-            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
-            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
-        }
-
-        $LocalVarResult = Invoke-ApiClient -Method 'GET' `
-                                -Uri $LocalVarUri `
-                                -Accepts $LocalVarAccepts `
-                                -ContentTypes $LocalVarContentTypes `
-                                -Body $LocalVarBodyParameter `
-                                -HeaderParameters $LocalVarHeaderParameters `
-                                -QueryParameters $LocalVarQueryParameters `
-                                -FormParameters $LocalVarFormParameters `
-                                -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "SSHHostKey[]" `
-                                -IsBodyNullable $false
-
-        if ($WithHttpInfo.IsPresent) {
-            return $LocalVarResult
-        } else {
-            return $LocalVarResult["Response"]
-        }
-    }
-}
-
-<#
-.SYNOPSIS
-
-Retrieves the Script identified by id for this admin
-
-.DESCRIPTION
-
-No description available.
-
-.PARAMETER Id
-ID of the Script
-
-.PARAMETER WithHttpInfo
-
-A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
-
-.OUTPUTS
-
-Script
-#>
-function Get-Scrips {
-    [CmdletBinding()]
-    Param (
-        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [String]
-        ${Id},
-        [Switch]
-        $WithHttpInfo
-    )
-
-    Process {
-        'Calling method: Get-Scrips' | Write-Debug
-        $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        $LocalVarAccepts = @()
-        $LocalVarContentTypes = @()
-        $LocalVarQueryParameters = @{}
-        $LocalVarHeaderParameters = @{}
-        $LocalVarFormParameters = @{}
-        $LocalVarPathParameters = @{}
-        $LocalVarCookieParameters = @{}
-        $LocalVarBodyParameter = $null
-
-        $Configuration = Get-Configuration
-        # HTTP header 'Accept' (if needed)
-        $LocalVarAccepts = @('application/json')
-
-        $LocalVarUri = '/adm/script/{id}'
-        if (!$Id) {
-            throw "Error! The required parameter `Id` missing when calling getScrips."
-        }
-        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
-
-        if ($Configuration["AccessToken"]) {
-            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
-            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
-        }
-
-        $LocalVarResult = Invoke-ApiClient -Method 'GET' `
-                                -Uri $LocalVarUri `
-                                -Accepts $LocalVarAccepts `
-                                -ContentTypes $LocalVarContentTypes `
-                                -Body $LocalVarBodyParameter `
-                                -HeaderParameters $LocalVarHeaderParameters `
-                                -QueryParameters $LocalVarQueryParameters `
-                                -FormParameters $LocalVarFormParameters `
-                                -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "Script" `
-                                -IsBodyNullable $false
-
-        if ($WithHttpInfo.IsPresent) {
-            return $LocalVarResult
-        } else {
-            return $LocalVarResult["Response"]
-        }
-    }
-}
-
-<#
-.SYNOPSIS
-
-Retrieves scripts for the logged in admin
-
-.DESCRIPTION
-
-No description available.
-
-.PARAMETER Offset
-No description available.
-
-.PARAMETER Limit
-The maximum number of items to return. Max value is 500, default is 100
-
-.PARAMETER Order
-Ordering by id. Default ASC
-
-.PARAMETER WithHttpInfo
-
-A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
-
-.OUTPUTS
-
-Script[]
-#>
-function Get-Scripts {
-    [CmdletBinding()]
-    Param (
-        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [System.Nullable[Int32]]
-        ${Offset},
-        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [System.Nullable[Int32]]
-        ${Limit},
-        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [ValidateSet("ASC", "DESC")]
-        [String]
-        ${Order},
-        [Switch]
-        $WithHttpInfo
-    )
-
-    Process {
-        'Calling method: Get-Scripts' | Write-Debug
-        $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        $LocalVarAccepts = @()
-        $LocalVarContentTypes = @()
-        $LocalVarQueryParameters = @{}
-        $LocalVarHeaderParameters = @{}
-        $LocalVarFormParameters = @{}
-        $LocalVarPathParameters = @{}
-        $LocalVarCookieParameters = @{}
-        $LocalVarBodyParameter = $null
-
-        $Configuration = Get-Configuration
-        # HTTP header 'Accept' (if needed)
-        $LocalVarAccepts = @('application/json')
-
-        $LocalVarUri = '/adm/script'
-
-        if ($Offset) {
-            $LocalVarQueryParameters['offset'] = $Offset
-        }
-
-        if ($Limit) {
-            $LocalVarQueryParameters['limit'] = $Limit
-        }
-
-        if ($Order) {
-            $LocalVarQueryParameters['order'] = $Order
-        }
-
-        if ($Configuration["AccessToken"]) {
-            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
-            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
-        }
-
-        $LocalVarResult = Invoke-ApiClient -Method 'GET' `
-                                -Uri $LocalVarUri `
-                                -Accepts $LocalVarAccepts `
-                                -ContentTypes $LocalVarContentTypes `
-                                -Body $LocalVarBodyParameter `
-                                -HeaderParameters $LocalVarHeaderParameters `
-                                -QueryParameters $LocalVarQueryParameters `
-                                -FormParameters $LocalVarFormParameters `
-                                -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "Script[]" `
-                                -IsBodyNullable $false
-
-        if ($WithHttpInfo.IsPresent) {
-            return $LocalVarResult
-        } else {
-            return $LocalVarResult["Response"]
-        }
-    }
-}
-
-<#
-.SYNOPSIS
-
-Retrieves aggregate statistics for all nodes since last start
-
-.DESCRIPTION
-
-No description available.
-
-.PARAMETER WithHttpInfo
-
-A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
-
-.OUTPUTS
-
-StatsContainer
-#>
-function Get-StatsSinceLastStart {
-    [CmdletBinding()]
-    Param (
-        [Switch]
-        $WithHttpInfo
-    )
-
-    Process {
-        'Calling method: Get-StatsSinceLastStart' | Write-Debug
-        $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        $LocalVarAccepts = @()
-        $LocalVarContentTypes = @()
-        $LocalVarQueryParameters = @{}
-        $LocalVarHeaderParameters = @{}
-        $LocalVarFormParameters = @{}
-        $LocalVarPathParameters = @{}
-        $LocalVarCookieParameters = @{}
-        $LocalVarBodyParameter = $null
-
-        $Configuration = Get-Configuration
-        # HTTP header 'Accept' (if needed)
-        $LocalVarAccepts = @('application/json')
-
-        $LocalVarUri = '/adm/stats/sincestart'
-
-        if ($Configuration["AccessToken"]) {
-            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
-            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
-        }
-
-        $LocalVarResult = Invoke-ApiClient -Method 'GET' `
-                                -Uri $LocalVarUri `
-                                -Accepts $LocalVarAccepts `
-                                -ContentTypes $LocalVarContentTypes `
-                                -Body $LocalVarBodyParameter `
-                                -HeaderParameters $LocalVarHeaderParameters `
-                                -QueryParameters $LocalVarQueryParameters `
-                                -FormParameters $LocalVarFormParameters `
-                                -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "StatsContainer" `
-                                -IsBodyNullable $false
-
-        if ($WithHttpInfo.IsPresent) {
-            return $LocalVarResult
-        } else {
-            return $LocalVarResult["Response"]
-        }
-    }
-}
-
-<#
-.SYNOPSIS
-
-Retrieves system properties for each node
-
-.DESCRIPTION
-
-No description available.
-
-.PARAMETER WithHttpInfo
-
-A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
-
-.OUTPUTS
-
-SystemProps[]
-#>
-function Get-SystemProperties {
-    [CmdletBinding()]
-    Param (
-        [Switch]
-        $WithHttpInfo
-    )
-
-    Process {
-        'Calling method: Get-SystemProperties' | Write-Debug
-        $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        $LocalVarAccepts = @()
-        $LocalVarContentTypes = @()
-        $LocalVarQueryParameters = @{}
-        $LocalVarHeaderParameters = @{}
-        $LocalVarFormParameters = @{}
-        $LocalVarPathParameters = @{}
-        $LocalVarCookieParameters = @{}
-        $LocalVarBodyParameter = $null
-
-        $Configuration = Get-Configuration
-        # HTTP header 'Accept' (if needed)
-        $LocalVarAccepts = @('application/json')
-
-        $LocalVarUri = '/adm/systemprops'
-
-        if ($Configuration["AccessToken"]) {
-            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
-            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
-        }
-
-        $LocalVarResult = Invoke-ApiClient -Method 'GET' `
-                                -Uri $LocalVarUri `
-                                -Accepts $LocalVarAccepts `
-                                -ContentTypes $LocalVarContentTypes `
-                                -Body $LocalVarBodyParameter `
-                                -HeaderParameters $LocalVarHeaderParameters `
-                                -QueryParameters $LocalVarQueryParameters `
-                                -FormParameters $LocalVarFormParameters `
-                                -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "SystemProps[]" `
-                                -IsBodyNullable $false
-
-        if ($WithHttpInfo.IsPresent) {
-            return $LocalVarResult
-        } else {
-            return $LocalVarResult["Response"]
-        }
-    }
-}
-
-<#
-.SYNOPSIS
-
-Retrieves the user identified by id for this admin
-
-.DESCRIPTION
-
-No description available.
-
-.PARAMETER Id
-ID of the user
-
-.PARAMETER WithHttpInfo
-
-A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
-
-.OUTPUTS
-
-User
-#>
-function Get-User {
-    [CmdletBinding()]
-    Param (
-        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [String]
-        ${Id},
-        [Switch]
-        $WithHttpInfo
-    )
-
-    Process {
-        'Calling method: Get-User' | Write-Debug
-        $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        $LocalVarAccepts = @()
-        $LocalVarContentTypes = @()
-        $LocalVarQueryParameters = @{}
-        $LocalVarHeaderParameters = @{}
-        $LocalVarFormParameters = @{}
-        $LocalVarPathParameters = @{}
-        $LocalVarCookieParameters = @{}
-        $LocalVarBodyParameter = $null
-
-        $Configuration = Get-Configuration
-        # HTTP header 'Accept' (if needed)
-        $LocalVarAccepts = @('application/json')
-
-        $LocalVarUri = '/adm/users/{id}'
-        if (!$Id) {
-            throw "Error! The required parameter `Id` missing when calling getUser."
-        }
-        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
-
-        if ($Configuration["AccessToken"]) {
-            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
-            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
-        }
-
-        $LocalVarResult = Invoke-ApiClient -Method 'GET' `
-                                -Uri $LocalVarUri `
-                                -Accepts $LocalVarAccepts `
-                                -ContentTypes $LocalVarContentTypes `
-                                -Body $LocalVarBodyParameter `
-                                -HeaderParameters $LocalVarHeaderParameters `
-                                -QueryParameters $LocalVarQueryParameters `
-                                -FormParameters $LocalVarFormParameters `
-                                -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "User" `
-                                -IsBodyNullable $false
-
-        if ($WithHttpInfo.IsPresent) {
-            return $LocalVarResult
-        } else {
-            return $LocalVarResult["Response"]
-        }
-    }
-}
-
-<#
-.SYNOPSIS
-
-Retrieves the public keys with the specified keyID
-
-.DESCRIPTION
-
-No description available.
-
-.PARAMETER Id
-ID of the user
-
-.PARAMETER KeyID
-ID of the SSH public key
-
-.PARAMETER WithHttpInfo
-
-A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
-
-.OUTPUTS
-
-SSHPubKey
-#>
-function Get-UserPublicKeyByID {
-    [CmdletBinding()]
-    Param (
-        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [String]
-        ${Id},
-        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [String]
-        ${KeyID},
-        [Switch]
-        $WithHttpInfo
-    )
-
-    Process {
-        'Calling method: Get-UserPublicKeyByID' | Write-Debug
-        $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        $LocalVarAccepts = @()
-        $LocalVarContentTypes = @()
-        $LocalVarQueryParameters = @{}
-        $LocalVarHeaderParameters = @{}
-        $LocalVarFormParameters = @{}
-        $LocalVarPathParameters = @{}
-        $LocalVarCookieParameters = @{}
-        $LocalVarBodyParameter = $null
-
-        $Configuration = Get-Configuration
-        # HTTP header 'Accept' (if needed)
-        $LocalVarAccepts = @('application/json')
-
-        $LocalVarUri = '/adm/users/{id}/pubkeys/{keyID}'
-        if (!$Id) {
-            throw "Error! The required parameter `Id` missing when calling getUserPublicKeyByID."
-        }
-        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
-        if (!$KeyID) {
-            throw "Error! The required parameter `KeyID` missing when calling getUserPublicKeyByID."
-        }
-        $LocalVarUri = $LocalVarUri.replace('{keyID}', [System.Web.HTTPUtility]::UrlEncode($KeyID))
-
-        if ($Configuration["AccessToken"]) {
-            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
-            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
-        }
-
-        $LocalVarResult = Invoke-ApiClient -Method 'GET' `
-                                -Uri $LocalVarUri `
-                                -Accepts $LocalVarAccepts `
-                                -ContentTypes $LocalVarContentTypes `
-                                -Body $LocalVarBodyParameter `
-                                -HeaderParameters $LocalVarHeaderParameters `
-                                -QueryParameters $LocalVarQueryParameters `
-                                -FormParameters $LocalVarFormParameters `
-                                -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "SSHPubKey" `
-                                -IsBodyNullable $false
-
-        if ($WithHttpInfo.IsPresent) {
-            return $LocalVarResult
-        } else {
-            return $LocalVarResult["Response"]
-        }
-    }
-}
-
-<#
-.SYNOPSIS
-
-Retrieves the public keys for the user identified by id
-
-.DESCRIPTION
-
-No description available.
-
-.PARAMETER Id
-ID of the user
-
-.PARAMETER WithHttpInfo
-
-A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
-
-.OUTPUTS
-
-SSHPubKey[]
-#>
-function Get-UserPublicKeys {
-    [CmdletBinding()]
-    Param (
-        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [String]
-        ${Id},
-        [Switch]
-        $WithHttpInfo
-    )
-
-    Process {
-        'Calling method: Get-UserPublicKeys' | Write-Debug
-        $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        $LocalVarAccepts = @()
-        $LocalVarContentTypes = @()
-        $LocalVarQueryParameters = @{}
-        $LocalVarHeaderParameters = @{}
-        $LocalVarFormParameters = @{}
-        $LocalVarPathParameters = @{}
-        $LocalVarCookieParameters = @{}
-        $LocalVarBodyParameter = $null
-
-        $Configuration = Get-Configuration
-        # HTTP header 'Accept' (if needed)
-        $LocalVarAccepts = @('application/json')
-
-        $LocalVarUri = '/adm/users/{id}/pubkeys'
-        if (!$Id) {
-            throw "Error! The required parameter `Id` missing when calling getUserPublicKeys."
-        }
-        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
-
-        if ($Configuration["AccessToken"]) {
-            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
-            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
-        }
-
-        $LocalVarResult = Invoke-ApiClient -Method 'GET' `
-                                -Uri $LocalVarUri `
-                                -Accepts $LocalVarAccepts `
-                                -ContentTypes $LocalVarContentTypes `
-                                -Body $LocalVarBodyParameter `
-                                -HeaderParameters $LocalVarHeaderParameters `
-                                -QueryParameters $LocalVarQueryParameters `
-                                -FormParameters $LocalVarFormParameters `
-                                -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "SSHPubKey[]" `
-                                -IsBodyNullable $false
-
-        if ($WithHttpInfo.IsPresent) {
-            return $LocalVarResult
-        } else {
-            return $LocalVarResult["Response"]
-        }
-    }
-}
-
-<#
-.SYNOPSIS
-
-Retrieves users for the logged in admin
-
-.DESCRIPTION
-
-No description available.
-
-.PARAMETER Offset
-No description available.
-
-.PARAMETER Limit
-The maximum number of items to return. Max value is 500, default is 100
-
-.PARAMETER Order
-Ordering by id. Default ASC
-
-.PARAMETER WithHttpInfo
-
-A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
-
-.OUTPUTS
-
-User[]
-#>
-function Get-Users {
-    [CmdletBinding()]
-    Param (
-        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [System.Nullable[Int32]]
-        ${Offset},
-        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [System.Nullable[Int32]]
-        ${Limit},
-        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [ValidateSet("ASC", "DESC")]
-        [String]
-        ${Order},
-        [Switch]
-        $WithHttpInfo
-    )
-
-    Process {
-        'Calling method: Get-Users' | Write-Debug
-        $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        $LocalVarAccepts = @()
-        $LocalVarContentTypes = @()
-        $LocalVarQueryParameters = @{}
-        $LocalVarHeaderParameters = @{}
-        $LocalVarFormParameters = @{}
-        $LocalVarPathParameters = @{}
-        $LocalVarCookieParameters = @{}
-        $LocalVarBodyParameter = $null
-
-        $Configuration = Get-Configuration
-        # HTTP header 'Accept' (if needed)
-        $LocalVarAccepts = @('application/json')
-
-        $LocalVarUri = '/adm/users'
-
-        if ($Offset) {
-            $LocalVarQueryParameters['offset'] = $Offset
-        }
-
-        if ($Limit) {
-            $LocalVarQueryParameters['limit'] = $Limit
-        }
-
-        if ($Order) {
-            $LocalVarQueryParameters['order'] = $Order
-        }
-
-        if ($Configuration["AccessToken"]) {
-            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
-            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
-        }
-
-        $LocalVarResult = Invoke-ApiClient -Method 'GET' `
-                                -Uri $LocalVarUri `
-                                -Accepts $LocalVarAccepts `
-                                -ContentTypes $LocalVarContentTypes `
-                                -Body $LocalVarBodyParameter `
-                                -HeaderParameters $LocalVarHeaderParameters `
-                                -QueryParameters $LocalVarQueryParameters `
-                                -FormParameters $LocalVarFormParameters `
-                                -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "User[]" `
-                                -IsBodyNullable $false
-
-        if ($WithHttpInfo.IsPresent) {
-            return $LocalVarResult
-        } else {
-            return $LocalVarResult["Response"]
-        }
-    }
-}
-
-<#
-.SYNOPSIS
-
-Retrieves the Virtual File System identified by id for this admin
-
-.DESCRIPTION
-
-No description available.
-
-.PARAMETER Id
-ID of the VFS
-
-.PARAMETER WithHttpInfo
-
-A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
-
-.OUTPUTS
-
-VirtualFileSystem
-#>
-function Get-VFS {
-    [CmdletBinding()]
-    Param (
-        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [String]
-        ${Id},
-        [Switch]
-        $WithHttpInfo
-    )
-
-    Process {
-        'Calling method: Get-VFS' | Write-Debug
-        $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        $LocalVarAccepts = @()
-        $LocalVarContentTypes = @()
-        $LocalVarQueryParameters = @{}
-        $LocalVarHeaderParameters = @{}
-        $LocalVarFormParameters = @{}
-        $LocalVarPathParameters = @{}
-        $LocalVarCookieParameters = @{}
-        $LocalVarBodyParameter = $null
-
-        $Configuration = Get-Configuration
-        # HTTP header 'Accept' (if needed)
-        $LocalVarAccepts = @('application/json')
-
-        $LocalVarUri = '/adm/vfs/{id}'
-        if (!$Id) {
-            throw "Error! The required parameter `Id` missing when calling getVFS."
-        }
-        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
-
-        if ($Configuration["AccessToken"]) {
-            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
-            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
-        }
-
-        $LocalVarResult = Invoke-ApiClient -Method 'GET' `
-                                -Uri $LocalVarUri `
-                                -Accepts $LocalVarAccepts `
-                                -ContentTypes $LocalVarContentTypes `
-                                -Body $LocalVarBodyParameter `
-                                -HeaderParameters $LocalVarHeaderParameters `
-                                -QueryParameters $LocalVarQueryParameters `
-                                -FormParameters $LocalVarFormParameters `
-                                -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "VirtualFileSystem" `
-                                -IsBodyNullable $false
-
-        if ($WithHttpInfo.IsPresent) {
-            return $LocalVarResult
-        } else {
-            return $LocalVarResult["Response"]
-        }
-    }
-}
-
-<#
-.SYNOPSIS
-
-Retrieves virtual file systems for the logged in admin
-
-.DESCRIPTION
-
-No description available.
-
-.PARAMETER Offset
-No description available.
-
-.PARAMETER Limit
-The maximum number of items to return. Max value is 500, default is 100
-
-.PARAMETER Order
-Ordering by id. Default ASC
-
-.PARAMETER WithHttpInfo
-
-A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
-
-.OUTPUTS
-
-VirtualFileSystem[]
-#>
-function Get-VFSs {
-    [CmdletBinding()]
-    Param (
-        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [System.Nullable[Int32]]
-        ${Offset},
-        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [System.Nullable[Int32]]
-        ${Limit},
-        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [ValidateSet("ASC", "DESC")]
-        [String]
-        ${Order},
-        [Switch]
-        $WithHttpInfo
-    )
-
-    Process {
-        'Calling method: Get-VFSs' | Write-Debug
-        $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        $LocalVarAccepts = @()
-        $LocalVarContentTypes = @()
-        $LocalVarQueryParameters = @{}
-        $LocalVarHeaderParameters = @{}
-        $LocalVarFormParameters = @{}
-        $LocalVarPathParameters = @{}
-        $LocalVarCookieParameters = @{}
-        $LocalVarBodyParameter = $null
-
-        $Configuration = Get-Configuration
-        # HTTP header 'Accept' (if needed)
-        $LocalVarAccepts = @('application/json')
-
-        $LocalVarUri = '/adm/vfs'
-
-        if ($Offset) {
-            $LocalVarQueryParameters['offset'] = $Offset
-        }
-
-        if ($Limit) {
-            $LocalVarQueryParameters['limit'] = $Limit
-        }
-
-        if ($Order) {
-            $LocalVarQueryParameters['order'] = $Order
-        }
-
-        if ($Configuration["AccessToken"]) {
-            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
-            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
-        }
-
-        $LocalVarResult = Invoke-ApiClient -Method 'GET' `
-                                -Uri $LocalVarUri `
-                                -Accepts $LocalVarAccepts `
-                                -ContentTypes $LocalVarContentTypes `
-                                -Body $LocalVarBodyParameter `
-                                -HeaderParameters $LocalVarHeaderParameters `
-                                -QueryParameters $LocalVarQueryParameters `
-                                -FormParameters $LocalVarFormParameters `
-                                -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "VirtualFileSystem[]" `
-                                -IsBodyNullable $false
-
-        if ($WithHttpInfo.IsPresent) {
-            return $LocalVarResult
-        } else {
-            return $LocalVarResult["Response"]
-        }
-    }
-}
-
-<#
-.SYNOPSIS
-
-Retrieves the configuration for the virtual site that belongs to the logged in admin
-
-.DESCRIPTION
-
-No description available.
-
-.PARAMETER WithHttpInfo
-
-A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
-
-.OUTPUTS
-
-SrvConfig
-#>
-function Get-VsiteConfig {
-    [CmdletBinding()]
-    Param (
-        [Switch]
-        $WithHttpInfo
-    )
-
-    Process {
-        'Calling method: Get-VsiteConfig' | Write-Debug
-        $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        $LocalVarAccepts = @()
-        $LocalVarContentTypes = @()
-        $LocalVarQueryParameters = @{}
-        $LocalVarHeaderParameters = @{}
-        $LocalVarFormParameters = @{}
-        $LocalVarPathParameters = @{}
-        $LocalVarCookieParameters = @{}
-        $LocalVarBodyParameter = $null
-
-        $Configuration = Get-Configuration
-        # HTTP header 'Accept' (if needed)
-        $LocalVarAccepts = @('application/json')
-
-        $LocalVarUri = '/adm/srvconfig'
-
-        if ($Configuration["AccessToken"]) {
-            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
-            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
-        }
-
-        $LocalVarResult = Invoke-ApiClient -Method 'GET' `
-                                -Uri $LocalVarUri `
-                                -Accepts $LocalVarAccepts `
-                                -ContentTypes $LocalVarContentTypes `
-                                -Body $LocalVarBodyParameter `
-                                -HeaderParameters $LocalVarHeaderParameters `
-                                -QueryParameters $LocalVarQueryParameters `
-                                -FormParameters $LocalVarFormParameters `
-                                -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "SrvConfig" `
-                                -IsBodyNullable $false
-
-        if ($WithHttpInfo.IsPresent) {
-            return $LocalVarResult
-        } else {
-            return $LocalVarResult["Response"]
-        }
-    }
-}
-
-<#
-.SYNOPSIS
-
-Partial update the configuration for the virtual site that belongs to the logged in admin. Partial update is not supported for sub-structs such as SSHConfig, FTPConfig etc. You have to pass the whole sub-struct
-
-.DESCRIPTION
-
-No description available.
-
-.PARAMETER SrvConfig
-No description available.
+.PARAMETER Secret
+secret of GOTP
+
+.PARAMETER Token
+token to be verified
 
 .PARAMETER WithHttpInfo
 
@@ -4445,18 +3103,21 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 ApiResponse
 #>
-function Invoke-ParchVsiteConfig {
+function Invoke-SS6Googleauthenticatortestsa {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [PSCustomObject]
-        ${SrvConfig},
+        [String]
+        ${Secret},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Token},
         [Switch]
         $WithHttpInfo
     )
 
     Process {
-        'Calling method: Invoke-ParchVsiteConfig' | Write-Debug
+        'Calling method: Invoke-SS6Googleauthenticatortestsa' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $LocalVarAccepts = @()
@@ -4468,27 +3129,26 @@ function Invoke-ParchVsiteConfig {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $Configuration = Get-Configuration
+        $Configuration = Get-SS6Configuration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
-        # HTTP header 'Content-Type'
-        $LocalVarContentTypes = @('application/json')
-
-        $LocalVarUri = '/adm/srvconfig'
-
-        if (!$SrvConfig) {
-            throw "Error! The required parameter `SrvConfig` missing when calling parchVsiteConfig."
+        $LocalVarUri = '/sa/googleauthenticatortest/{secret}/{token}'
+        if (!$Secret) {
+            throw "Error! The required parameter `Secret` missing when calling googleauthenticatortestsa."
         }
-
-        $LocalVarBodyParameter = $SrvConfig | ConvertTo-Json -Depth 100
+        $LocalVarUri = $LocalVarUri.replace('{secret}', [System.Web.HTTPUtility]::UrlEncode($Secret))
+        if (!$Token) {
+            throw "Error! The required parameter `Token` missing when calling googleauthenticatortestsa."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{token}', [System.Web.HTTPUtility]::UrlEncode($Token))
 
         if ($Configuration["AccessToken"]) {
             $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
             Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
         }
 
-        $LocalVarResult = Invoke-ApiClient -Method 'PATCH' `
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
                                 -Accepts $LocalVarAccepts `
                                 -ContentTypes $LocalVarContentTypes `
@@ -4511,16 +3171,13 @@ function Invoke-ParchVsiteConfig {
 <#
 .SYNOPSIS
 
-Partial updates for the LDAP configuration identified by id
+Partial update the global configuration. Partial update is not supported for sub-structs. You have to pass the whole sub-struct
 
 .DESCRIPTION
 
 No description available.
 
-.PARAMETER Id
-ID of the LDAP configuration
-
-.PARAMETER LDAPConfig
+.PARAMETER GlobalConfig
 No description available.
 
 .PARAMETER WithHttpInfo
@@ -4531,21 +3188,18 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 ApiResponse
 #>
-function Invoke-PatchLDAPConfig {
+function Invoke-SS6ParchGlobalConfig {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [String]
-        ${Id},
-        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
-        ${LDAPConfig},
+        ${GlobalConfig},
         [Switch]
         $WithHttpInfo
     )
 
     Process {
-        'Calling method: Invoke-PatchLDAPConfig' | Write-Debug
+        'Calling method: Invoke-SS6ParchGlobalConfig' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $LocalVarAccepts = @()
@@ -4557,31 +3211,27 @@ function Invoke-PatchLDAPConfig {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $Configuration = Get-Configuration
+        $Configuration = Get-SS6Configuration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
         # HTTP header 'Content-Type'
         $LocalVarContentTypes = @('application/json')
 
-        $LocalVarUri = '/adm/ldapconfig/{id}'
-        if (!$Id) {
-            throw "Error! The required parameter `Id` missing when calling patchLDAPConfig."
-        }
-        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
+        $LocalVarUri = '/sa/globalconfig'
 
-        if (!$LDAPConfig) {
-            throw "Error! The required parameter `LDAPConfig` missing when calling patchLDAPConfig."
+        if (!$GlobalConfig) {
+            throw "Error! The required parameter `GlobalConfig` missing when calling parchGlobalConfig."
         }
 
-        $LocalVarBodyParameter = $LDAPConfig | ConvertTo-Json -Depth 100
+        $LocalVarBodyParameter = $GlobalConfig | ConvertTo-Json -Depth 100
 
         if ($Configuration["AccessToken"]) {
             $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
             Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
         }
 
-        $LocalVarResult = Invoke-ApiClient -Method 'PATCH' `
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'PATCH' `
                                 -Uri $LocalVarUri `
                                 -Accepts $LocalVarAccepts `
                                 -ContentTypes $LocalVarContentTypes `
@@ -4604,16 +3254,19 @@ function Invoke-PatchLDAPConfig {
 <#
 .SYNOPSIS
 
-Partial update for the script identified by id
+Partial update for the admin identified by adminID for this virtual site
 
 .DESCRIPTION
 
 No description available.
 
 .PARAMETER Id
-ID of the Script
+ID of the virtual site
 
-.PARAMETER Script
+.PARAMETER AdminID
+ID of the admin
+
+.PARAMETER Admin
 No description available.
 
 .PARAMETER WithHttpInfo
@@ -4624,21 +3277,24 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 ApiResponse
 #>
-function Invoke-PatchScript {
+function Invoke-SS6PatchAdmin {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [String]
         ${Id},
         [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${AdminID},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
-        ${Script},
+        ${Admin},
         [Switch]
         $WithHttpInfo
     )
 
     Process {
-        'Calling method: Invoke-PatchScript' | Write-Debug
+        'Calling method: Invoke-SS6PatchAdmin' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $LocalVarAccepts = @()
@@ -4650,31 +3306,35 @@ function Invoke-PatchScript {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $Configuration = Get-Configuration
+        $Configuration = Get-SS6Configuration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
         # HTTP header 'Content-Type'
         $LocalVarContentTypes = @('application/json')
 
-        $LocalVarUri = '/adm/script/{id}'
+        $LocalVarUri = '/sa/vsites/{id}/adm/{adminID}'
         if (!$Id) {
-            throw "Error! The required parameter `Id` missing when calling patchScript."
+            throw "Error! The required parameter `Id` missing when calling patchAdmin."
         }
         $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
+        if (!$AdminID) {
+            throw "Error! The required parameter `AdminID` missing when calling patchAdmin."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{adminID}', [System.Web.HTTPUtility]::UrlEncode($AdminID))
 
-        if (!$Script) {
-            throw "Error! The required parameter `Script` missing when calling patchScript."
+        if (!$Admin) {
+            throw "Error! The required parameter `Admin` missing when calling patchAdmin."
         }
 
-        $LocalVarBodyParameter = $Script | ConvertTo-Json -Depth 100
+        $LocalVarBodyParameter = $Admin | ConvertTo-Json -Depth 100
 
         if ($Configuration["AccessToken"]) {
             $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
             Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
         }
 
-        $LocalVarResult = Invoke-ApiClient -Method 'PATCH' `
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'PATCH' `
                                 -Uri $LocalVarUri `
                                 -Accepts $LocalVarAccepts `
                                 -ContentTypes $LocalVarContentTypes `
@@ -4697,16 +3357,13 @@ function Invoke-PatchScript {
 <#
 .SYNOPSIS
 
-Partial update for the user identified by id
+Partial update for the node
 
 .DESCRIPTION
 
 No description available.
 
-.PARAMETER Id
-ID of the user
-
-.PARAMETER User
+.PARAMETER Node
 No description available.
 
 .PARAMETER WithHttpInfo
@@ -4717,21 +3374,18 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 ApiResponse
 #>
-function Invoke-PatchUser {
+function Invoke-SS6PatchNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [String]
-        ${Id},
-        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
-        ${User},
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
 
     Process {
-        'Calling method: Invoke-PatchUser' | Write-Debug
+        'Calling method: Invoke-SS6PatchNode' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $LocalVarAccepts = @()
@@ -4743,31 +3397,27 @@ function Invoke-PatchUser {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $Configuration = Get-Configuration
+        $Configuration = Get-SS6Configuration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
         # HTTP header 'Content-Type'
         $LocalVarContentTypes = @('application/json')
 
-        $LocalVarUri = '/adm/users/{id}'
-        if (!$Id) {
-            throw "Error! The required parameter `Id` missing when calling patchUser."
-        }
-        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
+        $LocalVarUri = '/sa/node'
 
-        if (!$User) {
-            throw "Error! The required parameter `User` missing when calling patchUser."
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling patchNode."
         }
 
-        $LocalVarBodyParameter = $User | ConvertTo-Json -Depth 100
+        $LocalVarBodyParameter = $Node | ConvertTo-Json -Depth 100
 
         if ($Configuration["AccessToken"]) {
             $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
             Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
         }
 
-        $LocalVarResult = Invoke-ApiClient -Method 'PATCH' `
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'PATCH' `
                                 -Uri $LocalVarUri `
                                 -Accepts $LocalVarAccepts `
                                 -ContentTypes $LocalVarContentTypes `
@@ -4790,16 +3440,16 @@ function Invoke-PatchUser {
 <#
 .SYNOPSIS
 
-Partial update for the Virtual File System identified by id
+Partial update for the SuperAdmin user identified by id
 
 .DESCRIPTION
 
 No description available.
 
 .PARAMETER Id
-ID of the VFS
+ID of the SuperAdmin
 
-.PARAMETER VirtualFileSystem
+.PARAMETER SuperAdmin
 No description available.
 
 .PARAMETER WithHttpInfo
@@ -4810,7 +3460,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 ApiResponse
 #>
-function Invoke-PatchVFS {
+function Invoke-SS6PatchSuperAdminByID {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
@@ -4818,13 +3468,13 @@ function Invoke-PatchVFS {
         ${Id},
         [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
-        ${VirtualFileSystem},
+        ${SuperAdmin},
         [Switch]
         $WithHttpInfo
     )
 
     Process {
-        'Calling method: Invoke-PatchVFS' | Write-Debug
+        'Calling method: Invoke-SS6PatchSuperAdminByID' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $LocalVarAccepts = @()
@@ -4836,31 +3486,31 @@ function Invoke-PatchVFS {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $Configuration = Get-Configuration
+        $Configuration = Get-SS6Configuration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
         # HTTP header 'Content-Type'
         $LocalVarContentTypes = @('application/json')
 
-        $LocalVarUri = '/adm/vfs/{id}'
+        $LocalVarUri = '/sa/superadmin/{id}'
         if (!$Id) {
-            throw "Error! The required parameter `Id` missing when calling patchVFS."
+            throw "Error! The required parameter `Id` missing when calling patchSuperAdminByID."
         }
         $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
 
-        if (!$VirtualFileSystem) {
-            throw "Error! The required parameter `VirtualFileSystem` missing when calling patchVFS."
+        if (!$SuperAdmin) {
+            throw "Error! The required parameter `SuperAdmin` missing when calling patchSuperAdminByID."
         }
 
-        $LocalVarBodyParameter = $VirtualFileSystem | ConvertTo-Json -Depth 100
+        $LocalVarBodyParameter = $SuperAdmin | ConvertTo-Json -Depth 100
 
         if ($Configuration["AccessToken"]) {
             $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
             Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
         }
 
-        $LocalVarResult = Invoke-ApiClient -Method 'PATCH' `
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'PATCH' `
                                 -Uri $LocalVarUri `
                                 -Accepts $LocalVarAccepts `
                                 -ContentTypes $LocalVarContentTypes `
@@ -4883,7 +3533,996 @@ function Invoke-PatchVFS {
 <#
 .SYNOPSIS
 
-Updates the password for the logged in admin
+Partial update for the virtual site identified by id
+
+.DESCRIPTION
+
+No description available.
+
+.PARAMETER Id
+ID of the virtual site
+
+.PARAMETER VirtualSite
+No description available.
+
+.PARAMETER WithHttpInfo
+
+A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
+
+.OUTPUTS
+
+ApiResponse
+#>
+function Invoke-SS6PatchVsite {
+    [CmdletBinding()]
+    Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Id},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${VirtualSite},
+        [Switch]
+        $WithHttpInfo
+    )
+
+    Process {
+        'Calling method: Invoke-SS6PatchVsite' | Write-Debug
+        $PSBoundParameters | Out-DebugParameter | Write-Debug
+
+        $LocalVarAccepts = @()
+        $LocalVarContentTypes = @()
+        $LocalVarQueryParameters = @{}
+        $LocalVarHeaderParameters = @{}
+        $LocalVarFormParameters = @{}
+        $LocalVarPathParameters = @{}
+        $LocalVarCookieParameters = @{}
+        $LocalVarBodyParameter = $null
+
+        $Configuration = Get-SS6Configuration
+        # HTTP header 'Accept' (if needed)
+        $LocalVarAccepts = @('application/json')
+
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
+        $LocalVarUri = '/sa/vsites/{id}'
+        if (!$Id) {
+            throw "Error! The required parameter `Id` missing when calling patchVsite."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
+
+        if (!$VirtualSite) {
+            throw "Error! The required parameter `VirtualSite` missing when calling patchVsite."
+        }
+
+        $LocalVarBodyParameter = $VirtualSite | ConvertTo-Json -Depth 100
+
+        if ($Configuration["AccessToken"]) {
+            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
+            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
+        }
+
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'PATCH' `
+                                -Uri $LocalVarUri `
+                                -Accepts $LocalVarAccepts `
+                                -ContentTypes $LocalVarContentTypes `
+                                -Body $LocalVarBodyParameter `
+                                -HeaderParameters $LocalVarHeaderParameters `
+                                -QueryParameters $LocalVarQueryParameters `
+                                -FormParameters $LocalVarFormParameters `
+                                -CookieParameters $LocalVarCookieParameters `
+                                -ReturnType "ApiResponse" `
+                                -IsBodyNullable $false
+
+        if ($WithHttpInfo.IsPresent) {
+            return $LocalVarResult
+        } else {
+            return $LocalVarResult["Response"]
+        }
+    }
+}
+
+<#
+.SYNOPSIS
+
+No summary available.
+
+.DESCRIPTION
+
+No description available.
+
+.PARAMETER Id
+ID of the node
+
+.PARAMETER WithHttpInfo
+
+A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
+
+.OUTPUTS
+
+ApiResponse
+#>
+function Remove-SS6HANode {
+    [CmdletBinding()]
+    Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Id},
+        [Switch]
+        $WithHttpInfo
+    )
+
+    Process {
+        'Calling method: Remove-SS6HANode' | Write-Debug
+        $PSBoundParameters | Out-DebugParameter | Write-Debug
+
+        $LocalVarAccepts = @()
+        $LocalVarContentTypes = @()
+        $LocalVarQueryParameters = @{}
+        $LocalVarHeaderParameters = @{}
+        $LocalVarFormParameters = @{}
+        $LocalVarPathParameters = @{}
+        $LocalVarCookieParameters = @{}
+        $LocalVarBodyParameter = $null
+
+        $Configuration = Get-SS6Configuration
+        # HTTP header 'Accept' (if needed)
+        $LocalVarAccepts = @('application/json')
+
+        $LocalVarUri = '/sa/hanodes/{id}'
+        if (!$Id) {
+            throw "Error! The required parameter `Id` missing when calling removeHANode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
+
+        if ($Configuration["AccessToken"]) {
+            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
+            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
+        }
+
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'DELETE' `
+                                -Uri $LocalVarUri `
+                                -Accepts $LocalVarAccepts `
+                                -ContentTypes $LocalVarContentTypes `
+                                -Body $LocalVarBodyParameter `
+                                -HeaderParameters $LocalVarHeaderParameters `
+                                -QueryParameters $LocalVarQueryParameters `
+                                -FormParameters $LocalVarFormParameters `
+                                -CookieParameters $LocalVarCookieParameters `
+                                -ReturnType "ApiResponse" `
+                                -IsBodyNullable $false
+
+        if ($WithHttpInfo.IsPresent) {
+            return $LocalVarResult
+        } else {
+            return $LocalVarResult["Response"]
+        }
+    }
+}
+
+<#
+.SYNOPSIS
+
+Request a trial license
+
+.DESCRIPTION
+
+No description available.
+
+.PARAMETER InlineObject3
+No description available.
+
+.PARAMETER WithHttpInfo
+
+A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
+
+.OUTPUTS
+
+ApiResponse
+#>
+function Request-SS6LicenseTrial {
+    [CmdletBinding()]
+    Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${InlineObject3},
+        [Switch]
+        $WithHttpInfo
+    )
+
+    Process {
+        'Calling method: Request-SS6LicenseTrial' | Write-Debug
+        $PSBoundParameters | Out-DebugParameter | Write-Debug
+
+        $LocalVarAccepts = @()
+        $LocalVarContentTypes = @()
+        $LocalVarQueryParameters = @{}
+        $LocalVarHeaderParameters = @{}
+        $LocalVarFormParameters = @{}
+        $LocalVarPathParameters = @{}
+        $LocalVarCookieParameters = @{}
+        $LocalVarBodyParameter = $null
+
+        $Configuration = Get-SS6Configuration
+        # HTTP header 'Accept' (if needed)
+        $LocalVarAccepts = @('application/json')
+
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
+        $LocalVarUri = '/sa/license/activaction/trial'
+
+        if (!$InlineObject3) {
+            throw "Error! The required parameter `InlineObject3` missing when calling requestLicenseTrial."
+        }
+
+        $LocalVarBodyParameter = $InlineObject3 | ConvertTo-Json -Depth 100
+
+        if ($Configuration["AccessToken"]) {
+            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
+            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
+        }
+
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'POST' `
+                                -Uri $LocalVarUri `
+                                -Accepts $LocalVarAccepts `
+                                -ContentTypes $LocalVarContentTypes `
+                                -Body $LocalVarBodyParameter `
+                                -HeaderParameters $LocalVarHeaderParameters `
+                                -QueryParameters $LocalVarQueryParameters `
+                                -FormParameters $LocalVarFormParameters `
+                                -CookieParameters $LocalVarCookieParameters `
+                                -ReturnType "ApiResponse" `
+                                -IsBodyNullable $false
+
+        if ($WithHttpInfo.IsPresent) {
+            return $LocalVarResult
+        } else {
+            return $LocalVarResult["Response"]
+        }
+    }
+}
+
+<#
+.SYNOPSIS
+
+Generate a backup as zip file
+
+.DESCRIPTION
+
+No description available.
+
+.PARAMETER ReturnType
+
+Select the return type (optional): application/zip, application/json
+
+.PARAMETER WithHttpInfo
+
+A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
+
+.OUTPUTS
+
+System.IO.FileInfo
+#>
+function Invoke-SS6SaBackup {
+    [CmdletBinding()]
+    Param (
+        [String]
+        [ValidateSet("application/zip", "application/json")]
+        $ReturnType,
+        [Switch]
+        $WithHttpInfo
+    )
+
+    Process {
+        'Calling method: Invoke-SS6SaBackup' | Write-Debug
+        $PSBoundParameters | Out-DebugParameter | Write-Debug
+
+        $LocalVarAccepts = @()
+        $LocalVarContentTypes = @()
+        $LocalVarQueryParameters = @{}
+        $LocalVarHeaderParameters = @{}
+        $LocalVarFormParameters = @{}
+        $LocalVarPathParameters = @{}
+        $LocalVarCookieParameters = @{}
+        $LocalVarBodyParameter = $null
+
+        $Configuration = Get-SS6Configuration
+        # HTTP header 'Accept' (if needed)
+        $LocalVarAccepts = @('application/zip', 'application/json')
+
+        if ($ReturnType) {
+            # use the return type (MIME) provided by the user
+            $LocalVarAccepts = @($ReturnType)
+        }
+
+        $LocalVarUri = '/sa/backup'
+
+        if ($Configuration["AccessToken"]) {
+            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
+            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
+        }
+
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'GET' `
+                                -Uri $LocalVarUri `
+                                -Accepts $LocalVarAccepts `
+                                -ContentTypes $LocalVarContentTypes `
+                                -Body $LocalVarBodyParameter `
+                                -HeaderParameters $LocalVarHeaderParameters `
+                                -QueryParameters $LocalVarQueryParameters `
+                                -FormParameters $LocalVarFormParameters `
+                                -CookieParameters $LocalVarCookieParameters `
+                                -ReturnType "System.IO.FileInfo" `
+                                -IsBodyNullable $false
+
+        if ($WithHttpInfo.IsPresent) {
+            return $LocalVarResult
+        } else {
+            return $LocalVarResult["Response"]
+        }
+    }
+}
+
+<#
+.SYNOPSIS
+
+Login functions for the 'sa' power-user
+
+.DESCRIPTION
+
+No description available.
+
+.PARAMETER XOTP
+No description available.
+
+.PARAMETER WithHttpInfo
+
+A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
+
+.OUTPUTS
+
+TokenObj
+#>
+function Invoke-SS6SaLogin {
+    [CmdletBinding()]
+    Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${XOTP},
+        [Switch]
+        $WithHttpInfo
+    )
+
+    Process {
+        'Calling method: Invoke-SS6SaLogin' | Write-Debug
+        $PSBoundParameters | Out-DebugParameter | Write-Debug
+
+        $LocalVarAccepts = @()
+        $LocalVarContentTypes = @()
+        $LocalVarQueryParameters = @{}
+        $LocalVarHeaderParameters = @{}
+        $LocalVarFormParameters = @{}
+        $LocalVarPathParameters = @{}
+        $LocalVarCookieParameters = @{}
+        $LocalVarBodyParameter = $null
+
+        $Configuration = Get-SS6Configuration
+        # HTTP header 'Accept' (if needed)
+        $LocalVarAccepts = @('application/json')
+
+        $LocalVarUri = '/sa/login'
+
+        if ($XOTP) {
+            $LocalVarHeaderParameters['X-OTP'] = $XOTP
+        }
+
+        if ($Configuration["Username"] -and $Configuration["Password"]) {
+            $LocalVarBytes = [System.Text.Encoding]::UTF8.GetBytes($Configuration["Username"] + ":" + $Configuration["Password"])
+            $LocalVarBase64Text =[Convert]::ToBase64String($LocalVarBytes)
+            $LocalVarHeaderParameters['Authorization'] = "Basic " + $LocalVarBase64Text
+            Write-Verbose ("Using HTTP basic authentication in {0}" -f $MyInvocation.MyCommand)
+        }
+
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'GET' `
+                                -Uri $LocalVarUri `
+                                -Accepts $LocalVarAccepts `
+                                -ContentTypes $LocalVarContentTypes `
+                                -Body $LocalVarBodyParameter `
+                                -HeaderParameters $LocalVarHeaderParameters `
+                                -QueryParameters $LocalVarQueryParameters `
+                                -FormParameters $LocalVarFormParameters `
+                                -CookieParameters $LocalVarCookieParameters `
+                                -ReturnType "TokenObj" `
+                                -IsBodyNullable $false
+
+        if ($WithHttpInfo.IsPresent) {
+            return $LocalVarResult
+        } else {
+            return $LocalVarResult["Response"]
+        }
+    }
+}
+
+<#
+.SYNOPSIS
+
+Logout functions for the 'sa' power-user
+
+.DESCRIPTION
+
+No description available.
+
+.PARAMETER WithHttpInfo
+
+A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
+
+.OUTPUTS
+
+ApiResponse
+#>
+function Invoke-SS6SaLogout {
+    [CmdletBinding()]
+    Param (
+        [Switch]
+        $WithHttpInfo
+    )
+
+    Process {
+        'Calling method: Invoke-SS6SaLogout' | Write-Debug
+        $PSBoundParameters | Out-DebugParameter | Write-Debug
+
+        $LocalVarAccepts = @()
+        $LocalVarContentTypes = @()
+        $LocalVarQueryParameters = @{}
+        $LocalVarHeaderParameters = @{}
+        $LocalVarFormParameters = @{}
+        $LocalVarPathParameters = @{}
+        $LocalVarCookieParameters = @{}
+        $LocalVarBodyParameter = $null
+
+        $Configuration = Get-SS6Configuration
+        # HTTP header 'Accept' (if needed)
+        $LocalVarAccepts = @('application/json')
+
+        $LocalVarUri = '/sa/logout'
+
+        if ($Configuration["AccessToken"]) {
+            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
+            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
+        }
+
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'GET' `
+                                -Uri $LocalVarUri `
+                                -Accepts $LocalVarAccepts `
+                                -ContentTypes $LocalVarContentTypes `
+                                -Body $LocalVarBodyParameter `
+                                -HeaderParameters $LocalVarHeaderParameters `
+                                -QueryParameters $LocalVarQueryParameters `
+                                -FormParameters $LocalVarFormParameters `
+                                -CookieParameters $LocalVarCookieParameters `
+                                -ReturnType "ApiResponse" `
+                                -IsBodyNullable $false
+
+        if ($WithHttpInfo.IsPresent) {
+            return $LocalVarResult
+        } else {
+            return $LocalVarResult["Response"]
+        }
+    }
+}
+
+<#
+.SYNOPSIS
+
+Restore a backup from a zip file
+
+.DESCRIPTION
+
+No description available.
+
+.PARAMETER Filename
+No description available.
+
+.PARAMETER WithHttpInfo
+
+A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
+
+.OUTPUTS
+
+ApiResponse
+#>
+function Invoke-SS6SaRestore {
+    [CmdletBinding()]
+    Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [System.IO.FileInfo]
+        ${Filename},
+        [Switch]
+        $WithHttpInfo
+    )
+
+    Process {
+        'Calling method: Invoke-SS6SaRestore' | Write-Debug
+        $PSBoundParameters | Out-DebugParameter | Write-Debug
+
+        $LocalVarAccepts = @()
+        $LocalVarContentTypes = @()
+        $LocalVarQueryParameters = @{}
+        $LocalVarHeaderParameters = @{}
+        $LocalVarFormParameters = @{}
+        $LocalVarPathParameters = @{}
+        $LocalVarCookieParameters = @{}
+        $LocalVarBodyParameter = $null
+
+        $Configuration = Get-SS6Configuration
+        # HTTP header 'Accept' (if needed)
+        $LocalVarAccepts = @('application/json')
+
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('multipart/form-data')
+
+        $LocalVarUri = '/sa/restore'
+
+        if (!$Filename) {
+            throw "Error! The required parameter `Filename` missing when calling saRestore."
+        }
+        $LocalVarFormParameters['filename'] = $Filename
+
+        if ($Configuration["AccessToken"]) {
+            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
+            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
+        }
+
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'POST' `
+                                -Uri $LocalVarUri `
+                                -Accepts $LocalVarAccepts `
+                                -ContentTypes $LocalVarContentTypes `
+                                -Body $LocalVarBodyParameter `
+                                -HeaderParameters $LocalVarHeaderParameters `
+                                -QueryParameters $LocalVarQueryParameters `
+                                -FormParameters $LocalVarFormParameters `
+                                -CookieParameters $LocalVarCookieParameters `
+                                -ReturnType "ApiResponse" `
+                                -IsBodyNullable $false
+
+        if ($WithHttpInfo.IsPresent) {
+            return $LocalVarResult
+        } else {
+            return $LocalVarResult["Response"]
+        }
+    }
+}
+
+<#
+.SYNOPSIS
+
+Starts the virtual site identified by id
+
+.DESCRIPTION
+
+No description available.
+
+.PARAMETER Id
+ID of the virtual site
+
+.PARAMETER WithHttpInfo
+
+A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
+
+.OUTPUTS
+
+ApiResponse
+#>
+function Start-SS6Vsite {
+    [CmdletBinding()]
+    Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Id},
+        [Switch]
+        $WithHttpInfo
+    )
+
+    Process {
+        'Calling method: Start-SS6Vsite' | Write-Debug
+        $PSBoundParameters | Out-DebugParameter | Write-Debug
+
+        $LocalVarAccepts = @()
+        $LocalVarContentTypes = @()
+        $LocalVarQueryParameters = @{}
+        $LocalVarHeaderParameters = @{}
+        $LocalVarFormParameters = @{}
+        $LocalVarPathParameters = @{}
+        $LocalVarCookieParameters = @{}
+        $LocalVarBodyParameter = $null
+
+        $Configuration = Get-SS6Configuration
+        # HTTP header 'Accept' (if needed)
+        $LocalVarAccepts = @('application/json')
+
+        $LocalVarUri = '/sa/vsites/{id}/start'
+        if (!$Id) {
+            throw "Error! The required parameter `Id` missing when calling startVsite."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
+
+        if ($Configuration["AccessToken"]) {
+            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
+            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
+        }
+
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'GET' `
+                                -Uri $LocalVarUri `
+                                -Accepts $LocalVarAccepts `
+                                -ContentTypes $LocalVarContentTypes `
+                                -Body $LocalVarBodyParameter `
+                                -HeaderParameters $LocalVarHeaderParameters `
+                                -QueryParameters $LocalVarQueryParameters `
+                                -FormParameters $LocalVarFormParameters `
+                                -CookieParameters $LocalVarCookieParameters `
+                                -ReturnType "ApiResponse" `
+                                -IsBodyNullable $false
+
+        if ($WithHttpInfo.IsPresent) {
+            return $LocalVarResult
+        } else {
+            return $LocalVarResult["Response"]
+        }
+    }
+}
+
+<#
+.SYNOPSIS
+
+Stops the virtual site identified by id
+
+.DESCRIPTION
+
+No description available.
+
+.PARAMETER Id
+ID of the virtual site
+
+.PARAMETER WithHttpInfo
+
+A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
+
+.OUTPUTS
+
+ApiResponse
+#>
+function Stop-SS6Vsite {
+    [CmdletBinding()]
+    Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Id},
+        [Switch]
+        $WithHttpInfo
+    )
+
+    Process {
+        'Calling method: Stop-SS6Vsite' | Write-Debug
+        $PSBoundParameters | Out-DebugParameter | Write-Debug
+
+        $LocalVarAccepts = @()
+        $LocalVarContentTypes = @()
+        $LocalVarQueryParameters = @{}
+        $LocalVarHeaderParameters = @{}
+        $LocalVarFormParameters = @{}
+        $LocalVarPathParameters = @{}
+        $LocalVarCookieParameters = @{}
+        $LocalVarBodyParameter = $null
+
+        $Configuration = Get-SS6Configuration
+        # HTTP header 'Accept' (if needed)
+        $LocalVarAccepts = @('application/json')
+
+        $LocalVarUri = '/sa/vsites/{id}/stop'
+        if (!$Id) {
+            throw "Error! The required parameter `Id` missing when calling stopVsite."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
+
+        if ($Configuration["AccessToken"]) {
+            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
+            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
+        }
+
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'GET' `
+                                -Uri $LocalVarUri `
+                                -Accepts $LocalVarAccepts `
+                                -ContentTypes $LocalVarContentTypes `
+                                -Body $LocalVarBodyParameter `
+                                -HeaderParameters $LocalVarHeaderParameters `
+                                -QueryParameters $LocalVarQueryParameters `
+                                -FormParameters $LocalVarFormParameters `
+                                -CookieParameters $LocalVarCookieParameters `
+                                -ReturnType "ApiResponse" `
+                                -IsBodyNullable $false
+
+        if ($WithHttpInfo.IsPresent) {
+            return $LocalVarResult
+        } else {
+            return $LocalVarResult["Response"]
+        }
+    }
+}
+
+<#
+.SYNOPSIS
+
+Updates  the admin identified by adminID for this virtual site
+
+.DESCRIPTION
+
+No description available.
+
+.PARAMETER Id
+ID of the virtual site
+
+.PARAMETER AdminID
+ID of the admin
+
+.PARAMETER Admin
+No description available.
+
+.PARAMETER WithHttpInfo
+
+A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
+
+.OUTPUTS
+
+ApiResponse
+#>
+function Update-SS6Admin {
+    [CmdletBinding()]
+    Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Id},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${AdminID},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${Admin},
+        [Switch]
+        $WithHttpInfo
+    )
+
+    Process {
+        'Calling method: Update-SS6Admin' | Write-Debug
+        $PSBoundParameters | Out-DebugParameter | Write-Debug
+
+        $LocalVarAccepts = @()
+        $LocalVarContentTypes = @()
+        $LocalVarQueryParameters = @{}
+        $LocalVarHeaderParameters = @{}
+        $LocalVarFormParameters = @{}
+        $LocalVarPathParameters = @{}
+        $LocalVarCookieParameters = @{}
+        $LocalVarBodyParameter = $null
+
+        $Configuration = Get-SS6Configuration
+        # HTTP header 'Accept' (if needed)
+        $LocalVarAccepts = @('application/json')
+
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
+        $LocalVarUri = '/sa/vsites/{id}/adm/{adminID}'
+        if (!$Id) {
+            throw "Error! The required parameter `Id` missing when calling updateAdmin."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
+        if (!$AdminID) {
+            throw "Error! The required parameter `AdminID` missing when calling updateAdmin."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{adminID}', [System.Web.HTTPUtility]::UrlEncode($AdminID))
+
+        if (!$Admin) {
+            throw "Error! The required parameter `Admin` missing when calling updateAdmin."
+        }
+
+        $LocalVarBodyParameter = $Admin | ConvertTo-Json -Depth 100
+
+        if ($Configuration["AccessToken"]) {
+            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
+            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
+        }
+
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'PUT' `
+                                -Uri $LocalVarUri `
+                                -Accepts $LocalVarAccepts `
+                                -ContentTypes $LocalVarContentTypes `
+                                -Body $LocalVarBodyParameter `
+                                -HeaderParameters $LocalVarHeaderParameters `
+                                -QueryParameters $LocalVarQueryParameters `
+                                -FormParameters $LocalVarFormParameters `
+                                -CookieParameters $LocalVarCookieParameters `
+                                -ReturnType "ApiResponse" `
+                                -IsBodyNullable $false
+
+        if ($WithHttpInfo.IsPresent) {
+            return $LocalVarResult
+        } else {
+            return $LocalVarResult["Response"]
+        }
+    }
+}
+
+<#
+.SYNOPSIS
+
+Updates the global configuration
+
+.DESCRIPTION
+
+No description available.
+
+.PARAMETER GlobalConfig
+No description available.
+
+.PARAMETER WithHttpInfo
+
+A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
+
+.OUTPUTS
+
+ApiResponse
+#>
+function Update-SS6GlobalConfig {
+    [CmdletBinding()]
+    Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GlobalConfig},
+        [Switch]
+        $WithHttpInfo
+    )
+
+    Process {
+        'Calling method: Update-SS6GlobalConfig' | Write-Debug
+        $PSBoundParameters | Out-DebugParameter | Write-Debug
+
+        $LocalVarAccepts = @()
+        $LocalVarContentTypes = @()
+        $LocalVarQueryParameters = @{}
+        $LocalVarHeaderParameters = @{}
+        $LocalVarFormParameters = @{}
+        $LocalVarPathParameters = @{}
+        $LocalVarCookieParameters = @{}
+        $LocalVarBodyParameter = $null
+
+        $Configuration = Get-SS6Configuration
+        # HTTP header 'Accept' (if needed)
+        $LocalVarAccepts = @('application/json')
+
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
+        $LocalVarUri = '/sa/globalconfig'
+
+        if (!$GlobalConfig) {
+            throw "Error! The required parameter `GlobalConfig` missing when calling updateGlobalConfig."
+        }
+
+        $LocalVarBodyParameter = $GlobalConfig | ConvertTo-Json -Depth 100
+
+        if ($Configuration["AccessToken"]) {
+            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
+            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
+        }
+
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'PUT' `
+                                -Uri $LocalVarUri `
+                                -Accepts $LocalVarAccepts `
+                                -ContentTypes $LocalVarContentTypes `
+                                -Body $LocalVarBodyParameter `
+                                -HeaderParameters $LocalVarHeaderParameters `
+                                -QueryParameters $LocalVarQueryParameters `
+                                -FormParameters $LocalVarFormParameters `
+                                -CookieParameters $LocalVarCookieParameters `
+                                -ReturnType "ApiResponse" `
+                                -IsBodyNullable $false
+
+        if ($WithHttpInfo.IsPresent) {
+            return $LocalVarResult
+        } else {
+            return $LocalVarResult["Response"]
+        }
+    }
+}
+
+<#
+.SYNOPSIS
+
+Updates the node
+
+.DESCRIPTION
+
+No description available.
+
+.PARAMETER Node
+No description available.
+
+.PARAMETER WithHttpInfo
+
+A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
+
+.OUTPUTS
+
+ApiResponse
+#>
+function Update-SS6Node {
+    [CmdletBinding()]
+    Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${Node},
+        [Switch]
+        $WithHttpInfo
+    )
+
+    Process {
+        'Calling method: Update-SS6Node' | Write-Debug
+        $PSBoundParameters | Out-DebugParameter | Write-Debug
+
+        $LocalVarAccepts = @()
+        $LocalVarContentTypes = @()
+        $LocalVarQueryParameters = @{}
+        $LocalVarHeaderParameters = @{}
+        $LocalVarFormParameters = @{}
+        $LocalVarPathParameters = @{}
+        $LocalVarCookieParameters = @{}
+        $LocalVarBodyParameter = $null
+
+        $Configuration = Get-SS6Configuration
+        # HTTP header 'Accept' (if needed)
+        $LocalVarAccepts = @('application/json')
+
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
+        $LocalVarUri = '/sa/node'
+
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling updateNode."
+        }
+
+        $LocalVarBodyParameter = $Node | ConvertTo-Json -Depth 100
+
+        if ($Configuration["AccessToken"]) {
+            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
+            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
+        }
+
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'PUT' `
+                                -Uri $LocalVarUri `
+                                -Accepts $LocalVarAccepts `
+                                -ContentTypes $LocalVarContentTypes `
+                                -Body $LocalVarBodyParameter `
+                                -HeaderParameters $LocalVarHeaderParameters `
+                                -QueryParameters $LocalVarQueryParameters `
+                                -FormParameters $LocalVarFormParameters `
+                                -CookieParameters $LocalVarCookieParameters `
+                                -ReturnType "ApiResponse" `
+                                -IsBodyNullable $false
+
+        if ($WithHttpInfo.IsPresent) {
+            return $LocalVarResult
+        } else {
+            return $LocalVarResult["Response"]
+        }
+    }
+}
+
+<#
+.SYNOPSIS
+
+Updates the password for the logged in super admin
 
 .DESCRIPTION
 
@@ -4900,7 +4539,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 ApiResponse
 #>
-function Update-AdminPassword {
+function Update-SS6SAPassword {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
@@ -4911,7 +4550,7 @@ function Update-AdminPassword {
     )
 
     Process {
-        'Calling method: Update-AdminPassword' | Write-Debug
+        'Calling method: Update-SS6SAPassword' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $LocalVarAccepts = @()
@@ -4923,17 +4562,17 @@ function Update-AdminPassword {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $Configuration = Get-Configuration
+        $Configuration = Get-SS6Configuration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
         # HTTP header 'Content-Type'
         $LocalVarContentTypes = @('application/json')
 
-        $LocalVarUri = '/adm/password'
+        $LocalVarUri = '/sa/password'
 
         if (!$PasswordType) {
-            throw "Error! The required parameter `PasswordType` missing when calling updateAdminPassword."
+            throw "Error! The required parameter `PasswordType` missing when calling updateSAPassword."
         }
 
         $LocalVarBodyParameter = $PasswordType | ConvertTo-Json -Depth 100
@@ -4943,7 +4582,7 @@ function Update-AdminPassword {
             Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
         }
 
-        $LocalVarResult = Invoke-ApiClient -Method 'PUT' `
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
                                 -Accepts $LocalVarAccepts `
                                 -ContentTypes $LocalVarContentTypes `
@@ -4966,16 +4605,16 @@ function Update-AdminPassword {
 <#
 .SYNOPSIS
 
-Updates the LDAP configuration identified by id
+Update the SuperAdmin user identified by id
 
 .DESCRIPTION
 
 No description available.
 
 .PARAMETER Id
-ID of the LDAP configuration
+ID of the SuperAdmin
 
-.PARAMETER LDAPConfig
+.PARAMETER SuperAdmin
 No description available.
 
 .PARAMETER WithHttpInfo
@@ -4986,7 +4625,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 ApiResponse
 #>
-function Update-LDAPConfig {
+function Update-SS6SuperAdminByID {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
@@ -4994,13 +4633,13 @@ function Update-LDAPConfig {
         ${Id},
         [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
-        ${LDAPConfig},
+        ${SuperAdmin},
         [Switch]
         $WithHttpInfo
     )
 
     Process {
-        'Calling method: Update-LDAPConfig' | Write-Debug
+        'Calling method: Update-SS6SuperAdminByID' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $LocalVarAccepts = @()
@@ -5012,31 +4651,31 @@ function Update-LDAPConfig {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $Configuration = Get-Configuration
+        $Configuration = Get-SS6Configuration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
         # HTTP header 'Content-Type'
         $LocalVarContentTypes = @('application/json')
 
-        $LocalVarUri = '/adm/ldapconfig/{id}'
+        $LocalVarUri = '/sa/superadmin/{id}'
         if (!$Id) {
-            throw "Error! The required parameter `Id` missing when calling updateLDAPConfig."
+            throw "Error! The required parameter `Id` missing when calling updateSuperAdminByID."
         }
         $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
 
-        if (!$LDAPConfig) {
-            throw "Error! The required parameter `LDAPConfig` missing when calling updateLDAPConfig."
+        if (!$SuperAdmin) {
+            throw "Error! The required parameter `SuperAdmin` missing when calling updateSuperAdminByID."
         }
 
-        $LocalVarBodyParameter = $LDAPConfig | ConvertTo-Json -Depth 100
+        $LocalVarBodyParameter = $SuperAdmin | ConvertTo-Json -Depth 100
 
         if ($Configuration["AccessToken"]) {
             $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
             Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
         }
 
-        $LocalVarResult = Invoke-ApiClient -Method 'PUT' `
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
                                 -Accepts $LocalVarAccepts `
                                 -ContentTypes $LocalVarContentTypes `
@@ -5059,16 +4698,16 @@ function Update-LDAPConfig {
 <#
 .SYNOPSIS
 
-Updates the Script identified by id
+Updates the virtual site identified by id
 
 .DESCRIPTION
 
 No description available.
 
 .PARAMETER Id
-ID of the Script
+ID of the virtual site
 
-.PARAMETER Script
+.PARAMETER VirtualSite
 No description available.
 
 .PARAMETER WithHttpInfo
@@ -5079,7 +4718,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 ApiResponse
 #>
-function Update-Script {
+function Update-SS6Vsite {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
@@ -5087,13 +4726,13 @@ function Update-Script {
         ${Id},
         [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
-        ${Script},
+        ${VirtualSite},
         [Switch]
         $WithHttpInfo
     )
 
     Process {
-        'Calling method: Update-Script' | Write-Debug
+        'Calling method: Update-SS6Vsite' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $LocalVarAccepts = @()
@@ -5105,379 +4744,31 @@ function Update-Script {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $Configuration = Get-Configuration
+        $Configuration = Get-SS6Configuration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
         # HTTP header 'Content-Type'
         $LocalVarContentTypes = @('application/json')
 
-        $LocalVarUri = '/adm/script/{id}'
+        $LocalVarUri = '/sa/vsites/{id}'
         if (!$Id) {
-            throw "Error! The required parameter `Id` missing when calling updateScript."
+            throw "Error! The required parameter `Id` missing when calling updateVsite."
         }
         $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
 
-        if (!$Script) {
-            throw "Error! The required parameter `Script` missing when calling updateScript."
+        if (!$VirtualSite) {
+            throw "Error! The required parameter `VirtualSite` missing when calling updateVsite."
         }
 
-        $LocalVarBodyParameter = $Script | ConvertTo-Json -Depth 100
+        $LocalVarBodyParameter = $VirtualSite | ConvertTo-Json -Depth 100
 
         if ($Configuration["AccessToken"]) {
             $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
             Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
         }
 
-        $LocalVarResult = Invoke-ApiClient -Method 'PUT' `
-                                -Uri $LocalVarUri `
-                                -Accepts $LocalVarAccepts `
-                                -ContentTypes $LocalVarContentTypes `
-                                -Body $LocalVarBodyParameter `
-                                -HeaderParameters $LocalVarHeaderParameters `
-                                -QueryParameters $LocalVarQueryParameters `
-                                -FormParameters $LocalVarFormParameters `
-                                -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "ApiResponse" `
-                                -IsBodyNullable $false
-
-        if ($WithHttpInfo.IsPresent) {
-            return $LocalVarResult
-        } else {
-            return $LocalVarResult["Response"]
-        }
-    }
-}
-
-<#
-.SYNOPSIS
-
-Updates the user identified by id
-
-.DESCRIPTION
-
-No description available.
-
-.PARAMETER Id
-ID of the user
-
-.PARAMETER User
-No description available.
-
-.PARAMETER WithHttpInfo
-
-A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
-
-.OUTPUTS
-
-ApiResponse
-#>
-function Update-User {
-    [CmdletBinding()]
-    Param (
-        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [String]
-        ${Id},
-        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [PSCustomObject]
-        ${User},
-        [Switch]
-        $WithHttpInfo
-    )
-
-    Process {
-        'Calling method: Update-User' | Write-Debug
-        $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        $LocalVarAccepts = @()
-        $LocalVarContentTypes = @()
-        $LocalVarQueryParameters = @{}
-        $LocalVarHeaderParameters = @{}
-        $LocalVarFormParameters = @{}
-        $LocalVarPathParameters = @{}
-        $LocalVarCookieParameters = @{}
-        $LocalVarBodyParameter = $null
-
-        $Configuration = Get-Configuration
-        # HTTP header 'Accept' (if needed)
-        $LocalVarAccepts = @('application/json')
-
-        # HTTP header 'Content-Type'
-        $LocalVarContentTypes = @('application/json')
-
-        $LocalVarUri = '/adm/users/{id}'
-        if (!$Id) {
-            throw "Error! The required parameter `Id` missing when calling updateUser."
-        }
-        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
-
-        if (!$User) {
-            throw "Error! The required parameter `User` missing when calling updateUser."
-        }
-
-        $LocalVarBodyParameter = $User | ConvertTo-Json -Depth 100
-
-        if ($Configuration["AccessToken"]) {
-            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
-            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
-        }
-
-        $LocalVarResult = Invoke-ApiClient -Method 'PUT' `
-                                -Uri $LocalVarUri `
-                                -Accepts $LocalVarAccepts `
-                                -ContentTypes $LocalVarContentTypes `
-                                -Body $LocalVarBodyParameter `
-                                -HeaderParameters $LocalVarHeaderParameters `
-                                -QueryParameters $LocalVarQueryParameters `
-                                -FormParameters $LocalVarFormParameters `
-                                -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "ApiResponse" `
-                                -IsBodyNullable $false
-
-        if ($WithHttpInfo.IsPresent) {
-            return $LocalVarResult
-        } else {
-            return $LocalVarResult["Response"]
-        }
-    }
-}
-
-<#
-.SYNOPSIS
-
-Updates the Virtual File System identified by id
-
-.DESCRIPTION
-
-No description available.
-
-.PARAMETER Id
-ID of the VFS
-
-.PARAMETER VirtualFileSystem
-No description available.
-
-.PARAMETER WithHttpInfo
-
-A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
-
-.OUTPUTS
-
-ApiResponse
-#>
-function Update-VFS {
-    [CmdletBinding()]
-    Param (
-        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [String]
-        ${Id},
-        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [PSCustomObject]
-        ${VirtualFileSystem},
-        [Switch]
-        $WithHttpInfo
-    )
-
-    Process {
-        'Calling method: Update-VFS' | Write-Debug
-        $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        $LocalVarAccepts = @()
-        $LocalVarContentTypes = @()
-        $LocalVarQueryParameters = @{}
-        $LocalVarHeaderParameters = @{}
-        $LocalVarFormParameters = @{}
-        $LocalVarPathParameters = @{}
-        $LocalVarCookieParameters = @{}
-        $LocalVarBodyParameter = $null
-
-        $Configuration = Get-Configuration
-        # HTTP header 'Accept' (if needed)
-        $LocalVarAccepts = @('application/json')
-
-        # HTTP header 'Content-Type'
-        $LocalVarContentTypes = @('application/json')
-
-        $LocalVarUri = '/adm/vfs/{id}'
-        if (!$Id) {
-            throw "Error! The required parameter `Id` missing when calling updateVFS."
-        }
-        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
-
-        if (!$VirtualFileSystem) {
-            throw "Error! The required parameter `VirtualFileSystem` missing when calling updateVFS."
-        }
-
-        $LocalVarBodyParameter = $VirtualFileSystem | ConvertTo-Json -Depth 100
-
-        if ($Configuration["AccessToken"]) {
-            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
-            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
-        }
-
-        $LocalVarResult = Invoke-ApiClient -Method 'PUT' `
-                                -Uri $LocalVarUri `
-                                -Accepts $LocalVarAccepts `
-                                -ContentTypes $LocalVarContentTypes `
-                                -Body $LocalVarBodyParameter `
-                                -HeaderParameters $LocalVarHeaderParameters `
-                                -QueryParameters $LocalVarQueryParameters `
-                                -FormParameters $LocalVarFormParameters `
-                                -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "ApiResponse" `
-                                -IsBodyNullable $false
-
-        if ($WithHttpInfo.IsPresent) {
-            return $LocalVarResult
-        } else {
-            return $LocalVarResult["Response"]
-        }
-    }
-}
-
-<#
-.SYNOPSIS
-
-Updates the configuration for the virtual site that belongs to the logged in admin
-
-.DESCRIPTION
-
-No description available.
-
-.PARAMETER SrvConfig
-No description available.
-
-.PARAMETER WithHttpInfo
-
-A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
-
-.OUTPUTS
-
-ApiResponse
-#>
-function Update-VsiteConfig {
-    [CmdletBinding()]
-    Param (
-        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [PSCustomObject]
-        ${SrvConfig},
-        [Switch]
-        $WithHttpInfo
-    )
-
-    Process {
-        'Calling method: Update-VsiteConfig' | Write-Debug
-        $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        $LocalVarAccepts = @()
-        $LocalVarContentTypes = @()
-        $LocalVarQueryParameters = @{}
-        $LocalVarHeaderParameters = @{}
-        $LocalVarFormParameters = @{}
-        $LocalVarPathParameters = @{}
-        $LocalVarCookieParameters = @{}
-        $LocalVarBodyParameter = $null
-
-        $Configuration = Get-Configuration
-        # HTTP header 'Accept' (if needed)
-        $LocalVarAccepts = @('application/json')
-
-        # HTTP header 'Content-Type'
-        $LocalVarContentTypes = @('application/json')
-
-        $LocalVarUri = '/adm/srvconfig'
-
-        if (!$SrvConfig) {
-            throw "Error! The required parameter `SrvConfig` missing when calling updateVsiteConfig."
-        }
-
-        $LocalVarBodyParameter = $SrvConfig | ConvertTo-Json -Depth 100
-
-        if ($Configuration["AccessToken"]) {
-            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
-            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
-        }
-
-        $LocalVarResult = Invoke-ApiClient -Method 'PUT' `
-                                -Uri $LocalVarUri `
-                                -Accepts $LocalVarAccepts `
-                                -ContentTypes $LocalVarContentTypes `
-                                -Body $LocalVarBodyParameter `
-                                -HeaderParameters $LocalVarHeaderParameters `
-                                -QueryParameters $LocalVarQueryParameters `
-                                -FormParameters $LocalVarFormParameters `
-                                -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "ApiResponse" `
-                                -IsBodyNullable $false
-
-        if ($WithHttpInfo.IsPresent) {
-            return $LocalVarResult
-        } else {
-            return $LocalVarResult["Response"]
-        }
-    }
-}
-
-<#
-.SYNOPSIS
-
-Updates the configuration mode for the virtual site that belongs to the logged in admin
-
-.DESCRIPTION
-
-No description available.
-
-.PARAMETER Mode
-Mode to set
-
-.PARAMETER WithHttpInfo
-
-A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
-
-.OUTPUTS
-
-ApiResponse
-#>
-function Update-VsiteConfigMode {
-    [CmdletBinding()]
-    Param (
-        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [ValidateSet("hipaa", "ucm", "compat", "hisec")]
-        [String]
-        ${Mode},
-        [Switch]
-        $WithHttpInfo
-    )
-
-    Process {
-        'Calling method: Update-VsiteConfigMode' | Write-Debug
-        $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        $LocalVarAccepts = @()
-        $LocalVarContentTypes = @()
-        $LocalVarQueryParameters = @{}
-        $LocalVarHeaderParameters = @{}
-        $LocalVarFormParameters = @{}
-        $LocalVarPathParameters = @{}
-        $LocalVarCookieParameters = @{}
-        $LocalVarBodyParameter = $null
-
-        $Configuration = Get-Configuration
-        # HTTP header 'Accept' (if needed)
-        $LocalVarAccepts = @('application/json')
-
-        $LocalVarUri = '/adm/srvconfig/{mode}'
-        if (!$Mode) {
-            throw "Error! The required parameter `Mode` missing when calling updateVsiteConfigMode."
-        }
-        $LocalVarUri = $LocalVarUri.replace('{mode}', [System.Web.HTTPUtility]::UrlEncode($Mode))
-
-        if ($Configuration["AccessToken"]) {
-            $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
-            Write-Verbose ("Using Bearer authentication in {0}" -f $MyInvocation.MyCommand)
-        }
-
-        $LocalVarResult = Invoke-ApiClient -Method 'PATCH' `
+        $LocalVarResult = Invoke-SS6ApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
                                 -Accepts $LocalVarAccepts `
                                 -ContentTypes $LocalVarContentTypes `

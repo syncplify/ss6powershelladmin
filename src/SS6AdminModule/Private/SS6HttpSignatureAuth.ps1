@@ -19,7 +19,7 @@
 .OUTPUTS
     Hashtable
 #>
-function Get-HttpSignedHeader {
+function Get-SS6HttpSignedHeader {
     param(
         [string]$Method,
         [System.UriBuilder]$UriBuilder,
@@ -48,11 +48,11 @@ function Get-HttpSignedHeader {
     $HttpSignedRequestHeader = @{ }
     $HttpSignatureHeader = @{ }
     $TargetHost = $UriBuilder.Host
-    $httpSigningConfiguration = Get-ConfigurationHttpSigning
+    $httpSigningConfiguration = Get-SS6ConfigurationHttpSigning
     $Digest = $null
 
     #get the body digest
-    $bodyHash = Get-StringHash -String $Body -HashName $httpSigningConfiguration.HashAlgorithm
+    $bodyHash = Get-SS6StringHash -String $Body -HashName $httpSigningConfiguration.HashAlgorithm
     if ($httpSigningConfiguration.HashAlgorithm -eq "SHA256") {
         $Digest = [String]::Format("SHA-256={0}", [Convert]::ToBase64String($bodyHash))
     } elseif ($httpSigningConfiguration.HashAlgorithm -eq "SHA512") {
@@ -69,11 +69,11 @@ function Get-HttpSignedHeader {
             $requestTargetPath = [string]::Format("{0} {1}{2}", $Method.ToLower(), $UriBuilder.Path, $UriBuilder.Query)
             $HttpSignatureHeader.Add($HEADER_REQUEST_TARGET, $requestTargetPath)
         } elseif ($headerItem -eq $HEADER_CREATED) {
-            $created = Get-UnixTime -Date $dateTime -TotalTime TotalSeconds
+            $created = Get-SS6UnixTime -Date $dateTime -TotalTime TotalSeconds
             $HttpSignatureHeader.Add($HEADER_CREATED, $created)
         } elseif ($headerItem -eq $HEADER_EXPIRES) {
             $expire = $dateTime.AddSeconds($httpSigningConfiguration.SignatureValidityPeriod)
-            $expireEpocTime = Get-UnixTime -Date $expire -TotalTime TotalSeconds
+            $expireEpocTime = Get-SS6UnixTime -Date $expire -TotalTime TotalSeconds
             $HttpSignatureHeader.Add($HEADER_EXPIRES, $expireEpocTime)
         } elseif ($headerItem -eq $HEADER_HOST) {
             $HttpSignedRequestHeader[$HEADER_HOST] = $TargetHost
@@ -101,25 +101,25 @@ function Get-HttpSignedHeader {
     $headerValuesString = $headerValuesList -join "`n"
 
     #Gets the hash of the headers value
-    $signatureHashString = Get-StringHash -String $headerValuesString -HashName $httpSigningConfiguration.HashAlgorithm
+    $signatureHashString = Get-SS6StringHash -String $headerValuesString -HashName $httpSigningConfiguration.HashAlgorithm
 
     #Gets the Key type to select the correct signing alogorithm
-    $KeyType = Get-KeyTypeFromFile -KeyFilePath $httpSigningConfiguration.KeyFilePath
+    $KeyType = Get-SS6KeyTypeFromFile -KeyFilePath $httpSigningConfiguration.KeyFilePath
 
     if ($keyType -eq "RSA") {
-        $headerSignatureStr = Get-RSASignature -PrivateKeyFilePath $httpSigningConfiguration.KeyFilePath `
+        $headerSignatureStr = Get-SS6RSASignature -PrivateKeyFilePath $httpSigningConfiguration.KeyFilePath `
             -DataToSign $signatureHashString `
             -HashAlgorithmName $httpSigningConfiguration.HashAlgorithm `
             -KeyPassPhrase $httpSigningConfiguration.KeyPassPhrase `
             -SigningAlgorithm $httpSigningConfiguration.SigningAlgorithm
     } elseif ($KeyType -eq "EC") {
-        $headerSignatureStr = Get-ECDSASignature -ECKeyFilePath $httpSigningConfiguration.KeyFilePath `
+        $headerSignatureStr = Get-SS6ECDSASignature -ECKeyFilePath $httpSigningConfiguration.KeyFilePath `
             -DataToSign $signatureHashString `
             -HashAlgorithmName $httpSigningConfiguration.HashAlgorithm `
             -KeyPassPhrase $httpSigningConfiguration.KeyPassPhrase
     }
     #Depricated
-    <#$cryptographicScheme = Get-CryptographicScheme -SigningAlgorithm $httpSigningConfiguration.SigningAlgorithm `
+    <#$cryptographicScheme = Get-SS6CryptographicScheme -SigningAlgorithm $httpSigningConfiguration.SigningAlgorithm `
                                                  -HashAlgorithm $httpSigningConfiguration.HashAlgorithm
     #>
     $cryptographicScheme = "hs2019"
@@ -158,7 +158,7 @@ function Get-HttpSignedHeader {
 .OUTPUTS
     Base64String
 #>
-function Get-RSASignature {
+function Get-SS6RSASignature {
     Param(
         [string]$PrivateKeyFilePath,
         [byte[]]$DataToSign,
@@ -190,7 +190,7 @@ function Get-RSASignature {
                 $signedBytes = $rsa.SignHash($DataToSign, $hashAlgo, [System.Security.Cryptography.RSASignaturePadding]::Pkcs1)
             }
         } else {
-            $rsa_provider_path = Join-Path -Path $PSScriptRoot -ChildPath "RSAEncryptionProvider.cs"
+            $rsa_provider_path = Join-Path -Path $PSScriptRoot -ChildPath "SS6RSAEncryptionProvider.cs"
             $rsa_provider_sourceCode = Get-Content -Path $rsa_provider_path -Raw
             Add-Type -TypeDefinition $rsa_provider_sourceCode
 
@@ -227,7 +227,7 @@ function Get-RSASignature {
 .OUTPUTS
     Base64String
 #>
-function Get-ECDSASignature {
+function Get-SS6ECDSASignature {
     param(
         [Parameter(Mandatory = $true)]
         [string]$ECKeyFilePath,
@@ -279,7 +279,7 @@ function Get-ECDSASignature {
 .Outputs
     String
 #>
-Function Get-StringHash {
+Function Get-SS6StringHash {
     param(
         [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
@@ -304,7 +304,7 @@ Function Get-StringHash {
 .Outputs
 Integer
 #>
-function Get-UnixTime {
+function Get-SS6UnixTime {
     param(
         [Parameter(Mandatory = $true)]
         [DateTime]$Date,
@@ -323,7 +323,7 @@ function Get-UnixTime {
     }
 }
 
-function Get-CryptographicScheme {
+function Get-SS6CryptographicScheme {
     param(
         [Parameter(Mandatory = $true)]
         [string]$SigningAlgorithm,
@@ -351,7 +351,7 @@ function Get-CryptographicScheme {
 .Outputs
 String
 #>
-function Get-KeyTypeFromFile {
+function Get-SS6KeyTypeFromFile {
     param(
         [Parameter(Mandatory = $true)]
         [string]$KeyFilePath

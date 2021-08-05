@@ -23,7 +23,7 @@ No description available.
 AdminPerm<PSCustomObject>
 #>
 
-function Initialize-AdminPerm {
+function Initialize-SS6AdminPerm {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -35,7 +35,7 @@ function Initialize-AdminPerm {
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => AdminPerm' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6AdminPerm' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -66,19 +66,19 @@ Json object
 
 AdminPerm<PSCustomObject>
 #>
-function ConvertFrom-JsonToAdminPerm {
+function ConvertFrom-SS6JsonToAdminPerm {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => AdminPerm' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6AdminPerm' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in AdminPerm
+        # check if Json contains properties not defined in SS6AdminPerm
         $AllProperties = ("view", "edit")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

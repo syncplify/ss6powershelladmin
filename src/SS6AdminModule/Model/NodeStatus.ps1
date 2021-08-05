@@ -25,7 +25,7 @@ No description available.
 NodeStatus<PSCustomObject>
 #>
 
-function Initialize-NodeStatus {
+function Initialize-SS6NodeStatus {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -40,7 +40,7 @@ function Initialize-NodeStatus {
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => NodeStatus' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6NodeStatus' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -72,19 +72,19 @@ Json object
 
 NodeStatus<PSCustomObject>
 #>
-function ConvertFrom-JsonToNodeStatus {
+function ConvertFrom-SS6JsonToNodeStatus {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => NodeStatus' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6NodeStatus' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in NodeStatus
+        # check if Json contains properties not defined in SS6NodeStatus
         $AllProperties = ("id", "restServiceStatus", "workerServiceStatus")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

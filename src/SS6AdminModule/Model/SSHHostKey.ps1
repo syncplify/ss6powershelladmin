@@ -29,7 +29,7 @@ automaticaly extracted from the key
 SSHHostKey<PSCustomObject>
 #>
 
-function Initialize-SSHHostKey {
+function Initialize-SS6SSHHostKey {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -50,7 +50,7 @@ function Initialize-SSHHostKey {
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => SSHHostKey' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6SSHHostKey' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -84,19 +84,19 @@ Json object
 
 SSHHostKey<PSCustomObject>
 #>
-function ConvertFrom-JsonToSSHHostKey {
+function ConvertFrom-SS6JsonToSSHHostKey {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => SSHHostKey' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6SSHHostKey' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in SSHHostKey
+        # check if Json contains properties not defined in SS6SSHHostKey
         $AllProperties = ("id", "name", "key", "type", "fingerprint")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

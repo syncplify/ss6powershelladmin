@@ -37,7 +37,7 @@ automatically extracted from the certificate
 TLSCertificate<PSCustomObject>
 #>
 
-function Initialize-TLSCertificate {
+function Initialize-SS6TLSCertificate {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -70,7 +70,7 @@ function Initialize-TLSCertificate {
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => TLSCertificate' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6TLSCertificate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -108,19 +108,19 @@ Json object
 
 TLSCertificate<PSCustomObject>
 #>
-function ConvertFrom-JsonToTLSCertificate {
+function ConvertFrom-SS6JsonToTLSCertificate {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => TLSCertificate' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6TLSCertificate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in TLSCertificate
+        # check if Json contains properties not defined in SS6TLSCertificate
         $AllProperties = ("id", "cert", "key", "caBundle", "keyPass", "hash", "commonName", "validFrom", "validUntil")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

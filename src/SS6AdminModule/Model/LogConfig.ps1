@@ -31,7 +31,7 @@ No description available.
 LogConfig<PSCustomObject>
 #>
 
-function Initialize-LogConfig {
+function Initialize-SS6LogConfig {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -55,7 +55,7 @@ function Initialize-LogConfig {
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => LogConfig' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6LogConfig' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -90,19 +90,19 @@ Json object
 
 LogConfig<PSCustomObject>
 #>
-function ConvertFrom-JsonToLogConfig {
+function ConvertFrom-SS6JsonToLogConfig {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => LogConfig' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6LogConfig' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LogConfig
+        # check if Json contains properties not defined in SS6LogConfig
         $AllProperties = ("to", "detail", "cfgToStdout", "cfgToFile", "cfgToDb", "cfgToSyslog")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

@@ -19,13 +19,13 @@ No description available.
 SubsystemTypes<PSCustomObject>
 #>
 
-function Initialize-SubsystemTypes {
+function Initialize-SS6SubsystemTypes {
     [CmdletBinding()]
     Param (
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => SubsystemTypes' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6SubsystemTypes' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -54,19 +54,19 @@ Json object
 
 SubsystemTypes<PSCustomObject>
 #>
-function ConvertFrom-JsonToSubsystemTypes {
+function ConvertFrom-SS6JsonToSubsystemTypes {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => SubsystemTypes' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6SubsystemTypes' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in SubsystemTypes
+        # check if Json contains properties not defined in SS6SubsystemTypes
         $AllProperties = @()
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

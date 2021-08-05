@@ -19,13 +19,13 @@ No description available.
 Authenticator<PSCustomObject>
 #>
 
-function Initialize-Authenticator {
+function Initialize-SS6Authenticator {
     [CmdletBinding()]
     Param (
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => Authenticator' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6Authenticator' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -54,19 +54,19 @@ Json object
 
 Authenticator<PSCustomObject>
 #>
-function ConvertFrom-JsonToAuthenticator {
+function ConvertFrom-SS6JsonToAuthenticator {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => Authenticator' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6Authenticator' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in Authenticator
+        # check if Json contains properties not defined in SS6Authenticator
         $AllProperties = @()
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

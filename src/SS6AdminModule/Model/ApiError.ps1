@@ -29,7 +29,7 @@ No description available.
 ApiError<PSCustomObject>
 #>
 
-function Initialize-ApiError {
+function Initialize-SS6ApiError {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -50,7 +50,7 @@ function Initialize-ApiError {
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => ApiError' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6ApiError' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -84,19 +84,19 @@ Json object
 
 ApiError<PSCustomObject>
 #>
-function ConvertFrom-JsonToApiError {
+function ConvertFrom-SS6JsonToApiError {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => ApiError' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6ApiError' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in ApiError
+        # check if Json contains properties not defined in SS6ApiError
         $AllProperties = ("errorType", "data", "reason", "causedBy", "humanReadable")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

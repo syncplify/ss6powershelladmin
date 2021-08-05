@@ -19,13 +19,13 @@ No description available.
 UserType<PSCustomObject>
 #>
 
-function Initialize-UserType {
+function Initialize-SS6UserType {
     [CmdletBinding()]
     Param (
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => UserType' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6UserType' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -54,19 +54,19 @@ Json object
 
 UserType<PSCustomObject>
 #>
-function ConvertFrom-JsonToUserType {
+function ConvertFrom-SS6JsonToUserType {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => UserType' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6UserType' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in UserType
+        # check if Json contains properties not defined in SS6UserType
         $AllProperties = @()
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

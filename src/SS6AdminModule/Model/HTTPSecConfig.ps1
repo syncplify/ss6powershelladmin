@@ -51,7 +51,7 @@ No description available.
 HTTPSecConfig<PSCustomObject>
 #>
 
-function Initialize-HTTPSecConfig {
+function Initialize-SS6HTTPSecConfig {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -105,7 +105,7 @@ function Initialize-HTTPSecConfig {
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => HTTPSecConfig' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6HTTPSecConfig' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -150,19 +150,19 @@ Json object
 
 HTTPSecConfig<PSCustomObject>
 #>
-function ConvertFrom-JsonToHTTPSecConfig {
+function ConvertFrom-SS6JsonToHTTPSecConfig {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => HTTPSecConfig' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6HTTPSecConfig' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in HTTPSecConfig
+        # check if Json contains properties not defined in SS6HTTPSecConfig
         $AllProperties = ("enable", "allowedHosts", "sslRedirect", "sslTemporaryRedirect", "sslHost", "stsSeconds", "stsIncludeSubdomains", "frameDeny", "customFrameOptions", "contentTypeNoSniff", "browserXssFilter", "contentSecurityPolicy", "referrerPolicy", "featurePolicy", "dontRedirectIPv4HostNames", "sslProxyHeaders")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

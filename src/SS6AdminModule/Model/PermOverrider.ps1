@@ -21,7 +21,7 @@ No description available.
 PermOverrider<PSCustomObject>
 #>
 
-function Initialize-PermOverrider {
+function Initialize-SS6PermOverrider {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -30,7 +30,7 @@ function Initialize-PermOverrider {
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => PermOverrider' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6PermOverrider' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if (!$Permissions -and $Permissions.length -lt 1) {
@@ -64,19 +64,19 @@ Json object
 
 PermOverrider<PSCustomObject>
 #>
-function ConvertFrom-JsonToPermOverrider {
+function ConvertFrom-SS6JsonToPermOverrider {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => PermOverrider' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6PermOverrider' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in PermOverrider
+        # check if Json contains properties not defined in SS6PermOverrider
         $AllProperties = ("permissions")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

@@ -19,13 +19,13 @@ No description available.
 VFSPermissions<PSCustomObject>
 #>
 
-function Initialize-VFSPermissions {
+function Initialize-SS6VFSPermissions {
     [CmdletBinding()]
     Param (
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => VFSPermissions' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6VFSPermissions' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -54,19 +54,19 @@ Json object
 
 VFSPermissions<PSCustomObject>
 #>
-function ConvertFrom-JsonToVFSPermissions {
+function ConvertFrom-SS6JsonToVFSPermissions {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => VFSPermissions' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6VFSPermissions' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in VFSPermissions
+        # check if Json contains properties not defined in SS6VFSPermissions
         $AllProperties = @()
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

@@ -19,13 +19,13 @@ TLSCliModeType is the enumerable that represents the TLS client mode
 TLSCliModeType<PSCustomObject>
 #>
 
-function Initialize-TLSCliModeType {
+function Initialize-SS6TLSCliModeType {
     [CmdletBinding()]
     Param (
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => TLSCliModeType' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6TLSCliModeType' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -54,19 +54,19 @@ Json object
 
 TLSCliModeType<PSCustomObject>
 #>
-function ConvertFrom-JsonToTLSCliModeType {
+function ConvertFrom-SS6JsonToTLSCliModeType {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => TLSCliModeType' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6TLSCliModeType' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in TLSCliModeType
+        # check if Json contains properties not defined in SS6TLSCliModeType
         $AllProperties = @()
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

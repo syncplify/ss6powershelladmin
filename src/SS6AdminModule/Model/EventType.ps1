@@ -19,13 +19,13 @@ No description available.
 EventType<PSCustomObject>
 #>
 
-function Initialize-EventType {
+function Initialize-SS6EventType {
     [CmdletBinding()]
     Param (
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => EventType' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6EventType' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -54,19 +54,19 @@ Json object
 
 EventType<PSCustomObject>
 #>
-function ConvertFrom-JsonToEventType {
+function ConvertFrom-SS6JsonToEventType {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => EventType' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6EventType' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in EventType
+        # check if Json contains properties not defined in SS6EventType
         $AllProperties = @()
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

@@ -31,7 +31,7 @@ Optional list of domains. Primary domain must be first
 LDAPConfig<PSCustomObject>
 #>
 
-function Initialize-LDAPConfig {
+function Initialize-SS6LDAPConfig {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -55,7 +55,7 @@ function Initialize-LDAPConfig {
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => LDAPConfig' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6LDAPConfig' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($Port -and $Port -gt 65535) {
@@ -98,19 +98,19 @@ Json object
 
 LDAPConfig<PSCustomObject>
 #>
-function ConvertFrom-JsonToLDAPConfig {
+function ConvertFrom-SS6JsonToLDAPConfig {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => LDAPConfig' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6LDAPConfig' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LDAPConfig
+        # check if Json contains properties not defined in SS6LDAPConfig
         $AllProperties = ("id", "port", "ldapProto", "username", "password", "domains")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

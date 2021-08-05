@@ -19,13 +19,13 @@ No description available.
 SSHAuths<PSCustomObject>
 #>
 
-function Initialize-SSHAuths {
+function Initialize-SS6SSHAuths {
     [CmdletBinding()]
     Param (
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => SSHAuths' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6SSHAuths' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -54,19 +54,19 @@ Json object
 
 SSHAuths<PSCustomObject>
 #>
-function ConvertFrom-JsonToSSHAuths {
+function ConvertFrom-SS6JsonToSSHAuths {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => SSHAuths' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6SSHAuths' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in SSHAuths
+        # check if Json contains properties not defined in SS6SSHAuths
         $AllProperties = @()
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

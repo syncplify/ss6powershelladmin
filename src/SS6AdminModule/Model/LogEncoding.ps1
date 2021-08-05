@@ -19,13 +19,13 @@ No description available.
 LogEncoding<PSCustomObject>
 #>
 
-function Initialize-LogEncoding {
+function Initialize-SS6LogEncoding {
     [CmdletBinding()]
     Param (
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => LogEncoding' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6LogEncoding' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -54,19 +54,19 @@ Json object
 
 LogEncoding<PSCustomObject>
 #>
-function ConvertFrom-JsonToLogEncoding {
+function ConvertFrom-SS6JsonToLogEncoding {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => LogEncoding' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6LogEncoding' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LogEncoding
+        # check if Json contains properties not defined in SS6LogEncoding
         $AllProperties = @()
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

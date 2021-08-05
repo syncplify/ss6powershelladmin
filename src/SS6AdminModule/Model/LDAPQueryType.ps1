@@ -19,13 +19,13 @@ LDAP query type:   * `UPN` - will query only the user's UPN (User Principal Name
 LDAPQueryType<PSCustomObject>
 #>
 
-function Initialize-LDAPQueryType {
+function Initialize-SS6LDAPQueryType {
     [CmdletBinding()]
     Param (
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => LDAPQueryType' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6LDAPQueryType' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -54,19 +54,19 @@ Json object
 
 LDAPQueryType<PSCustomObject>
 #>
-function ConvertFrom-JsonToLDAPQueryType {
+function ConvertFrom-SS6JsonToLDAPQueryType {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => LDAPQueryType' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6LDAPQueryType' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LDAPQueryType
+        # check if Json contains properties not defined in SS6LDAPQueryType
         $AllProperties = @()
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

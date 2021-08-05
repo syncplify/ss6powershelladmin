@@ -37,7 +37,7 @@ if the notification was read by the connected super admin / admin, this field wi
 Notification<PSCustomObject>
 #>
 
-function Initialize-Notification {
+function Initialize-SS6Notification {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -70,7 +70,7 @@ function Initialize-Notification {
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => Notification' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6Notification' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -108,19 +108,19 @@ Json object
 
 Notification<PSCustomObject>
 #>
-function ConvertFrom-JsonToNotification {
+function ConvertFrom-SS6JsonToNotification {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => Notification' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6Notification' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in Notification
+        # check if Json contains properties not defined in SS6Notification
         $AllProperties = ("id", "created", "kind", "title", "body", "nodeId", "virtualSite", "originalError", "ackTime")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

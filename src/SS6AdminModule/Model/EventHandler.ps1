@@ -27,7 +27,7 @@ No description available.
 EventHandler<PSCustomObject>
 #>
 
-function Initialize-EventHandler {
+function Initialize-SS6EventHandler {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -45,7 +45,7 @@ function Initialize-EventHandler {
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => EventHandler' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6EventHandler' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -78,19 +78,19 @@ Json object
 
 EventHandler<PSCustomObject>
 #>
-function ConvertFrom-JsonToEventHandler {
+function ConvertFrom-SS6JsonToEventHandler {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => EventHandler' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6EventHandler' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in EventHandler
+        # check if Json contains properties not defined in SS6EventHandler
         $AllProperties = ("event", "script", "priority", "execTimeoutSecs")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

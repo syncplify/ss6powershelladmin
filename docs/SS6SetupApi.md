@@ -1,22 +1,22 @@
-# SS6AdminModule.SS6AdminModule/Api.SetupApi
+# SS6AdminModule.SS6AdminModule\Api.SS6SetupApi
 
-All URIs are relative to *http://127.0.0.1:6443/api/v1*
+All URIs are relative to *http://localhost/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**New-SA**](SetupApi.md#New-SA) | **POST** /superadmin | Create the default super admin with id &quot;&quot;sa&quot;&quot;
-[**Get-SetupQRCodePng**](SetupApi.md#Get-SetupQRCodePng) | **GET** /qr.png | Get the QR code png
-[**Get-SetupRandomBase32**](SetupApi.md#Get-SetupRandomBase32) | **GET** /randombase32/{length} | Get a random base32 string
-[**Get-SetupRandomName**](SetupApi.md#Get-SetupRandomName) | **GET** /randomname | Get a random name
-[**Invoke-Googleauthenticatortest**](SetupApi.md#Invoke-Googleauthenticatortest) | **GET** /googleauthenticatortest/{secret}/{token} | Test a google Authenticator token with explicit secret
-[**Join-HANode**](SetupApi.md#Join-HANode) | **POST** /hajoin | Join this node to an HA setup
-[**Set-Node**](SetupApi.md#Set-Node) | **POST** /node | Configure the node
-[**Set-SSC**](SetupApi.md#Set-SSC) | **POST** /ssc | Check the security code
+[**New-SS6SA**](SS6SetupApi.md#New-SS6SA) | **POST** /superadmin | Create the default super admin with id &quot;&quot;sa&quot;&quot;
+[**Get-SS6SetupQRCodePng**](SS6SetupApi.md#Get-SS6SetupQRCodePng) | **GET** /qr.png | Get the QR code png
+[**Get-SS6SetupRandomBase32**](SS6SetupApi.md#Get-SS6SetupRandomBase32) | **GET** /randombase32/{length} | Get a random base32 string
+[**Get-SS6SetupRandomName**](SS6SetupApi.md#Get-SS6SetupRandomName) | **GET** /randomname | Get a random name
+[**Invoke-SS6Googleauthenticatortest**](SS6SetupApi.md#Invoke-SS6Googleauthenticatortest) | **GET** /googleauthenticatortest/{secret}/{token} | Test a google Authenticator token with explicit secret
+[**Join-SS6HANode**](SS6SetupApi.md#Join-SS6HANode) | **POST** /hajoin | Join this node to an HA setup
+[**Set-SS6Node**](SS6SetupApi.md#Set-SS6Node) | **POST** /node | Configure the node
+[**Set-SS6SSC**](SS6SetupApi.md#Set-SS6SSC) | **POST** /ssc | Check the security code
 
 
-<a name="New-SA"></a>
-# **New-SA**
-> ApiResponse New-SA<br>
+<a name="New-SS6SA"></a>
+# **New-SS6SA**
+> ApiResponse New-SS6SA<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-XSetupOTP] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-SuperAdmin] <PSCustomObject><br>
 
@@ -32,9 +32,9 @@ $SuperAdmin = Initialize-SuperAdmin -Id "MyId" -Password $PasswordType -Email "M
 
 # Create the default super admin with id ""sa""
 try {
-    $Result = New-SA -XSetupOTP $XSetupOTP -SuperAdmin $SuperAdmin
+    $Result = New-SS6SA -XSetupOTP $XSetupOTP -SuperAdmin $SuperAdmin
 } catch {
-    Write-Host ("Exception occured when calling New-SA: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling New-SS6SA: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -61,9 +61,9 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-SetupQRCodePng"></a>
-# **Get-SetupQRCodePng**
-> System.IO.FileInfo Get-SetupQRCodePng<br>
+<a name="Get-SS6SetupQRCodePng"></a>
+# **Get-SS6SetupQRCodePng**
+> System.IO.FileInfo Get-SS6SetupQRCodePng<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Issuer] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Email] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Secret] <String><br>
@@ -78,9 +78,9 @@ $Secret = "MySecret" # String |
 
 # Get the QR code png
 try {
-    $Result = Get-SetupQRCodePng -Issuer $Issuer -Email $Email -Secret $Secret
+    $Result = Get-SS6SetupQRCodePng -Issuer $Issuer -Email $Email -Secret $Secret
 } catch {
-    Write-Host ("Exception occured when calling Get-SetupQRCodePng: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Get-SS6SetupQRCodePng: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -108,9 +108,9 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-SetupRandomBase32"></a>
-# **Get-SetupRandomBase32**
-> InlineObject Get-SetupRandomBase32<br>
+<a name="Get-SS6SetupRandomBase32"></a>
+# **Get-SS6SetupRandomBase32**
+> InlineObject Get-SS6SetupRandomBase32<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Length] <String><br>
 
 Get a random base32 string
@@ -121,9 +121,9 @@ $Length = "MyLength" # String | length of the random string
 
 # Get a random base32 string
 try {
-    $Result = Get-SetupRandomBase32 -Length $Length
+    $Result = Get-SS6SetupRandomBase32 -Length $Length
 } catch {
-    Write-Host ("Exception occured when calling Get-SetupRandomBase32: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Get-SS6SetupRandomBase32: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -149,9 +149,9 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-SetupRandomName"></a>
-# **Get-SetupRandomName**
-> InlineResponse2001 Get-SetupRandomName<br>
+<a name="Get-SS6SetupRandomName"></a>
+# **Get-SS6SetupRandomName**
+> InlineResponse2001 Get-SS6SetupRandomName<br>
 
 Get a random name
 
@@ -160,9 +160,9 @@ Get a random name
 
 # Get a random name
 try {
-    $Result = Get-SetupRandomName
+    $Result = Get-SS6SetupRandomName
 } catch {
-    Write-Host ("Exception occured when calling Get-SetupRandomName: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Get-SS6SetupRandomName: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -185,9 +185,9 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Invoke-Googleauthenticatortest"></a>
-# **Invoke-Googleauthenticatortest**
-> ApiResponse Invoke-Googleauthenticatortest<br>
+<a name="Invoke-SS6Googleauthenticatortest"></a>
+# **Invoke-SS6Googleauthenticatortest**
+> ApiResponse Invoke-SS6Googleauthenticatortest<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Secret] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Token] <String><br>
 
@@ -200,9 +200,9 @@ $Token = "MyToken" # String | token to be verified
 
 # Test a google Authenticator token with explicit secret
 try {
-    $Result = Invoke-Googleauthenticatortest -Secret $Secret -Token $Token
+    $Result = Invoke-SS6Googleauthenticatortest -Secret $Secret -Token $Token
 } catch {
-    Write-Host ("Exception occured when calling Invoke-Googleauthenticatortest: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Invoke-SS6Googleauthenticatortest: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -229,9 +229,9 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Join-HANode"></a>
-# **Join-HANode**
-> ApiResponse Join-HANode<br>
+<a name="Join-SS6HANode"></a>
+# **Join-SS6HANode**
+> ApiResponse Join-SS6HANode<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-XSetupOTP] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-InlineObject1] <PSCustomObject><br>
 
@@ -244,9 +244,9 @@ $InlineObject1 = Initialize-InlineObject1 -RemoteAddr "MyRemoteAddr" -Username "
 
 # Join this node to an HA setup
 try {
-    $Result = Join-HANode -XSetupOTP $XSetupOTP -InlineObject1 $InlineObject1
+    $Result = Join-SS6HANode -XSetupOTP $XSetupOTP -InlineObject1 $InlineObject1
 } catch {
-    Write-Host ("Exception occured when calling Join-HANode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Join-SS6HANode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -273,9 +273,9 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Set-Node"></a>
-# **Set-Node**
-> ApiResponse Set-Node<br>
+<a name="Set-SS6Node"></a>
+# **Set-SS6Node**
+> ApiResponse Set-SS6Node<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-XSetupOTP] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <PSCustomObject><br>
 
@@ -288,9 +288,9 @@ $Node = Initialize-Node -Id "MyId" -Description "MyDescription" -PrivateKey "MyP
 
 # Configure the node
 try {
-    $Result = Set-Node -XSetupOTP $XSetupOTP -Node $Node
+    $Result = Set-SS6Node -XSetupOTP $XSetupOTP -Node $Node
 } catch {
-    Write-Host ("Exception occured when calling Set-Node: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Set-SS6Node: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -317,9 +317,9 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Set-SSC"></a>
-# **Set-SSC**
-> InlineResponse200 Set-SSC<br>
+<a name="Set-SS6SSC"></a>
+# **Set-SS6SSC**
+> InlineResponse200 Set-SS6SSC<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-InlineObject] <PSCustomObject><br>
 
 Check the security code
@@ -330,9 +330,9 @@ $InlineObject = Initialize-InlineObject -Code "MyCode" # InlineObject |
 
 # Check the security code
 try {
-    $Result = Set-SSC -InlineObject $InlineObject
+    $Result = Set-SS6SSC -InlineObject $InlineObject
 } catch {
-    Write-Host ("Exception occured when calling Set-SSC: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Set-SS6SSC: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```

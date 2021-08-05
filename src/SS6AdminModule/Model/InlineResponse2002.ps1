@@ -21,7 +21,7 @@ private key matching the stored public one
 InlineResponse2002<PSCustomObject>
 #>
 
-function Initialize-InlineResponse2002 {
+function Initialize-SS6InlineResponse2002 {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -30,7 +30,7 @@ function Initialize-InlineResponse2002 {
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => InlineResponse2002' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6InlineResponse2002' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -60,19 +60,19 @@ Json object
 
 InlineResponse2002<PSCustomObject>
 #>
-function ConvertFrom-JsonToInlineResponse2002 {
+function ConvertFrom-SS6JsonToInlineResponse2002 {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => InlineResponse2002' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6InlineResponse2002' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in InlineResponse2002
+        # check if Json contains properties not defined in SS6InlineResponse2002
         $AllProperties = ("key")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

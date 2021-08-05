@@ -29,7 +29,7 @@ No description available.
 PasswordComplexity<PSCustomObject>
 #>
 
-function Initialize-PasswordComplexity {
+function Initialize-SS6PasswordComplexity {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -50,7 +50,7 @@ function Initialize-PasswordComplexity {
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => PasswordComplexity' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6PasswordComplexity' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -84,19 +84,19 @@ Json object
 
 PasswordComplexity<PSCustomObject>
 #>
-function ConvertFrom-JsonToPasswordComplexity {
+function ConvertFrom-SS6JsonToPasswordComplexity {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => PasswordComplexity' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6PasswordComplexity' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in PasswordComplexity
+        # check if Json contains properties not defined in SS6PasswordComplexity
         $AllProperties = ("minLength", "requireUpper", "requireLower", "requireNumber", "requireSpecial")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

@@ -33,7 +33,7 @@ No description available.
 License<PSCustomObject>
 #>
 
-function Initialize-License {
+function Initialize-SS6License {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -60,7 +60,7 @@ function Initialize-License {
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => License' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6License' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -96,19 +96,19 @@ Json object
 
 License<PSCustomObject>
 #>
-function ConvertFrom-JsonToLicense {
+function ConvertFrom-SS6JsonToLicense {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => License' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6License' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in License
+        # check if Json contains properties not defined in SS6License
         $AllProperties = ("code", "semVerConstraint", "validFrom", "validTo", "customer", "systemdID", "type")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

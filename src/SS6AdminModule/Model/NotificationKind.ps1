@@ -19,13 +19,13 @@ No description available.
 NotificationKind<PSCustomObject>
 #>
 
-function Initialize-NotificationKind {
+function Initialize-SS6NotificationKind {
     [CmdletBinding()]
     Param (
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => NotificationKind' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6NotificationKind' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -54,19 +54,19 @@ Json object
 
 NotificationKind<PSCustomObject>
 #>
-function ConvertFrom-JsonToNotificationKind {
+function ConvertFrom-SS6JsonToNotificationKind {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => NotificationKind' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6NotificationKind' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in NotificationKind
+        # check if Json contains properties not defined in SS6NotificationKind
         $AllProperties = @()
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

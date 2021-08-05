@@ -19,13 +19,13 @@ No description available.
 SSHRSAKeyBits<PSCustomObject>
 #>
 
-function Initialize-SSHRSAKeyBits {
+function Initialize-SS6SSHRSAKeyBits {
     [CmdletBinding()]
     Param (
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => SSHRSAKeyBits' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6SSHRSAKeyBits' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -54,19 +54,19 @@ Json object
 
 SSHRSAKeyBits<PSCustomObject>
 #>
-function ConvertFrom-JsonToSSHRSAKeyBits {
+function ConvertFrom-SS6JsonToSSHRSAKeyBits {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => SSHRSAKeyBits' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6SSHRSAKeyBits' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in SSHRSAKeyBits
+        # check if Json contains properties not defined in SS6SSHRSAKeyBits
         $AllProperties = @()
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

@@ -69,7 +69,7 @@ No description available.
 StatsContainer<PSCustomObject>
 #>
 
-function Initialize-StatsContainer {
+function Initialize-SS6StatsContainer {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -150,7 +150,7 @@ function Initialize-StatsContainer {
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => StatsContainer' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6StatsContainer' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -204,19 +204,19 @@ Json object
 
 StatsContainer<PSCustomObject>
 #>
-function ConvertFrom-JsonToStatsContainer {
+function ConvertFrom-SS6JsonToStatsContainer {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => StatsContainer' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6StatsContainer' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in StatsContainer
+        # check if Json contains properties not defined in SS6StatsContainer
         $AllProperties = ("started", "sessSshShell", "sessSshScp", "sessSshSftp", "sessFtp", "sessFtps", "sessFtpes", "sessWebClient", "sessWebClientShare", "rejectedConns", "addedToBl", "addedByHammering", "addedByAuth", "addedByProtocol", "addedByAdmin", "addedByScript", "hitsOnBl", "hitsOnBlCache", "fileUp", "fileDn", "fileUpFail", "fileDnFail", "transferUpMb", "transferDnMb", "scriptsRun")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

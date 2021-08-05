@@ -27,7 +27,7 @@ No description available.
 LogToSyslogCfg<PSCustomObject>
 #>
 
-function Initialize-LogToSyslogCfg {
+function Initialize-SS6LogToSyslogCfg {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -46,7 +46,7 @@ function Initialize-LogToSyslogCfg {
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => LogToSyslogCfg' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6LogToSyslogCfg' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -79,19 +79,19 @@ Json object
 
 LogToSyslogCfg<PSCustomObject>
 #>
-function ConvertFrom-JsonToLogToSyslogCfg {
+function ConvertFrom-SS6JsonToLogToSyslogCfg {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => LogToSyslogCfg' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6LogToSyslogCfg' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LogToSyslogCfg
+        # check if Json contains properties not defined in SS6LogToSyslogCfg
         $AllProperties = ("network", "address", "tag", "marker")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

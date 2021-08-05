@@ -31,7 +31,7 @@ No description available.
 SSHPubKey<PSCustomObject>
 #>
 
-function Initialize-SSHPubKey {
+function Initialize-SS6SSHPubKey {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -55,7 +55,7 @@ function Initialize-SSHPubKey {
     )
 
     Process {
-        'Creating PSCustomObject: SS6AdminModule => SSHPubKey' | Write-Debug
+        'Creating PSCustomObject: SS6AdminModule => SS6SSHPubKey' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -90,19 +90,19 @@ Json object
 
 SSHPubKey<PSCustomObject>
 #>
-function ConvertFrom-JsonToSSHPubKey {
+function ConvertFrom-SS6JsonToSSHPubKey {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: SS6AdminModule => SSHPubKey' | Write-Debug
+        'Converting JSON to PSCustomObject: SS6AdminModule => SS6SSHPubKey' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in SSHPubKey
+        # check if Json contains properties not defined in SS6SSHPubKey
         $AllProperties = ("id", "name", "key", "fingerprint", "type", "comment")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
